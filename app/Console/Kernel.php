@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel {
 		'App\Console\Commands\Inspire',
 		'App\Console\Commands\ProjectSetup',
 		'App\Console\Commands\ProjectSeed',
+		'App\Console\Commands\ProjectReset',
 	];
 
 	/**

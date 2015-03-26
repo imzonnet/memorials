@@ -5,5 +5,5 @@ Dashboard Admin
 @stop
 
 @section('content')
-ssssssssssss
+Run Run LOL LOL
 @stop

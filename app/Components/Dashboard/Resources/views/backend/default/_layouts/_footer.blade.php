@@ -9,7 +9,13 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{asset('public/backend/default/dist/js/sb-admin-2.js')}}"></script>
-
+    <script>
+        $(function(){
+            $('.form-delete').submit(function(){
+                return confirm("Are you sure you want to delete the selected record ?");
+            });
+        }(jQuery));
+    </script>
     @section('scripts')
 
     @show

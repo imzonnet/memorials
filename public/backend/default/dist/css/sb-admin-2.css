@@ -20,6 +20,10 @@ body {
 .clearfix {
     clear: both;
 }
+
+.help-block.error {
+    color: #a94442;
+}
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;

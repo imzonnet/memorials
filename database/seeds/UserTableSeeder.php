@@ -1,5 +1,6 @@
 <?php
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder {
 
@@ -15,10 +16,9 @@ class UserTableSeeder extends Seeder {
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('123456'),
                 'birthday' => $faker->date('Y-m-d'),
-                'address' => $faker->streetAddress
-                'phone' => $faker->phoneNumber
-                'group' => 'member']
-            )
+                'address' => $faker->streetAddress,
+                'phone' => $faker->phoneNumber,
+                'group' => 'admin']);
 
         foreach(range(1,10) as $index) {
             DB::table('users')->insert(
@@ -26,10 +26,10 @@ class UserTableSeeder extends Seeder {
                 'email' => $faker->email,
                 'password' => bcrypt('123456'),
                 'birthday' => $faker->date('Y-m-d'),
-                'address' => $faker->streetAddress
-                'phone' => $faker->phoneNumber
+                'address' => $faker->streetAddress,
+                'phone' => $faker->phoneNumber,
                 'group' => 'member']
-            )
+            );
         }
 
     }

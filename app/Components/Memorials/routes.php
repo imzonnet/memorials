@@ -1,5 +1,9 @@
 <?php
+/**
+ * Memorials Route
+ */
 
-Route::get('/hello', function(){
-    echo "Xin Chao Viet Nam";
+Route::group(['prefix' => 'backend', 'middleware' => 'auth.backend'], function() {
+
+    Route::resource('memorial', 'Backend\MemorialController');
 });

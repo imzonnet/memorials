@@ -23,8 +23,7 @@ class EloquentBaseRepository implements BaseRepository
         return $this->model->update($attributes);
     }
 
-    public function delete()
-    {
+    public function delete(){
         return $this->model->delete();
     }
 

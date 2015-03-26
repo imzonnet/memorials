@@ -12,6 +12,7 @@
                     <h1 class="page-header">@yield('title')</h1>
                 </div>
                 <!-- /.col-lg-12 -->
+                <div class="clearfix"></div>
                 @if( count($errors) > 0 )
                     <div class="alert alert-danger">
                         <strong>Whoops!</strong> There were some problems with your input.<br><br>

@@ -17,8 +17,8 @@ class GranitMemorials extends Migration {
             $table->increments('id');
             $table->string('name');
             $table->string('avatar');
-            $table->date('birthday');
-            $table->date('death');
+            $table->dateTime('birthday');
+            $table->dateTime('death');
             $table->text('biography');
             $table->text('obituary');
             $table->string('buried');

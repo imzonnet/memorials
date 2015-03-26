@@ -17,7 +17,9 @@ Route::get('/admin', function(){
 
 
 Route::group(['prefix' => 'backend', 'middleware' => 'auth.backend'], function() {
-    Route::get('/', 'Backend\HomeController@index');
-
+    Route::get('/', function(){ return redirect('/backend/home');});
+    Route::get('/home', ['as' => 'backend.home', 'uses' => 'Backend\HomeController@index']);
+    /* User */
+    Route::resource('user', 'Backend\UserController');
 });
 

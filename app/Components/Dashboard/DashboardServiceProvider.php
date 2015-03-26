@@ -1,5 +1,7 @@
 <?php namespace App\Components\Dashboard;
 
+use App\Components\Dashboard\Repositories\User\EloquentUserRepository;
+use App\Components\Dashboard\Repositories\User\UserRepository;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 /**
@@ -48,6 +50,13 @@ class DashboardServiceProvider extends ServiceProvider {
 
     public function register()
     {
+        /**
+         * Repositories
+         */
+        $this->app->bind(
+            UserRepository::class,
+            EloquentUserRepository::class
+        );
         /*
          * Register Component
          */
