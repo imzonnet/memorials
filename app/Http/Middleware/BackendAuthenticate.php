@@ -40,11 +40,11 @@ class BackendAuthenticate {
             }
             else
             {
-                return redirect()->guest('auth/login');
+                return redirect()->guest('backend/auth/login');
             }
         }
         if(!is_admin()) {
-            return redirect()->guest('auth/login');
+            return redirect()->guest('/')->withErrors('Don\'t have permission!');
         }
         return $next($request);
     }

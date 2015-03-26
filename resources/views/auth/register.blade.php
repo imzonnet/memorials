@@ -49,6 +49,25 @@
 							</div>
 						</div>
 
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Birthday</label>
+                            <div class="col-md-6">
+                                <input type="date" class="form-control" name="birthday" value="{{ old('birthday') }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Address</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="address" value="{{ old('address') }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Phone number</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+                            </div>
+                        </div>
+
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">

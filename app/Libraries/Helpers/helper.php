@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
  */
 function current_section()
 {
-    if (Request::is('backend*')) {
+    if (Request::is('backend*') || Request::is('admin*')) {
         $link_type = 'backend';
         $theme = !is_null(env('THEME_BACKEND')) ? env('THEME_BACKEND') : 'default';
     } else {

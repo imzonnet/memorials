@@ -17,7 +17,9 @@ body {
     min-height: 568px;
     background-color: #fff;
 }
-
+.clearfix {
+    clear: both;
+}
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;

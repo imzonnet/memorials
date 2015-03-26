@@ -1,14 +1,9 @@
-<?php namespace App\Components\Dashboard;
+<?php namespace App\Components\Memorials;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
-/**
- * Import Components
- */
-use App\Components\Memorials\MemorialsServiceProvider;
 
-
-class DashboardServiceProvider extends ServiceProvider {
+class MemorialsServiceProvider extends ServiceProvider {
 
     /**
      * This namespace is applied to the controller routes in your routes file.
@@ -17,7 +12,7 @@ class DashboardServiceProvider extends ServiceProvider {
      *
      * @var string
      */
-    protected $namespace = 'App\Components\Dashboard\Http\Controllers';
+    protected $namespace = 'App\Components\Memorials\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -28,8 +23,13 @@ class DashboardServiceProvider extends ServiceProvider {
     public function boot(Router $router)
     {
         parent::boot($router);
-        $this->loadViewsFrom(__DIR__.'/Resources/views', 'Dashboard');
-        $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'Dashboard');
+        $this->loadViewsFrom(__DIR__.'/Resources/views', 'Memorials');
+        $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'Memorials');
+
+        $this->publishes([
+            __DIR__.'/database/migrations/' => base_path('/database/migrations')
+        ], 'migrations');
+
     }
 
     /**
@@ -42,16 +42,8 @@ class DashboardServiceProvider extends ServiceProvider {
     {
         $router->group(['namespace' => $this->namespace], function($router)
         {
-            require app_path('Components/Dashboard/routes.php');
+            require app_path('Components/Memorials/routes.php');
         });
-    }
-
-    public function register()
-    {
-        /*
-         * Register Component
-         */
-        $this->app->register(MemorialsServiceProvider::class);
     }
 
 }

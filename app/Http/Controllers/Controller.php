@@ -8,8 +8,9 @@ abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
 
-    protected $link_type;
-    protected $current_theme;
+    protected $link_type = 'backend';
+    protected $current_theme = 'default';
+
     public function __construct() {
         list($this->link_type, $this->current_theme) = current_section();
     }
