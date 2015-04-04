@@ -19,13 +19,4 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
         $this->model = $model;
     }
 
-
-    public function getUserById($id)
-    {
-        $user = $this->model->find($id);
-        if (is_null($user)) {
-            throw new \Exception('User not found');
-        }
-        return $user;
-    }
 }

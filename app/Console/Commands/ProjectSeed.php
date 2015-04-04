@@ -39,7 +39,11 @@ class ProjectSeed extends Command {
 
         $this->call('db:seed');
         $this->call('db:seed', ['--class' => 'App\Components\Memorials\Database\Seeds\DatabaseSeeder']);
+        $this->info('Import Comlete!');
 
+        $this->info('_________________________________________');
+        $this->info(' Admin Account: admin@admin.com | 123456 ');
+        $this->error('Thank You! :))');
 	}
 
 

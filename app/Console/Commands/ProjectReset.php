@@ -38,7 +38,7 @@ class ProjectReset extends Command {
 	public function fire()
 	{
         $this->info('Reset Project...');
-        $this->call('migrate:reset');
+        $this->call('migrate:reset', ['force']);
 
         //$this->call('migrate:reset', ['--path' => 'App\Components\Memorials\database\migrations']);
 

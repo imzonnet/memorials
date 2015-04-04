@@ -36,8 +36,10 @@
                 <li>
                     <a href="{{route('backend.home')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
+                <!-- User -->
                 <li>
-                    <a href="{{route('backend.user.index')}}"><i class="fa fa-user fa-fw"></i> Users<span class="fa arrow"></span></a>
+                    <a href="{{route('backend.user.index')}}"><i class="fa fa-user fa-fw"></i> Users<span
+                                class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{route('backend.user.index')}}">List Users</a>
@@ -48,7 +50,22 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-
+                <!-- End User -->
+                <!-- Memorials -->
+                <li>
+                    <a href="{{route('backend.memorial.index')}}"><i class="fa fa-book fa-fw"></i> Memorials<span
+                                class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{route('backend.memorial.index')}}">List Memorials</a>
+                        </li>
+                        <li>
+                            <a href="{{route('backend.memorial.create')}}">Add New</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <!-- End Memorials -->
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

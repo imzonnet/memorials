@@ -37,7 +37,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('Dashboard::' . $this->link_type . '.' . $this->current_theme . '.users.create');
+        return view('Dashboard::' . $this->link_type . '.' . $this->current_theme . '.users.create_edit');
     }
 
     /**
@@ -61,8 +61,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->user->getUserById($id);
-        return view('Dashboard::' . $this->link_type . '.' . $this->current_theme . '.users.create', compact('user'));
+        $user = $this->user->getElementById($id);
+        return view('Dashboard::' . $this->link_type . '.' . $this->current_theme . '.users.create_edit', compact('user'));
     }
 
     /**
@@ -75,7 +75,7 @@ class UserController extends Controller
     {
         $attr = $request->all();
         $attr['password'] = bcrypt($attr['password']);
-        $this->user->getUserById($id)->update($attr);
+        $this->user->getElementById($id)->update($attr);
         return redirect(route('backend.user.index'))->with('success_message', 'The account has been updated');
     }
 
@@ -87,7 +87,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $this->user->getUserById($id)->delete();
+        $this->user->getElementById($id)->delete();
         return redirect()->back()->with('success_message', 'The account has been deleted');
     }
 }

@@ -38,35 +38,17 @@ class ProjectSetup extends Command {
 	public function fire()
 	{
 		$this->info('Setup Project...');
+        $this->info('_________________________');
+        $this->info('Publishing Migrate');
+        $this->call('vendor:publish', ['--provider' => 'App\Components\Memorials\MemorialsServiceProvider']);
+        $this->info('Publishing Complete!');
+        $this->info('_________________________');
+        $this->info('Migrating database');
         $this->call('migrate');
-
-        $this->call('migrate', ['--path' => 'App\Components\Memorials\database\migrations']);
-
-        $this->info('Migrate Success!');
+        $this->info('Migrating Complete!');
+        $this->info('_________________________');
+        $this->info('Install sample data. Please type: php artisan project:seed ');
 	}
 
-	/**
-	 * Get the console command arguments.
-	 *
-	 * @return array
-	 */
-	protected function getArguments()
-	{
-		return [
-			//['example', InputArgument::REQUIRED, 'An example argument.'],
-		];
-	}
-
-	/**
-	 * Get the console command options.
-	 *
-	 * @return array
-	 */
-	protected function getOptions()
-	{
-		return [
-			['example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
-		];
-	}
 
 }

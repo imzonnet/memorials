@@ -38,4 +38,13 @@ class EloquentBaseRepository implements BaseRepository
 
         return $this;
     }
+
+    public function getElementById($id)
+    {
+        $element = $this->model->find($id);
+        if (is_null($element)) {
+            throw new \Exception('Not found');
+        }
+        return $element;
+    }
 }

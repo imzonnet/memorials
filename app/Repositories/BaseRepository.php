@@ -9,6 +9,15 @@ interface BaseRepository
      * @return Response
      */
     public function all();
+
+    /**
+     * Get Element By ID
+     *
+     * @param $id
+     * @return object
+     */
+    public function getElementById($id);
+
     /**
      * Store a newly created resource in storage.
      *
@@ -19,16 +28,18 @@ interface BaseRepository
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function update(array $attributes = array());
+
     /**
      * Remove the specified resource from storage.
      *
      * @return Response
      */
     public function delete();
+
     /**
      * Eager loading relations
      *

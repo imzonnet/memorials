@@ -18,21 +18,36 @@ function current_section()
 }
 
 /**
+ * Current User
+ * @return object
+ */
+function current_user()
+{
+    if (Auth::check()) {
+        return Auth::user();
+    }
+    return NULL;
+}
+
+/**
  * Check Backend Permission
  * @return boolean
  */
-function is_admin() {
-    if(Auth::check() and Auth::user()->group === 'admin') {
+function is_admin()
+{
+    if (Auth::check() and Auth::user()->group === 'admin') {
         return true;
     }
     return false;
 }
+
 /**
  * Check User Permission
  * @return boolean
  */
-function is_user() {
-    if(Auth::check() and Auth::user()->group === 'member') {
+function is_user()
+{
+    if (Auth::check() and Auth::user()->group === 'member') {
         return true;
     }
     return false;

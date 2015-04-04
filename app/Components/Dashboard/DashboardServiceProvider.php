@@ -10,7 +10,8 @@ use Illuminate\Routing\Router;
 use App\Components\Memorials\MemorialsServiceProvider;
 
 
-class DashboardServiceProvider extends ServiceProvider {
+class DashboardServiceProvider extends ServiceProvider
+{
 
     /**
      * This namespace is applied to the controller routes in your routes file.
@@ -24,26 +25,25 @@ class DashboardServiceProvider extends ServiceProvider {
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function boot(Router $router)
     {
         parent::boot($router);
-        $this->loadViewsFrom(__DIR__.'/Resources/views', 'Dashboard');
-        $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'Dashboard');
+        $this->loadViewsFrom(__DIR__ . '/Resources/views', 'Dashboard');
+        $this->loadTranslationsFrom(__DIR__ . '/Resources/lang', 'Dashboard');
     }
 
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function map(Router $router)
     {
-        $router->group(['namespace' => $this->namespace], function($router)
-        {
+        $router->group(['namespace' => $this->namespace], function ($router) {
             require app_path('Components/Dashboard/routes.php');
         });
     }
@@ -51,14 +51,12 @@ class DashboardServiceProvider extends ServiceProvider {
     public function register()
     {
         /**
-         * Repositories
+         * Bind Repositories
          */
-        $this->app->bind(
-            UserRepository::class,
-            EloquentUserRepository::class
-        );
-        /*
-         * Register Component
+        $this->app->bind(UserRepository::class, EloquentUserRepository::class);
+
+        /**
+         * Register Child Component
          */
         $this->app->register(MemorialsServiceProvider::class);
     }

@@ -17,7 +17,7 @@ class Memorial extends Model {
      *
      * @var array
      */
-    protected $fillable = ['name', 'avatar', 'birthday', 'death', 'biography', 'obituary', 'buried', 'lat', 'long', 'created_by'];
+    protected $fillable = ['name', 'avatar', 'birthday', 'death', 'biography', 'obituary', 'buried', 'lat', 'lng', 'created_by', 'timeline'];
 
     /**
      * Relationship with User table
@@ -25,5 +25,15 @@ class Memorial extends Model {
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function relationships()
+    {
+        return $this->hasMany(MemorialRelationship::class, 'mem_id', 'id');
+    }
+
+    public function timelines()
+    {
+        return $this->hasMany(Timeline::class, 'mem_id', 'id');
     }
 }

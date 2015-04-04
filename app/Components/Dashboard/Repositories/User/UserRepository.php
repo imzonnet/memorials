@@ -4,5 +4,4 @@ use App\Repositories\BaseRepository;
 
 interface UserRepository extends BaseRepository
 {
-    public function getUserById($id);
 }
