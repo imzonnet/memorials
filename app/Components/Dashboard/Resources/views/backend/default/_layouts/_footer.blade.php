@@ -11,13 +11,17 @@
     <script src="{{asset('public/backend/default/dist/js/admin.js')}}"></script>
     <script src="{{asset('public/assets/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('public/assets/ckeditor/adapters/jquery.js')}}"></script>
-    <script>
+    <script src="{{asset('public/backend/default/bower_components/DataTables/media/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('public/backend/default/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js')}}"></script>
+    <script type="text/javascript">
         $(function(){
             $('.form-delete').submit(function(){
                 return confirm("Are you sure you want to delete the selected record ?");
             });
             //$( 'textarea.editor-ckeditor' ).ckeditor();
-
+            $('.dataTables').DataTable({
+                responsive: true
+            });
         }(jQuery));
     </script>
     @section('scripts')

@@ -22,7 +22,7 @@
 
             <div class="form-group">
                 <label>Name</label>
-                {!!Form::text('name', isset($memorial) ? $memorial->name : old('name'), ['class' => 'form-control', 'placeholder' => 'John Nguyen'] ) !!}
+                {!!Form::text('name', isset($memorial) ? $memorial->name : old('name'), ['class' => 'form-control', 'placeholder' => 'Name...'] ) !!}
                 {!! $errors->first('name', '<span class="help-block error">:message</span>') !!}
             </div>
 
@@ -101,39 +101,116 @@
                         <h3 class="panel-title">Memorial Timeline</h3>
                     </div>
                     <div id="timeline-group-body" class="panel-body">
-                        {!! Form::hidden('timeline_form_count', isset($memorial) ? $memorial->timelines->count() : 1) !!}
-                        <?php $count = !empty(old('timeline_form_count')) ? old('timeline_form_count') : (isset($memorial) ? $memorial->timelines->count() : 1); ?>
-                        @for($i = 0; $i < $count; $i++)
-                        <div id="timeline-form-0" class="timeline-form form-group clearfix" data-id="{{$i}}">
-                            {!! Form::hidden("timeline_id[$i]", isset($memorial) ? $memorial->timelines->toArray()[$i]['id'] : 0) !!}
-                            <div class="row">
-                                <div class="col-md-3 col-lg-3 year">
-                                    <label>Year</label>
-                                    {!!Form::number("timeline_year[$i]", isset($memorial) ? $memorial->timelines->toArray()[$i]['year'] : null, ['class' => 'form-control','placeholder' => ''] ) !!}
-                                    {!! $errors->first('timeline_year.'.$i, '<span class="help-block error">:message</span>') !!}
+                        @if(isset($memorial))
+                            <?php $count = !empty(old('timeline_form_count')) ? old('timeline_form_count') : 0;
+                                $mem_count = isset($memorial) ? $memorial->timelines->count() : 1;
+                            ?>
+                            {!! Form::hidden('timeline_form_count', $mem_count) !!}
+                            @for($i = 0; $i <  $mem_count ; $i++)
+                            <div id="timeline-form-{{$i}}" class="timeline-form form-group clearfix">
+                                {!! Form::hidden("timeline_id[$i]", isset($memorial) ? $memorial->timelines->toArray()[$i]['id'] : 0, ['class' => 'timeline_id']) !!}
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 year">
+                                        <label>Year</label>
+                                        {!!Form::number("timeline_year[$i]", isset($memorial) ? $memorial->timelines->toArray()[$i]['year'] : null, ['class' => 'form-control','placeholder' => ''] ) !!}
+                                        {!! $errors->first('timeline_year.'.$i, '<span class="help-block error">:message</span>') !!}
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 title">
+                                        <label>Title</label>
+                                        {!!Form::text("timeline_title[$i]", isset($memorial) ? $memorial->timelines->toArray()[$i]['title'] : null, ['class' => 'form-control','placeholder' => ''] ) !!}
+                                        {!! $errors->first('timeline_title.'.$i, '<span class="help-block error">:message</span>') !!}
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 task">
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary timeline-btn-desc" type="button"><i class="fa fa-plus"></i> Add Description</button>
+                                            <button type="button" class="timeline-btn-delete btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 col-lg-6 title">
-                                    <label>Title</label>
-                                    {!!Form::text("timeline_title[$i]", isset($memorial) ? $memorial->timelines->toArray()[$i]['title'] : null, ['class' => 'form-control','placeholder' => ''] ) !!}
-                                    {!! $errors->first('timeline_title.'.$i, '<span class="help-block error">:message</span>') !!}
-                                </div>
-                                <div class="col-md-3 col-lg-3 task">
-                                    <label>&nbsp;</label>
-                                    <p><button class="btn btn-primary timeline-btn-desc" type="button"><i class="fa fa-plus"></i> Add Description</button></p>
+                                <div class="row info" style="display:none">
+                                    <div class="col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6 description">
+                                        {!!Form::textarea("timeline_desc[$i]", isset($memorial) ? $memorial->timelines->toArray()[$i]['description'] : null, ['class' => 'form-control','placeholder' => '', 'rows' => 3] ) !!}
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 image">
+                                        <p><strong>Write text or Upload a picture</strong></p>
+                                        <img id="preview_{{$i}}" alt="Image" width="100" height="100" class="pull-left" title="Image" src="{{isset($memorial) ? asset($memorial->timelines->toArray()[$i]['image']) : ""}}"/>
+                                        {!! Form::file("timeline_image[$i]", ['onchange' => "$('#preview_".$i."')[0].src = window.URL.createObjectURL(this.files[0]); console.log($(this));" ]) !!}
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row info" style="display:none">
-                                <div class="col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6 description">
-                                    {!!Form::textarea("timeline_desc[$i]", isset($memorial) ? $memorial->timelines->toArray()[$i]['description'] : null, ['class' => 'form-control','placeholder' => '', 'rows' => 3] ) !!}
+                            @endfor
+
+                            @for($i = $mem_count; $i <  $count ; $i++)
+                                <div id="timeline-form-{{$i}}" class="timeline-form form-group clearfix">
+                                    {!! Form::hidden("timeline_id[$i]", 0, ['class' => 'timeline_id']) !!}
+                                    <div class="row">
+                                        <div class="col-md-3 col-lg-3 year">
+                                            <label>Year</label>
+                                            {!!Form::number("timeline_year[$i]", null, ['class' => 'form-control','placeholder' => ''] ) !!}
+                                            {!! $errors->first('timeline_year.'.$i, '<span class="help-block error">:message</span>') !!}
+                                        </div>
+                                        <div class="col-md-6 col-lg-6 title">
+                                            <label>Title</label>
+                                            {!!Form::text("timeline_title[$i]", null, ['class' => 'form-control','placeholder' => ''] ) !!}
+                                            {!! $errors->first('timeline_title.'.$i, '<span class="help-block error">:message</span>') !!}
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 task">
+                                            <div class="btn-group">
+                                                <button class="btn btn-primary timeline-btn-desc" type="button"><i class="fa fa-plus"></i> Add Description</button>
+                                                <button type="button" class="timeline-btn-delete btn btn-danger"><i class="fa fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row info" style="display:none">
+                                        <div class="col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6 description">
+                                            {!!Form::textarea("timeline_desc[$i]", null, ['class' => 'form-control','placeholder' => '', 'rows' => 3] ) !!}
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 image">
+                                            <p><strong>Write text or Upload a picture</strong></p>
+                                            <img id="preview_{{$i}}" alt="Image" width="100" height="100" class="pull-left" title="Image" src=""/>
+                                            {!! Form::file("timeline_image[$i]", ['onchange' => "$('#preview_".$i."')[0].src = window.URL.createObjectURL(this.files[0]); console.log($(this));" ]) !!}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-3 col-lg-3 image">
-                                    <h4>Write text or Upload a picture</h4>
-                                    {!! Form::hidden("timeline_image[$i]", isset($memorial) ? $memorial->timelines->toArray()[$i]['image'] : null) !!}
-                                    {!! Form::file('timeline_image_upload', ['class' => 'imageAjaxUpload']) !!}
+                            @endfor
+                        @else
+                            <?php $count = !empty(old('timeline_form_count')) ? old('timeline_form_count') : 1;
+                            ?>
+                            {!! Form::hidden('timeline_form_count', $count) !!}
+                            @for($i = 0; $i < $count ; $i++)
+                                <div id="timeline-form-{{$i}}" class="timeline-form form-group clearfix">
+                                    {!! Form::hidden("timeline_id[$i]", 0, ['class' => 'timeline_id']) !!}
+                                    <div class="row">
+                                        <div class="col-md-3 col-lg-3 year">
+                                            <label>Year</label>
+                                            {!!Form::number("timeline_year[$i]", null, ['class' => 'form-control','placeholder' => ''] ) !!}
+                                            {!! $errors->first('timeline_year.'.$i, '<span class="help-block error">:message</span>') !!}
+                                        </div>
+                                        <div class="col-md-6 col-lg-6 title">
+                                            <label>Title</label>
+                                            {!!Form::text("timeline_title[$i]", null, ['class' => 'form-control','placeholder' => ''] ) !!}
+                                            {!! $errors->first('timeline_title.'.$i, '<span class="help-block error">:message</span>') !!}
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 task">
+                                            <div class="btn-group">
+                                                <button class="btn btn-primary timeline-btn-desc" type="button"><i class="fa fa-plus"></i> Add Description</button>
+                                                <button type="button" class="timeline-btn-delete btn btn-danger"><i class="fa fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row info" style="display:none">
+                                        <div class="col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6 description">
+                                            {!!Form::textarea("timeline_desc[$i]", null, ['class' => 'form-control','placeholder' => '', 'rows' => 3] ) !!}
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 image">
+                                            <p><strong>Write text or Upload a picture</strong></p>
+                                            <img id="preview_{{$i}}" alt="Image" width="100" height="100" class="pull-left" title="Image" src=""/>
+                                            {!! Form::file("timeline_image[$i]", ['onchange' => "$('#preview_".$i."')[0].src = window.URL.createObjectURL(this.files[0]); console.log($(this));" ]) !!}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        @endfor
+                            @endfor
+                        @endif
                     </div>
                     <div class="panel-footer">
                         <p class="text-center"><button type="button" class="btn btn-info timeline-btn-addnew">Add New Timeline</button></p>
@@ -142,23 +219,22 @@
             </div>
 
             <div class="form-group">
+                {!! Form::button('Cancel', ['class' => 'btn btn-warning', 'onclick' => 'window.history.back()']) !!}
                 @if(isset($memorial))
                     {!! Form::submit('Update', ['class' => 'btn btn-success', 'name' => 'update']) !!}
                 @else
-                    {!! Form::submit('Register', ['class' => 'btn btn-primary', 'name' => 'create']) !!}
+                    {!! Form::submit('Create', ['class' => 'btn btn-success', 'name' => 'create']) !!}
                 @endif
             </div>
             {!! Form::close() !!}
         </div>
     </div>
 
-
 @stop
 
 @section('scripts')
     <script src="{{asset('public/backend/default/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script src="{{asset('public/backend/default/bower_components/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
-    <script src="{{asset('public/assets/dropzone/dropzone.js')}}"></script>
     <script>
         $(function () {
             $('.date-picker').datepicker({})
@@ -180,10 +256,54 @@
                     $(this).removeClass('btn-success').addClass('btn-primary').html('<i class="fa fa-plus"></i> Add Description');
                 }
             });
+            /**
+             * Create The Form
+             */
             $('.timeline-btn-addnew').click(function(){
                 var timeline_form = create_form();
                 $('#timeline-group-body').append(timeline_form);
 
+            });
+            /**
+             * Delete the form
+             */
+            $(document).on('click','.timeline-btn-delete', function(){
+                var thisEl = $(this), parent = thisEl.closest('.timeline-form'),
+                    tid = $('.timeline_id', parent).val();
+                if( tid > 0 ) {
+                    if(confirm("Are you sure you want to delete the selected record ?")) {
+                        $('body').append('<div class="loading-animate"></div>');
+                        var path = '{{url("backend/timeline")}}/' + tid;
+                        $.ajax({
+                            headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+                            url: path,
+                            type: "DELETE",
+                            success: function (data) {
+                                $('.loading-animate').fadeOut();
+                                if (data.status) {
+                                    parent.before('<div class="timeline-alert-flash alert alert-success" role="alert">Delete Success</div>');
+                                    parent.slideUp(400, function () {
+                                        $(this).remove();
+                                        $('.timeline-alert-flash').delay(500).fadeOut(500, function () {
+                                            $(this).remove();
+                                        });
+                                    });
+                                    create_form_number('-');
+                                }
+                            },
+                            error: function () {
+                                $('.loading-animate').fadeOut();
+                                parent.before('<div class="timeline-alert-flash alert alert-danger" role="alert">Error! Please check and try again!</div>');
+                                $('.timeline-alert-flash').delay(3000).fadeOut(500, function () {
+                                    $(this).remove();
+                                });
+                            }
+                        });
+                    }
+                } else {
+                    parent.slideUp(300, function(){ $(this).remove();});
+                    create_form_number('-');
+                }
             });
 
         }(jQuery));
@@ -193,15 +313,15 @@
          * @return HTML
          */
         function create_form() {
-            var id = create_form_number(),
+            var id = create_form_number('+'),
                     timeline = $('<div class="timeline-form form-group clearfix"></div>'),
-                    form_string = '<div class="row"><div class="col-md-3 col-lg-3 year"><label>Year</label>';
-            form_string += '<input type="hidden" name="timeline_id['+id+']" value="0">';
+                    form_string = '<input type="hidden" name="timeline_id['+id+']" value="0" class="timeline_id">';
+            form_string += '<div class="row"><div class="col-md-3 col-lg-3 year"><label>Year</label>';
             form_string += '<input type="number" name="timeline_year['+id+']" placeholder="" class="form-control">';
             form_string += '</div><div class="col-md-6 col-lg-6 text"><label>Title</label>';
             form_string += '<input type="text" name="timeline_title['+id+']" placeholder="" class="form-control">';
-            form_string += '</div><div class="col-md-3 col-lg-3 task"><label>&nbsp;</label><p><button class="btn btn-primary timeline-btn-desc" type="button"><i class="fa fa-plus"></i> Add Description</button></p></div></div>';
-            timeline.attr('id', 'timeline-form-'+ id).attr('data-id', (id));
+            form_string += '</div><div class="col-md-3 col-lg-3 task"><div class="btn-group"><button class="btn btn-primary timeline-btn-desc" type="button"><i class="fa fa-plus"></i> Add Description</button><button type="button" class="timeline-btn-delete btn btn-danger"><i class="fa fa-trash"></i></button></div></div></div>';
+            timeline.attr('id', 'timeline-form-'+ id);
             timeline.append(form_string).append(create_form_description(id));
             return timeline;
         }
@@ -211,18 +331,21 @@
         function create_form_description(id) {
             var form_string = '<div class="row info" style="display:none"><div class="col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6 description">';
             form_string += '<textarea cols="50" name="timeline_desc['+id+']" rows="3" placeholder="" class="form-control"></textarea>';
-            form_string += '</div><div class="col-md-3 col-lg-3 image"><h4>Write text or Upload a picture</h4>';
-            form_string += '<input type="hidden" name="timeline_image['+id+']" placeholder="" class="form-control">';
-            form_string += '{!! Form::file("timeline_image_upload", ["class" => "imageAjaxUpload"]) !!}';
+            form_string += '</div><div class="col-md-3 col-lg-3 image"><p><strong>Write text or Upload a picture</strong></p>';
+            form_string += '<img id="preview_'+id+'" class="pull-left" width="100" height="100" src="" title="Image" alt="Image">';
+            form_string += '<input type="file" name="avatar" onchange="$(\'#preview_'+id+'\')[0].src = window.URL.createObjectURL(this.files[0]); console.log($(this));">';
             form_string += '</div></div>';
             return form_string;
         }
         /**
          * Count
          */
-        function create_form_number() {
+        function create_form_number(type) {
             var id = $('[name="timeline_form_count"]').val();
-            $('[name="timeline_form_count"]').val(parseInt(id) + 1);
+            if(type == '-')
+                $('[name="timeline_form_count"]').val(parseInt(id) - 1);
+            else
+                $('[name="timeline_form_count"]').val(parseInt(id) + 1);
             return id;
         }
     </script>

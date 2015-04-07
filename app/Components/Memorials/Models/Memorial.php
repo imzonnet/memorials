@@ -36,4 +36,17 @@ class Memorial extends Model {
     {
         return $this->hasMany(Timeline::class, 'mem_id', 'id');
     }
+
+    public function guestbooks()
+    {
+        return $this->hasMany(Guestbook::class, 'mem_id', 'id');
+    }
+    public function photoAlbums()
+    {
+        return $this->hasMany(PhotoAlbum::class, 'mem_id', 'id');
+    }
+
+    public function videos(){
+        return $this->hasMany(Video::class, 'mem_id', 'id');
+    }
 }

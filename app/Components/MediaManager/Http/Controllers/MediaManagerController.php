@@ -15,13 +15,16 @@ class MediaManagerController extends Controller
 
     public function upload($file, $upload_path = '/') {
         $this->setPath($upload_path);
+        if(!is_dir($this->path)) {
+            \Storage::makeDirectory($this->path);
+        }
         $this->setFileName($file);
         $file->move($this->getPath(), $this->getFileName());
         return $this->getPath() .'/'. $this->getFileName();
     }
 
     public function setPath($upload_path) {
-        $this->path = rtrim($this->path . $upload_path, '/');
+        $this->path = $this->path . trim($upload_path, '/');
     }
 
     public function setFileName($file) {

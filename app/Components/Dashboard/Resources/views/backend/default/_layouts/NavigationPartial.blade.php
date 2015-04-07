@@ -38,8 +38,7 @@
                 </li>
                 <!-- User -->
                 <li>
-                    <a href="{{route('backend.user.index')}}"><i class="fa fa-user fa-fw"></i> Users<span
-                                class="fa arrow"></span></a>
+                    <a href="{{route('backend.user.index')}}"><i class="fa fa-user fa-fw"></i> Users<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{route('backend.user.index')}}">List Users</a>
@@ -53,8 +52,7 @@
                 <!-- End User -->
                 <!-- Memorials -->
                 <li>
-                    <a href="{{route('backend.memorial.index')}}"><i class="fa fa-book fa-fw"></i> Memorials<span
-                                class="fa arrow"></span></a>
+                    <a href="{{route('backend.memorial.index')}}"><i class="fa fa-book fa-fw"></i> Memorials<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{route('backend.memorial.index')}}">List Memorials</a>
@@ -66,6 +64,34 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <!-- End Memorials -->
+                <!-- Services -->
+                <li>
+                    <a href="{{route('backend.service.index')}}"><i class="fa fa-cog fa-fw"></i> Services<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{route('backend.service.index')}}">List Services</a>
+                        </li>
+                        <li>
+                            <a href="{{route('backend.service.create')}}">Add New</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <!-- End Services -->
+                <!-- Flowers -->
+                <li>
+                    <a href="{{route('backend.flower.index')}}"><i class="fa fa-yelp fa-fw"></i> Flowers<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{route('backend.flower.index')}}">List Flowers</a>
+                        </li>
+                        <li>
+                            <a href="{{route('backend.flower.create')}}">Add New</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <!-- End Flowers -->
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

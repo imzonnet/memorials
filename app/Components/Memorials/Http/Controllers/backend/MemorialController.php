@@ -2,11 +2,9 @@
 
 use App\Components\MediaManager\Http\Controllers\MediaManagerController;
 use App\Components\Memorials\Http\Requests\MemorialFormRequest;
-use App\Components\Memorials\Models\Timeline;
 use App\Components\Memorials\Repositories\Memorials\MemorialRepository;
 use App\Components\Memorials\Repositories\Memorials\TimeLineRepository;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 
 class MemorialController extends Controller
 {
@@ -69,8 +67,10 @@ class MemorialController extends Controller
                     'title' => $attr['timeline_title'][$i],
                     'year' => $attr['timeline_year'][$i],
                     'description' => $attr['timeline_desc'][$i],
-                    'image' => $attr['timeline_image'][$i]
                 ];
+                if($request->hasFile($attr['timeline_image'][$i])) {
+                    $timeline['image'] = $media->upload($attr['timeline_image'][$i], 'timeline');
+                }
                 $this->timeline->create($timeline);
             }
 
@@ -109,24 +109,27 @@ class MemorialController extends Controller
         /**
          * Timeline
          */
+
         if(isset($attr['timeline']) and $attr['timeline'] == 1) {
             for($i=0; $i < $attr['timeline_form_count']; $i++) {
+
                 $timeline = [
                     'mem_id' => $id,
                     'title' => $attr['timeline_title'][$i],
                     'year' => $attr['timeline_year'][$i],
                     'description' => $attr['timeline_desc'][$i],
-                    'image' => $attr['timeline_image'][$i]
                 ];
+                $file = $attr['timeline_image'][$i];
+                if(is_object($file)) {
+                    $timeline['image'] = $media->upload($file, 'timeline');
+                }
                 if($attr['timeline_id'][$i] > 0) {
                     $rs = $this->timeline->getElementById($attr['timeline_id'][$i]);
                     $rs->update($timeline);
                 } else {
                     $this->timeline->create($timeline);
                 }
-
             }
-
         }
         return redirect(route('backend.memorial.index'))->with('success_message', 'The memorial has been updated');
     }
@@ -139,7 +142,9 @@ class MemorialController extends Controller
      */
     public function destroy($id)
     {
-        $this->memorial->getElementById($id)->delete();
+        $memorial = $this->memorial->getElementById($id);
+        $memorial->timelines()->delete();
+        $memorial->delete();
         return redirect()->back()->with('success_message', 'The memorial has been deleted');
     }
 }

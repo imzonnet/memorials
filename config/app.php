@@ -78,7 +78,7 @@ return [
 	|
 	*/
 
-	'key' => env('APP_KEY', 'SomeRandomString'),
+	'key' => env('APP_KEY', 'EIF5FdvxZz172FV4RNWNxLts078kpwwP'),
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -136,6 +136,7 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
         'Collective\Html\HtmlServiceProvider',
+        'Intervention\Image\ImageServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -145,6 +146,7 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+		'App\Services\Validation\ValidatorServiceProvider',
 
         /*
          * Components Service Provider
@@ -200,6 +202,8 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
         'Form'      => 'Collective\Html\FormFacade',
         'Html'      => 'Collective\Html\HtmlFacade',
-	],
+        'Image'     => 'Intervention\Image\Facades\Image'
+
+    ],
 
 ];

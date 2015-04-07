@@ -1,9 +1,17 @@
 <?php namespace App\Components\Memorials;
 
+use App\Components\Memorials\Repositories\Memorials\EloquentPhotoItemRepository;
+use App\Components\Memorials\Repositories\Memorials\EloquentVideoRepository;
+use App\Components\Memorials\Repositories\Memorials\PhotoAlbumRepository;
+use App\Components\Memorials\Repositories\Memorials\EloquentPhotoAlbumRepository;
+use App\Components\Memorials\Repositories\Memorials\EloquentGuestbookRepository;
 use App\Components\Memorials\Repositories\Memorials\EloquentMemorialRepository;
 use App\Components\Memorials\Repositories\Memorials\EloquentTimelineRepository;
+use App\Components\Memorials\Repositories\Memorials\GuestbookRepository;
 use App\Components\Memorials\Repositories\Memorials\MemorialRepository;
+use App\Components\Memorials\Repositories\Memorials\PhotoItemRepository;
 use App\Components\Memorials\Repositories\Memorials\TimeLineRepository;
+use App\Components\Memorials\Repositories\Memorials\VideoRepository;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 
@@ -59,6 +67,10 @@ class MemorialsServiceProvider extends ServiceProvider
          */
         $this->app->bind(MemorialRepository::class, EloquentMemorialRepository::class);
         $this->app->bind(TimelineRepository::class, EloquentTimelineRepository::class);
+        $this->app->bind(GuestbookRepository::class, EloquentGuestbookRepository::class);
+        $this->app->bind(PhotoAlbumRepository::class, EloquentPhotoAlbumRepository::class);
+        $this->app->bind(PhotoItemRepository::class, EloquentPhotoItemRepository::class);
+        $this->app->bind(VideoRepository::class, EloquentVideoRepository::class);
 
     }
 }

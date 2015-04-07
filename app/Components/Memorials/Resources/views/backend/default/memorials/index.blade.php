@@ -9,12 +9,12 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-
+                    <a href="{{route('backend.memorial.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Add New</a>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
-                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <table class="table table-striped table-bordered table-hover dataTables" id="dataTables">
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -23,7 +23,7 @@
                                 <th>Birthday</th>
                                 <th>Death</th>
                                 <th>Buried</th>
-                                <th>Task</th>
+                                <th style="max-width: 200px;">Task</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -35,11 +35,21 @@
                                 <td>{{$memorial->birthday}}</td>
                                 <td>{{$memorial->death}}</td>
                                 <td>{{$memorial->buried}}</td>
+
                                 <td class="center" style="min-width: 100px;">
                                         {!! Form::open(['route' => ['backend.memorial.destroy', $memorial->id], 'method' => 'delete', 'class' => 'form-delete']) !!}
                                     <div class="btn-group" role="group" aria-label="...">
-                                        <a href="{{route('backend.memorial.edit',[$memorial->id])}}" class="btn btn-primary btn-sm" title="Edit"><i class="fa fa-pencil"></i></a>
-                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                        <!-- Single button -->
+                                            <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                More Info <span class="caret"></span>
+                                            </button>
+                                            <a href="{{route('backend.memorial.edit',[$memorial->id])}}" class="btn btn-primary btn-sm" title="Edit"><i class="fa fa-pencil"></i> Edit</a>
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="{{route('backend.memorial.guestbook.index', [$memorial->id])}}">Guestbooks</a></li>
+                                                <li><a href="{{route('backend.memorial.album.index', [$memorial->id])}}">Photo Albums</a></li>
+                                                <li><a href="{{route('backend.memorial.video.index', [$memorial->id])}}">Videos</a></li>
+                                            </ul>
                                     </div>
                                         {!! Form::close() !!}
                                 </td>
@@ -57,16 +67,4 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-@stop
-
-@section('scripts')
-    <script src="{{asset('public/backend/default/bower_components/DataTables/media/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('public/backend/default/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js')}}"></script>
-<script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
-</script>
 @stop

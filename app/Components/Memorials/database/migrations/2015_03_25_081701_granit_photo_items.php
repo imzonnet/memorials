@@ -17,7 +17,6 @@ class GranitPhotoItems extends Migration {
             $table->increments('id');
             $table->string('title');
             $table->string('image');
-            $table->integer('state');
             $table->integer('album_id')->unsigned();
             $table->foreign('album_id')->references('id')->on('granit_photo_albums');
             $table->integer('created_by')->unsigned();

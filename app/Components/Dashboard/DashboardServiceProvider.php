@@ -2,12 +2,14 @@
 
 use App\Components\Dashboard\Repositories\User\EloquentUserRepository;
 use App\Components\Dashboard\Repositories\User\UserRepository;
+use App\Components\Flowers\FlowersServiceProvider;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 /**
  * Import Components
  */
 use App\Components\Memorials\MemorialsServiceProvider;
+use App\Components\Services\ServiceServiceProvider;
 
 
 class DashboardServiceProvider extends ServiceProvider
@@ -59,6 +61,8 @@ class DashboardServiceProvider extends ServiceProvider
          * Register Child Component
          */
         $this->app->register(MemorialsServiceProvider::class);
+        $this->app->register(ServiceServiceProvider::class);
+        $this->app->register(FlowersServiceProvider::class);
     }
 
 }
