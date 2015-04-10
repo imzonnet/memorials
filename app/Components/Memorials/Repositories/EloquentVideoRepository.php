@@ -1,10 +1,10 @@
-<?php namespace App\Components\Memorials\Repositories\Memorials;
+<?php namespace App\Components\Memorials\Repositories;
 
-use App\Components\Memorials\Models\Memorial;
+use App\Components\Memorials\Models\Video;
 use App\Repositories\EloquentBaseRepository;
 use Illuminate\Auth\Guard;
 
-class EloquentMemorialRepository extends EloquentBaseRepository implements MemorialRepository
+class EloquentVideoRepository extends EloquentBaseRepository implements VideoRepository
 {
     /**
      * @var Memorial
@@ -19,9 +19,9 @@ class EloquentMemorialRepository extends EloquentBaseRepository implements Memor
      * @param Memorial $memorial
      * @param Guard $user
      */
-    public function __construct(Memorial $memorial, Guard $user)
+    public function __construct(Video $video, Guard $user)
     {
-        $this->model = $memorial;
+        $this->model = $video;
         $this->user = $user;
     }
 
@@ -32,9 +32,7 @@ class EloquentMemorialRepository extends EloquentBaseRepository implements Memor
     public function create(array $attributes = array())
     {
         $attributes['created_by'] = $this->user->user()->id;
-        if(!isset($attributes['timeline']) || empty($attributes['timeline'])) {
-            $attributes['timeline'] = 0;
-        }
+
         return $this->model->create($attributes);
     }
 
@@ -44,10 +42,6 @@ class EloquentMemorialRepository extends EloquentBaseRepository implements Memor
      */
     public function update(array $attributes = array())
     {
-        if(!isset($attributes['timeline']) || empty($attributes['timeline'])) {
-            $attributes['timeline'] = 0;
-        }
-
         return $this->getElementById($attributes['id'])->update($attributes);
     }
 }

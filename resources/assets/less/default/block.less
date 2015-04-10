@@ -1,0 +1,82 @@
+/**
+* Block style
+*/
+.block {
+  .block-header {
+    margin-bottom: 60px;
+    &.title-center {
+      .block-title,
+      .block-icon {
+        text-align: center;
+      }
+    }
+    .block-title {
+      margin: 0; padding: 0;
+      margin-bottom: 40px;
+      font-size: 54px;
+    }
+    .block-icon {
+      position: relative;
+      margin: 0; padding: 0;
+      &:before {
+        content: "";
+        width: 550px;
+        border-top: 2px solid @main_color;
+        position: absolute;
+        top: 50%; left: 0; right: 0; bottom: 0;
+        margin: 0 auto;
+        z-index: 1;
+      }
+      span {
+        background-color: #fff;
+        padding: 0 15px;
+        position: relative;
+        z-index: 3;
+        font-weight: lighter;
+        i {
+          font-size: 30px;
+          padding: 15px;
+          border: 2px solid @main_color;
+          color: @main_color;
+          border-radius: 100%;
+          background-color: #fff;
+        }
+      }
+      &.white-blue {
+        &:before {
+          border-top-color: #fff;
+        }
+        span {
+          background-color: #3dbff3;
+          color: #3dbff3;
+          i {
+            font-size: 30px;
+            padding: 15px;
+            border: 2px solid #fff;
+            color: #fff;
+            border-radius: 100%;
+            background-color: #3dbff3;
+          }
+        }
+      }
+      &.white-black {
+        color: #fff;
+        font-size: 43px;
+        &:before {
+          border-top-color: #fff;
+        }
+        span {
+          background-color: #3c3c3c;
+          i {
+            font-size: 30px;
+            padding: 15px;
+            border: 2px solid #fff;
+            color: #fff;
+            border-radius: 100%;
+            background-color: #3c3c3c;
+          }
+        }
+      }
+    }
+  }
+}

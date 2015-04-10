@@ -40,6 +40,8 @@ class ProjectSetup extends Command {
 		$this->info('Setup Project...');
         $this->info('_________________________');
         $this->info('Publishing Migrate');
+        $this->call('vendor:publish', ['--provider' => 'App\Components\Services\ServiceServiceProvider']);
+        $this->call('vendor:publish', ['--provider' => 'App\Components\Flowers\FlowersServiceProvider']);
         $this->call('vendor:publish', ['--provider' => 'App\Components\Memorials\MemorialsServiceProvider']);
         $this->info('Publishing Complete!');
         $this->info('_________________________');

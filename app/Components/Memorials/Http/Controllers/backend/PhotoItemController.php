@@ -1,11 +1,9 @@
 <?php namespace App\Components\Memorials\Http\Controllers\Backend;
 
 use App\Components\MediaManager\Http\Controllers\MediaManagerController;
-use App\Components\Memorials\Http\Requests\PhotoAlbumFormRequest;
-use App\Components\Memorials\Models\PhotoAlbum;
-use App\Components\Memorials\Repositories\Memorials\PhotoAlbumRepository;
-use App\Components\Memorials\Repositories\Memorials\MemorialRepository;
-use App\Components\Memorials\Repositories\Memorials\PhotoItemRepository;
+use App\Components\Memorials\Repositories\PhotoAlbumRepository;
+use App\Components\Memorials\Repositories\MemorialRepository;
+use App\Components\Memorials\Repositories\PhotoItemRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;

@@ -1,0 +1,264 @@
+body {
+  font-family: @roboto_font;
+  font-size: 17px;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  color: @header_color;
+  font-weight: lighter;
+}
+.section, .block{
+  position: relative;
+}
+.bg-dark {
+  background-color: #3c3c3c;
+}
+.bg-blue {
+  background-color: #3dbff3;
+}
+/**
+* Search Section
+*/
+#search {
+  padding: 55px 0px;
+  background: url("../images/strapline.jpg") no-repeat scroll center top / cover  #3dbff3;
+}
+.search-memorial-form {
+  .form-control,
+  .input-group-btn {
+    height: 87px;
+  }
+  .form-control {
+    border: none;
+    box-shadow: none;
+  }
+  .input-group-btn {
+    .btn {
+      background-color: #FFF;
+      color: #6d6d6d;
+      height: 87px;
+      position: relative;
+      &:before {
+        height: 50%;
+        content: '';
+        position: absolute;
+        top: 25%;
+        left: 0;
+        border-left: 1px solid #787878;
+      }
+      i {
+        font-size: 33px;
+      }
+    }
+  }
+}
+/**
+* Memorial Section
+*/
+#memorials {
+  padding: 100px 0px 150px;
+}
+.memorial-teaser {
+  position: relative;
+  background-color: #f0f0f0;
+  text-align: center;
+  img {
+    width: 100%;
+  }
+  .title {
+    font-weight: normal;
+    position: relative;
+    margin: 0 0 25px;
+    padding: 20px 0;
+    &:after {
+      content: '';
+      width: 105px;
+      border-bottom: 2px solid @text_color;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+  }
+  .btn {
+    margin-bottom: 30px;
+    &.btn-default {
+      color: #3c3c3c;
+      background-color: transparent;
+      border: 2px solid #3c3c3c;
+    }
+  }
+  .date-group {
+    margin: 0;
+    padding-bottom: 20px;
+    li {
+      color: @text_color;
+      padding: 0; margin: 0;
+      &:before {
+        content: "";
+        padding: 5px 10px;
+        border: 2px solid @text_color;
+        border-radius: 100%;
+        margin-right: 5px;
+      }
+      &.birthday {
+        &:before {
+          content: "B";
+        }
+      }
+      &.death:before {
+        content: "D";
+      }
+    }
+  }
+  &:hover {
+    background-color: #3dbff3;
+    .title {
+      color: #fff;
+      &:after {
+        border-bottom-color: #fff;
+      }
+    }
+    .btn {
+      &.btn-default {
+        border-color: #fff;
+        color: #fff;
+      }
+    }
+    .date-group {
+      li {
+        color: #fff;
+        &:before {
+          border-color: #fff;
+        }
+      }
+    }
+  }
+}
+
+//sign-up-block
+.sign-up-block {
+  color: #FFF;
+  .sign-up-header {
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 45px;
+    h3 {
+      color: #FFF;
+      float: left;
+      margin: 0;
+      padding: 0 20px 0 0;
+      border-right: 1px solid #FFF;
+      font-size: 67px;
+    }
+    .login {
+      float: left;
+      padding-left: 20px;
+    }
+  }
+  .intro {
+    font-size: 21px;
+    margin-bottom: 60px;
+  }
+  .sign-up-form {
+    .input-group {
+      margin-bottom: 20px;
+      .input-group-addon {
+        background-color: transparent;
+        color: #fff;
+        height: 70px;
+        min-width: 55px;
+        i {
+          font-size: 21px;
+        }
+      }
+      .form-control {
+        background-color: transparent;
+        color: #fff;
+        height: 70px;
+      }
+    }
+    .btn-submit {
+      background-color: transparent;
+      color: #fff;
+      height: 70px;
+      font-size: 29px;
+      font-weight: bold;
+    }
+  }
+}
+/**
+* users section
+*/
+#users {
+  padding: 90px 0 140px;
+}
+.new-memorials {
+  .block-header {
+    .block-title {
+      color: #fff;
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+    margin-bottom: 20px;
+  }
+}
+
+.form-create-page {
+  display: block;
+  width: 100%;
+  h2 {
+    padding: 40px 0 50px;
+    margin: 0 0 25px 0;
+    color: #FFF;
+    border: 2px solid #FFF;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-size: 43px;
+    i {
+      font-size: 120px;
+      margin-bottom: 55px;
+    }
+  }
+  .btn-submit {
+    padding: 20px;
+    font-size: 29px;
+    font-weight: bold;
+    height: auto;
+    text-transform: uppercase;
+    color: @main_color;
+  }
+}
+
+/**
+* introduction section
+*/
+
+.block-introduction {
+  padding: 140px 0 225px;
+  color: #FFF;
+  background: url('../images/hand.png') no-repeat bottom right transparent;
+  .block-header {
+    .block-title {
+      font-size: 67px;
+      color: #FFF;
+    }
+  }
+  .block-content {
+    font-size: 21px;
+    line-height: 35px;
+    p {
+      font-weight: lighter;
+    }
+  }
+}
+
+/**
+* Footer Section
+*/
+
+#footer {
+  height: 135px;
+  line-height: 135px;
+  overflow: hidden;
+}

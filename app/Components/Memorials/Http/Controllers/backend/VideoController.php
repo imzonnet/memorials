@@ -1,8 +1,8 @@
 <?php namespace App\Components\Memorials\Http\Controllers\Backend;
 
 use App\Components\Memorials\Http\Requests\VideoFormRequest;
-use App\Components\Memorials\Repositories\Memorials\MemorialRepository;
-use App\Components\Memorials\Repositories\Memorials\VideoRepository;
+use App\Components\Memorials\Repositories\MemorialRepository;
+use App\Components\Memorials\Repositories\VideoRepository;
 use App\Http\Controllers\Controller;
 use App\Libraries\Videos\VideoHelper;
 

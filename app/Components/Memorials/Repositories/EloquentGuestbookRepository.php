@@ -1,13 +1,14 @@
-<?php namespace App\Components\Memorials\Repositories\Memorials;
+<?php namespace App\Components\Memorials\Repositories;
 
-use App\Components\Memorials\Models\Timeline;
+use App\Components\Memorials\Models\Guestbook;
+use App\Components\Memorials\Models\Memorial;
 use App\Repositories\EloquentBaseRepository;
 use Illuminate\Auth\Guard;
 
-class EloquentTimelineRepository extends EloquentBaseRepository implements TimelineRepository
+class EloquentGuestbookRepository extends EloquentBaseRepository implements GuestbookRepository
 {
     /**
-     * @var Memorial
+     * @var Guestbook
      */
     protected $model;
     /**
@@ -16,12 +17,12 @@ class EloquentTimelineRepository extends EloquentBaseRepository implements Timel
     protected $user;
 
     /**
-     * @param Memorial $memorial
+     * @param Guestbook $guestbook
      * @param Guard $user
      */
-    public function __construct(Timeline $timeline, Guard $user)
+    public function __construct(Guestbook $guestbook, Guard $user)
     {
-        $this->model = $timeline;
+        $this->model = $guestbook;
         $this->user = $user;
     }
 
@@ -35,6 +36,5 @@ class EloquentTimelineRepository extends EloquentBaseRepository implements Timel
 
         return $this->model->create($attributes);
     }
-
 
 }

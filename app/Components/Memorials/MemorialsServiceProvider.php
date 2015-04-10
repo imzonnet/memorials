@@ -1,17 +1,19 @@
 <?php namespace App\Components\Memorials;
 
-use App\Components\Memorials\Repositories\Memorials\EloquentPhotoItemRepository;
-use App\Components\Memorials\Repositories\Memorials\EloquentVideoRepository;
-use App\Components\Memorials\Repositories\Memorials\PhotoAlbumRepository;
-use App\Components\Memorials\Repositories\Memorials\EloquentPhotoAlbumRepository;
-use App\Components\Memorials\Repositories\Memorials\EloquentGuestbookRepository;
-use App\Components\Memorials\Repositories\Memorials\EloquentMemorialRepository;
-use App\Components\Memorials\Repositories\Memorials\EloquentTimelineRepository;
-use App\Components\Memorials\Repositories\Memorials\GuestbookRepository;
-use App\Components\Memorials\Repositories\Memorials\MemorialRepository;
-use App\Components\Memorials\Repositories\Memorials\PhotoItemRepository;
-use App\Components\Memorials\Repositories\Memorials\TimeLineRepository;
-use App\Components\Memorials\Repositories\Memorials\VideoRepository;
+use App\Components\Memorials\Repositories\EloquentMemorialServiceRepository;
+use App\Components\Memorials\Repositories\EloquentPhotoItemRepository;
+use App\Components\Memorials\Repositories\EloquentVideoRepository;
+use App\Components\Memorials\Repositories\MemorialServiceRepository;
+use App\Components\Memorials\Repositories\PhotoAlbumRepository;
+use App\Components\Memorials\Repositories\EloquentPhotoAlbumRepository;
+use App\Components\Memorials\Repositories\EloquentGuestbookRepository;
+use App\Components\Memorials\Repositories\EloquentMemorialRepository;
+use App\Components\Memorials\Repositories\EloquentTimelineRepository;
+use App\Components\Memorials\Repositories\GuestbookRepository;
+use App\Components\Memorials\Repositories\MemorialRepository;
+use App\Components\Memorials\Repositories\PhotoItemRepository;
+use App\Components\Memorials\Repositories\TimeLineRepository;
+use App\Components\Memorials\Repositories\VideoRepository;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 
@@ -71,6 +73,7 @@ class MemorialsServiceProvider extends ServiceProvider
         $this->app->bind(PhotoAlbumRepository::class, EloquentPhotoAlbumRepository::class);
         $this->app->bind(PhotoItemRepository::class, EloquentPhotoItemRepository::class);
         $this->app->bind(VideoRepository::class, EloquentVideoRepository::class);
+        $this->app->bind(MemorialServiceRepository::class, EloquentMemorialServiceRepository::class);
 
     }
 }

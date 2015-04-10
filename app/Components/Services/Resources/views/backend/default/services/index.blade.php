@@ -21,7 +21,7 @@
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>State</th>
-                                <th style="max-width: 200px;">Task</th>
+                                <th class="task">Task</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -29,7 +29,7 @@
                             <tr class="odd gradeX">
                                 <td>{{$service->id}}</td>
                                 <td>{{$service->title}}</td>
-                                <td>{{str_limit($service->description)}}</td>
+                                <td>{{str_limit($service->description, 70)}}</td>
                                 <td>{{sate_convert($service->state)}}</td>
 
                                 <td class="center" style="min-width: 100px;">

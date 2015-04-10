@@ -1,9 +1,7 @@
 <?php namespace App\Components\Memorials\Http\Controllers\Backend;
 
-use App\Components\MediaManager\Http\Controllers\MediaManagerController;
-use App\Components\Memorials\Http\Requests\MemorialFormRequest;
-use App\Components\Memorials\Repositories\Memorials\MemorialRepository;
-use App\Components\Memorials\Repositories\Memorials\TimeLineRepository;
+use App\Components\Memorials\Repositories\MemorialRepository;
+use App\Components\Memorials\Repositories\TimeLineRepository;
 use App\Http\Controllers\Controller;
 
 class TimelineController extends Controller

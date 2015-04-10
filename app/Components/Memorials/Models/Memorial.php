@@ -49,4 +49,8 @@ class Memorial extends Model {
     public function videos(){
         return $this->hasMany(Video::class, 'mem_id', 'id');
     }
+
+    public function services() {
+        return $this->hasMany(MemorialService::class, 'mem_id', 'id');
+    }
 }

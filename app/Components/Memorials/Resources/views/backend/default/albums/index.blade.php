@@ -22,7 +22,7 @@
                                 <th>Title</th>
                                 <th>Content</th>
                                 <th>Date</th>
-                                <th style="max-width: 200px;">Task</th>
+                                <th class="task">Task</th>
                             </tr>
 
                             </thead>

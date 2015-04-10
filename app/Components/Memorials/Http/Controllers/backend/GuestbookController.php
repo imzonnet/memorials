@@ -2,8 +2,8 @@
 
 use App\Components\MediaManager\Http\Controllers\MediaManagerController;
 use App\Components\Memorials\Http\Requests\GuestbookFormRequest;
-use App\Components\Memorials\Repositories\Memorials\GuestbookRepository;
-use App\Components\Memorials\Repositories\Memorials\MemorialRepository;
+use App\Components\Memorials\Repositories\GuestbookRepository;
+use App\Components\Memorials\Repositories\MemorialRepository;
 use App\Http\Controllers\Controller;
 
 class GuestbookController extends Controller

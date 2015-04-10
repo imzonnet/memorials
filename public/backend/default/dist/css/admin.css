@@ -430,3 +430,8 @@ table.dataTable thead .sorting:after {
     right: 5px;
     z-index: 10;
 }
+
+.dataTables .task {
+    min-width: 250px;
+    max-width: 250px;
+}

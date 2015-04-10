@@ -23,7 +23,7 @@
                                 <th>Birthday</th>
                                 <th>Death</th>
                                 <th>Buried</th>
-                                <th style="max-width: 200px;">Task</th>
+                                <th class="task">Task</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -49,6 +49,7 @@
                                                 <li><a href="{{route('backend.memorial.guestbook.index', [$memorial->id])}}">Guestbooks</a></li>
                                                 <li><a href="{{route('backend.memorial.album.index', [$memorial->id])}}">Photo Albums</a></li>
                                                 <li><a href="{{route('backend.memorial.video.index', [$memorial->id])}}">Videos</a></li>
+                                                <li><a href="{{route('backend.memorial.service.index', [$memorial->id])}}">Services</a></li>
                                             </ul>
                                     </div>
                                         {!! Form::close() !!}

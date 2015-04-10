@@ -1,10 +1,11 @@
-<?php namespace App\Components\Memorials\Repositories\Memorials;
+<?php namespace App\Components\Memorials\Repositories;
 
 use App\Components\Memorials\Models\PhotoAlbum;
+use App\Components\Memorials\Models\PhotoItem;
 use App\Repositories\EloquentBaseRepository;
 use Illuminate\Auth\Guard;
 
-class EloquentPhotoAlbumRepository extends EloquentBaseRepository implements PhotoAlbumRepository
+class EloquentPhotoItemRepository extends EloquentBaseRepository implements PhotoItemRepository
 {
     /**
      * @var Memorial
@@ -19,9 +20,9 @@ class EloquentPhotoAlbumRepository extends EloquentBaseRepository implements Pho
      * @param Memorial $memorial
      * @param Guard $user
      */
-    public function __construct(PhotoAlbum $album, Guard $user)
+    public function __construct(PhotoItem $item, Guard $user)
     {
-        $this->model = $album;
+        $this->model = $item;
         $this->user = $user;
     }
 
@@ -42,9 +43,16 @@ class EloquentPhotoAlbumRepository extends EloquentBaseRepository implements Pho
      */
     public function update(array $attributes = array())
     {
-        if( !isset($attributes['state']) || empty($attributes['state'])) {
-            $attributes['state'] = 0;
-        }
         return $this->getElementById($attributes['id'])->update($attributes);
+    }
+
+    public function getPhotoWithPaginate(PhotoAlbum $album, $paginate = 20)
+    {
+        return $album->photoItems()->paginate($paginate);
+    }
+
+    public function delete() {
+
+        return 1;
     }
 }

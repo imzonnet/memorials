@@ -1,4 +1,4 @@
-<?php namespace App\Components\Memorials\Repositories\Memorials;
+<?php namespace App\Components\Memorials\Repositories;
 
 use App\Repositories\BaseRepository;
 

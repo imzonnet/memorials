@@ -1,9 +1,9 @@
 <?php namespace App\Components\Memorials\Http\Controllers\Backend;
 
 use App\Components\Memorials\Http\Requests\PhotoAlbumFormRequest;
-use App\Components\Memorials\Repositories\Memorials\PhotoAlbumRepository;
-use App\Components\Memorials\Repositories\Memorials\MemorialRepository;
-use App\Components\Memorials\Repositories\Memorials\PhotoItemRepository;
+use App\Components\Memorials\Repositories\PhotoAlbumRepository;
+use App\Components\Memorials\Repositories\MemorialRepository;
+use App\Components\Memorials\Repositories\PhotoItemRepository;
 use App\Http\Controllers\Controller;
 
 class PhotoAlbumController extends Controller
