@@ -6,15 +6,15 @@ Welcome to Memorials
 
 @section('content')
 
-    <section id="banner" class="section">
+    <section id="section-banner" class="section">
         <div class="container-fluid">
             <div class="row">
                 <img src="{{get_template_directory() .'/images/slider.jpg'}}" alt="" width="100%"/>
             </div>
         </div>
-    </section><!-- #banner -->
+    </section><!-- /#section-banner -->
 
-    <section id="search" class="section">
+    <section id="section-search" class="section">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 col-md-offset-2 col-lg-offset-2">
@@ -31,9 +31,9 @@ Welcome to Memorials
                 </div>
             </div>
         </div>
-    </section><!-- #strapline -->
+    </section><!-- /#section-search -->
 
-    <section id="memorials" class="section">
+    <section id="section-memorials" class="section">
         <div class="container">
             <div class="row">
                 <div class="block block-new-memorials">
@@ -48,7 +48,7 @@ Welcome to Memorials
                                     <img src="{{get_template_directory() . '/images/mem1.jpg'}}" alt="Tom"/>
                                     <h3 class="title">Marino Jonas Johnsson</h3>
                                     <a href="#" class="btn btn-default">View Profile</a>
-                                    <ul class="date-group list-unstyled list-inline">
+                                    <ul class="memorial-date date-group list-unstyled list-inline">
                                         <li class="birthday">11. 12. 1920</li>
                                         <li class="death">09. 06. 2014</li>
                                     </ul>
@@ -59,7 +59,7 @@ Welcome to Memorials
                                     <img src="{{get_template_directory() . '/images/mem2.jpg'}}" alt="Tom"/>
                                     <h3 class="title">Marino Jonas Johnsson</h3>
                                     <a href="#" class="btn btn-default">View Profile</a>
-                                    <ul class="date-group list-unstyled list-inline">
+                                    <ul class="memorial-date date-group list-unstyled list-inline">
                                         <li class="birthday">11. 12. 1920</li>
                                         <li class="death">09. 06. 2014</li>
                                     </ul>
@@ -70,7 +70,7 @@ Welcome to Memorials
                                     <img src="{{get_template_directory() . '/images/mem1.jpg'}}" alt="Tom"/>
                                     <h3 class="title">Marino Jonas Johnsson</h3>
                                     <a href="#" class="btn btn-default">View Profile</a>
-                                    <ul class="date-group list-unstyled list-inline">
+                                    <ul class="memorial-date date-group list-unstyled list-inline">
                                         <li class="birthday">11. 12. 1920</li>
                                         <li class="death">09. 06. 2014</li>
                                     </ul>
@@ -81,7 +81,7 @@ Welcome to Memorials
                                     <img src="{{get_template_directory() . '/images/mem2.jpg'}}" alt="Tom"/>
                                     <h3 class="title">Marino Jonas Johnsson</h3>
                                     <a href="#" class="btn btn-default">View Profile</a>
-                                    <ul class="date-group list-unstyled list-inline">
+                                    <ul class="memorial-date date-group list-unstyled list-inline">
                                         <li class="birthday">11. 12. 1920</li>
                                         <li class="death">09. 06. 2014</li>
                                     </ul>
@@ -92,9 +92,9 @@ Welcome to Memorials
                 </div>
             </div>
         </div>
-    </section><!-- #strapline -->
+    </section><!-- #section-memorial -->
 
-    <section id="users" class="section bg-dark">
+    <section id="section-users" class="section bg-dark">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
@@ -158,7 +158,7 @@ Welcome to Memorials
         </div>
     </section><!-- '#users -->
 
-    <section id="introduction" class="section bg-blue">
+    <section id="section-introduction" class="section bg-blue">
         <div class="container">
             <div class="row">
                 <div class="block block-introduction">
@@ -179,20 +179,4 @@ Welcome to Memorials
         </div>
     </section><!-- /#introduction -->
 
-    <footer id="footer" class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
-                    ©2015 Memorial - <a href="#">Terms</a> - <a href="#">Privacy</a>
-                </div>
-                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
-                    <ul class="list-unstyled list-inline text-right">
-                        <li><img src="{{get_template_directory().'/images/qr.png'}}" alt=""/></li>
-                        <li><img src="{{get_template_directory().'/images/android.png'}}" alt=""/></li>
-                        <li><img src="{{get_template_directory().'/images/ios.png'}}" alt=""/></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer><!-- /#footer -->
 @stop

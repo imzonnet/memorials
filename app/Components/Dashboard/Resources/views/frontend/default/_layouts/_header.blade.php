@@ -15,6 +15,7 @@
     <link href="{{asset('public/assets/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
     <link href="{{asset('public/templates/default/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets/jquery.bxslider/jquery.bxslider.css')}}" rel="stylesheet">
     @section('styles')
         {{-- Here goes the page level styles --}}
     @show

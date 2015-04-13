@@ -13,8 +13,8 @@
                 </div>
                 <nav class="collapse navbar-collapse" role="navigation">
                     <ul id="menu-primary-navigation" class="menu nav navbar-nav">
-                        <li class="current-menu-item"><a href="index.html">Home</a></li>
-                        <li><a href="#">Memorials</a></li>
+                        <li class="current-menu-item"><a href="{{url('home')}}">Home</a></li>
+                        <li><a href="{{url('memorial')}}">Memorials</a></li>
                         <li><a href="#">About Us</a>
                             <ul class="sub-menu">
                                 <li><a href="#">Pricing</a></li>
