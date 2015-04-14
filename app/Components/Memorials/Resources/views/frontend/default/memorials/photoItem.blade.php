@@ -31,65 +31,36 @@
     <section id="section-main-content" class="section clearfix">
         <div class="container">
             <div class="row">
-                <div class="photo-albums">
-                    <h2 class="block-title">Photo Albums</h2>
+                <div class="block photo-albums">
+                    <h2 class="block-title">{{$album->title}}</h2>
                     <div class="content">
-                        <div class="album-list row">
-                            @foreach($albums as $album)
-                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                                <div class="album-item">
-                                    <!--<img src="{{get_template_directory() . '/images/album.png'}}" alt=""/>-->
-                                    <img src="{{asset($album->photoItems->first()->image)}}" alt=""/>
-                                    <h3 class="info"><a href="{{$album->present()->getPermalink}}">{{$album->title}}<i class="fa fa-angle-right"></i></a></h3>
+                        <div id="photo-list" class="photo-list">
+                            @foreach($photos as $photo)
+                            <div class="photo-item col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="photo-item-inner">
+                                    <div class="header">
+                                        <a href="{{$photo->present()->getPermalink}}"><img src="{{asset($photo->image)}}}" alt=""/></a>
+                                        <ul class="info">
+                                            <li class="name"><a href="{{$photo->present()->getPermalink}}">{{$photo->title}}</a></li>
+                                            <li class="comment-count"><a href="{{$photo->present()->getPermalink}}"><i class="fa fa-comment-o"></i> {{$photo->present()->comments_count}}</a></li>
+                                        </ul>
+                                    </div>
+                                    <ul class="author">
+                                        <li><i class="fa fa-user"></i> {{$photo->user->name}}</li>
+                                        <li><i class="fa fa-calendar"></i> {{$photo->created_at}}</li>
+                                    </ul>
                                 </div>
                             </div>
                             @endforeach
-                        </div>
+                        </div><!-- /#photo-list -->
                     </div>
                     <div class="footer">
-                        {!! str_replace('/?', '?', $albums->render()); !!}
+                        <button class="btn btn-info btn-lg">Load More Images</button>
                     </div>
                 </div>
             </div>
         </div>
     </section><!-- /#section-main-content-->
-
-    <section id="section-gallery" class="section bg-dark">
-        <div class="container">
-            <div class="row">
-                <div class="block">
-                    <div class="block-header title-center">
-                        <h3 class="block-title white">Photo Gallery</h3>
-                        <div class="block-icon white-dark"><span><i class="fa fa-camera"></i></span></div>
-                    </div>
-                    <div class="block-content">
-                        <div class="gallery-list">
-                            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
-                                <div class="gallery-item">
-                                    <img src="{{get_template_directory() . '/images/gallery.png'}}" alt=""/>
-                                    <h3 class="info"><a href="#">Family Photos</a></h3>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
-                                <div class="gallery-item">
-                                    <img src="{{get_template_directory() . '/images/gallery.png'}}" alt=""/>
-                                    <h3 class="info"><a href="#">Family Photos</a></h3>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
-                                <div class="gallery-item">
-                                    <img src="{{get_template_directory() . '/images/gallery.png'}}" alt=""/>
-                                    <h3 class="info"><a href="#">Family Photos</a></h3>
-                                </div>
-                            </div>
-
-                        </div><!-- /.gallery-items -->
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-    </section><!-- /#section-timeline -->
 
     <section id="section-introduction" class="section bg-blue">
         <div class="container">
@@ -112,4 +83,20 @@
         </div>
     </section><!-- /#section-introduction -->
 
+@stop
+
+@section('scripts')
+    <script src="{{asset('public/assets/shuffle/modernizr.custom.min.js')}}"></script>
+    <script src="{{asset('public/assets/shuffle/jquery.shuffle.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            var $grid = $('#photo-list'),
+                    $sizer = $grid.find('.shuffle__sizer');
+
+            $grid.shuffle({
+                itemSelector: '.photo-item',
+                sizer: $sizer
+            });
+        });
+    </script>
 @stop

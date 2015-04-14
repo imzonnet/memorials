@@ -43,50 +43,19 @@ Welcome to Memorials
                     </div>
                     <div class="block-content">
                         <div class="memorial-lists row">
+                            @foreach($memorials as $memorial)
                             <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                                 <div class="memorial-teaser">
-                                    <img src="{{get_template_directory() . '/images/mem1.jpg'}}" alt="Tom"/>
-                                    <h3 class="title">Marino Jonas Johnsson</h3>
-                                    <a href="#" class="btn btn-default">View Profile</a>
+                                    <img src="{{asset($memorial->avatar)}}" alt="Tom"/>
+                                    <h3 class="title">{{$memorial->name}}</h3>
+                                    <a href="{{$memorial->present()->getProfilePath}}" class="btn btn-default">View Profile</a>
                                     <ul class="memorial-date date-group list-unstyled list-inline">
-                                        <li class="birthday">11. 12. 1920</li>
-                                        <li class="death">09. 06. 2014</li>
+                                        <li class="birthday">{{$memorial->birthday}}</li>
+                                        <li class="death">{{$memorial->death}}</li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <div class="memorial-teaser">
-                                    <img src="{{get_template_directory() . '/images/mem2.jpg'}}" alt="Tom"/>
-                                    <h3 class="title">Marino Jonas Johnsson</h3>
-                                    <a href="#" class="btn btn-default">View Profile</a>
-                                    <ul class="memorial-date date-group list-unstyled list-inline">
-                                        <li class="birthday">11. 12. 1920</li>
-                                        <li class="death">09. 06. 2014</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <div class="memorial-teaser">
-                                    <img src="{{get_template_directory() . '/images/mem1.jpg'}}" alt="Tom"/>
-                                    <h3 class="title">Marino Jonas Johnsson</h3>
-                                    <a href="#" class="btn btn-default">View Profile</a>
-                                    <ul class="memorial-date date-group list-unstyled list-inline">
-                                        <li class="birthday">11. 12. 1920</li>
-                                        <li class="death">09. 06. 2014</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <div class="memorial-teaser">
-                                    <img src="{{get_template_directory() . '/images/mem2.jpg'}}" alt="Tom"/>
-                                    <h3 class="title">Marino Jonas Johnsson</h3>
-                                    <a href="#" class="btn btn-default">View Profile</a>
-                                    <ul class="memorial-date date-group list-unstyled list-inline">
-                                        <li class="birthday">11. 12. 1920</li>
-                                        <li class="death">09. 06. 2014</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -142,7 +111,7 @@ Welcome to Memorials
                     <div class="block new-memorials">
                         <div class="block-header title-center">
                             <h3 class="block-title">Create New Memorial Page</h3>
-                            <div class="block-icon white-black"><span>Get 90 Days Free Trial</span></div>
+                            <div class="block-icon white-dark"><span>Get 90 Days Free Trial</span></div>
                         </div>
                         <div class="block-content">
                             <form action="#" class="form-create-page">

@@ -1,10 +1,15 @@
 <?php namespace App\Components\Memorials\Models;
 
+use App\Components\Memorials\Presenters\MemorialServicePresenter;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 
 class Memorial extends Model {
 
+    use PresentableTrait;
+    protected $presenter = MemorialServicePresenter::class;
     /**
      * The database table used by the model.
      *
@@ -52,5 +57,12 @@ class Memorial extends Model {
 
     public function services() {
         return $this->hasMany(MemorialService::class, 'mem_id', 'id');
+    }
+
+    public function getBirthdayAttribute($value){
+        return Carbon::parse($value)->format('d. m. Y');
+    }
+    public function getDeathAttribute($value){
+        return Carbon::parse($value)->format('d. m. Y');
     }
 }

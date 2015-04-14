@@ -9,7 +9,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img src="{{get_template_directory() . '/images/logo.png'}}" alt="" /></a>
+                    <a class="navbar-brand" href="{{route('home')}}"><img src="{{get_template_directory() . '/images/logo.png'}}" alt="" /></a>
                 </div>
                 <nav class="collapse navbar-collapse" role="navigation">
                     <ul id="menu-primary-navigation" class="menu nav navbar-nav">

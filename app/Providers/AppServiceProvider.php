@@ -11,7 +11,13 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+        \HTML::macro('nav_link', function($route, $text) {
+            $url = \Request::url();
+            //$class = ( \Request::is($route) or \Request::is($route.'/*') ) ? 'class="active"' : '';
+            $class = ( $url === $route ) ? 'class="active"' : '';
+
+            return '<li ' . $class . '><a href="' . $route . '">' . $text . '</a></li>';
+        });
 	}
 
 	/**

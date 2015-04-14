@@ -1,10 +1,14 @@
 <?php namespace App\Components\Memorials\Models;
 
+use App\Components\Memorials\Presenters\PhotoAlbumPresenter;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 
 class PhotoAlbum extends Model {
 
+    use PresentableTrait;
+    protected $presenter = PhotoAlbumPresenter::class;
     /**
      * The database table used by the model.
      *

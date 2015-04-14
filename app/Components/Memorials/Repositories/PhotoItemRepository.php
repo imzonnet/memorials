@@ -5,5 +5,5 @@ use App\Repositories\BaseRepository;
 
 interface PhotoItemRepository extends BaseRepository {
 
-    public function getPhotoWithPaginate(PhotoAlbum $album, $paginate = 20);
+    public function getListWithPaginate(PhotoAlbum $album, $paginate = 20);
 }

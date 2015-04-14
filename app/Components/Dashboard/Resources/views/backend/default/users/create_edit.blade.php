@@ -14,11 +14,20 @@
         <div class="panel-heading"></div>
         <div class="panel-body">
             @if( isset($user) )
-                {!! Form::open(['route' => ['backend.user.update', $user->id], 'method' => 'PUT']) !!}
+                {!! Form::open(['route' => ['backend.user.update', $user->id], 'method' => 'PUT', 'files' => true]) !!}
                 {!! Form::hidden('id', $user->id) !!}
             @else
-                {!! Form::open(['route' => 'backend.user.store', 'method' => 'post']) !!}
+                {!! Form::open(['route' => 'backend.user.store', 'method' => 'post', 'files' => true]) !!}
             @endif
+            <div class="form-group">
+                <label>Avatar</label>
+                <div class="clearfix">
+                    <img id="preview" alt="Avatar" width="100" height="100" class="pull-left" title="Avatar" src="{{isset($user) ? asset($user->avatar) : old('avatar')}}"/>
+                    {!! Form::file('avatar', ['onchange' => "$('#preview')[0].src = window.URL.createObjectURL(this.files[0]); console.log($(this));" ]) !!}
+                </div>
+                {!! $errors->first('avatar', '<span class="help-block error">:message</span>') !!}
+            </div>
+
             <div class="form-group">
                 <label>Full Name</label>
                 {!!Form::text('name', isset($user) ? $user->name : old('name'), ['class' => 'form-control',

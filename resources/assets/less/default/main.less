@@ -299,8 +299,12 @@ a {
       a {
         display: block;
         margin-top: 40px;
+        width: 282px;
+        height: 307px;
         img {
           border-radius: 5px;
+          width: 282px;
+          height: 307px;
         }
       }
     }
@@ -526,6 +530,10 @@ a {
         margin-bottom: 15px;
         img {
           float: left;
+          width: 85px;
+          height: 85px;
+          border: 5px solid #FFF;
+          border-radius: 100%;
         }
         .title {
           float: left;
@@ -709,18 +717,19 @@ a {
       a {
         display: block;
         color: #3dbff3;
+        position: relative;
         &:hover {
           text-decoration: none;
         }
       }
       .fa {
         display: block;
-        float: right;
         font-size: 45px;
         font-weight: bold;
         height: 100%;
         line-height: 90px;
         margin-right: 20px;
+        position: absolute;top: 0; right: 0;
       }
     }
   }
@@ -747,10 +756,28 @@ a {
 /*
 * Photo Items
 */
+.photo-albums {
+  .footer {
+    text-align: center;
+    padding-top: 60px;
+    .btn {
+      padding: 10px 140px;
+      background-color: #3dbff3;
+      text-transform: uppercase;
+      font-size: 29px;
+      color: #FFF;
+      &:hover {
+        color: #3dbff3;
+        background-color: #FFF;
+      }
+    }
+  }
+}
 .photo-list {
   padding: 15px 0;
 }
 .photo-item {
+  margin-bottom: 15px;
   .photo-item-inner {
     margin: 10px 0;
     .header {

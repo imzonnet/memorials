@@ -6770,9 +6770,13 @@ a {
 .memorial-wrap .memorial-header .avatar a {
   display: block;
   margin-top: 40px;
+  width: 282px;
+  height: 307px;
 }
 .memorial-wrap .memorial-header .avatar a img {
   border-radius: 5px;
+  width: 282px;
+  height: 307px;
 }
 .memorial-wrap .memorial-header .info {
   padding-top: 40px;
@@ -6993,6 +6997,10 @@ a {
 }
 .guestbook-block .content .guestbook-teaser .header img {
   float: left;
+  width: 85px;
+  height: 85px;
+  border: 5px solid #FFF;
+  border-radius: 100%;
 }
 .guestbook-block .content .guestbook-teaser .header .title {
   float: left;
@@ -7175,18 +7183,21 @@ a {
 .album-list .album-item .info a {
   display: block;
   color: #3dbff3;
+  position: relative;
 }
 .album-list .album-item .info a:hover {
   text-decoration: none;
 }
 .album-list .album-item .info .fa {
   display: block;
-  float: right;
   font-size: 45px;
   font-weight: bold;
   height: 100%;
   line-height: 90px;
   margin-right: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .gallery-item {
   background-color: #FFF;
@@ -7209,8 +7220,26 @@ a {
 /*
 * Photo Items
 */
+.photo-albums .footer {
+  text-align: center;
+  padding-top: 60px;
+}
+.photo-albums .footer .btn {
+  padding: 10px 140px;
+  background-color: #3dbff3;
+  text-transform: uppercase;
+  font-size: 29px;
+  color: #FFF;
+}
+.photo-albums .footer .btn:hover {
+  color: #3dbff3;
+  background-color: #FFF;
+}
 .photo-list {
   padding: 15px 0;
+}
+.photo-item {
+  margin-bottom: 15px;
 }
 .photo-item .photo-item-inner {
   margin: 10px 0;

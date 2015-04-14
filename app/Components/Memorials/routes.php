@@ -24,3 +24,16 @@ Route::get('/memorial', 'MemorialController@index');
 Route::get('/biography', 'MemorialController@biography');
 Route::get('/photo-album', 'MemorialController@photoAlbum');
 Route::get('/album', 'MemorialController@album');
+Route::get('/video', 'MemorialController@video');
+
+Route::get('/memorial/{slug}/{id}',['as' => 'memorial.show', 'uses' => 'MemorialController@show'])->where('id', '[0-9]+');
+Route::get('/memorial/{slug}/{id}/biography',['as' => 'memorial.biography', 'uses' => 'MemorialController@showBiography'])->where('id', '[0-9]+');
+
+Route::get('/memorial/{slug}/{id}/photo-albums',['as' => 'memorial.photoAlbums', 'uses' => 'MemorialController@showPhotoAlbums'])->where('id', '[0-9]+');
+Route::get('/memorial/{slug}/{id}/album/{aid}',['as' => 'memorial.photoAlbums.items', 'uses' => 'MemorialController@showPhotoItems'])->where(['id' => '[0-9]+', 'aid' => '[0-9]+']);
+
+Route::get('/memorial/{slug}/{id}/photo/{pid}',['as' => 'memorial.photoAlbums.photo', 'uses' => 'MemorialController@showPhoto'])->where(['id' => '[0-9]+', 'pid' => '[0-9]+']);
+
+Route::get('/memorial/{slug}/{id}/videos',['as' => 'memorial.videos', 'uses' => 'MemorialController@showVideos'])->where('id', '[0-9]+');
+Route::get('/memorial/{slug}/{id}/guestbooks',['as' => 'memorial.guestbooks', 'uses' => 'MemorialController@showguestbooks'])->where('id', '[0-9]+');
+Route::get('/memorial/{slug}/{id}/family',['as' => 'memorial.family', 'uses' => 'MemorialController@showFamily'])->where('id', '[0-9]+');

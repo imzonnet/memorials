@@ -1,6 +1,7 @@
 <?php namespace App\Components\Memorials\Models;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Guestbook extends Model {
@@ -30,6 +31,10 @@ class Guestbook extends Model {
     public function memorial()
     {
         return $this->belongsTo(Memorial::class, 'mem_id', 'id');
+    }
+
+    public function getCreatedAtAttribute($value){
+        return Carbon::parse($value)->format('d. m. Y');
     }
 
 }

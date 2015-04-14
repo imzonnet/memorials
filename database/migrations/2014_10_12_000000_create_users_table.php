@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration {
 			$table->date('birthday')->nullable();
 			$table->string('address', 220)->nullable();
 			$table->string('phone', 20)->nullable();
+			$table->string('avatar')->nullable();
 			$table->string('group', 20)->default('member');
 			$table->rememberToken();
 			$table->timestamps();

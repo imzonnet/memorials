@@ -4,4 +4,5 @@ use App\Repositories\BaseRepository;
 
 interface MemorialRepository extends BaseRepository {
 
+
 }

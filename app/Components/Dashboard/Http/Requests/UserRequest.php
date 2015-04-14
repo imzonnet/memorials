@@ -28,6 +28,7 @@ class UserRequest extends Request
                 'name' => 'required|max:255',
                 'email' => 'required|email|max:255|unique:users,email,' . $this->get('id'),
                 'password' => 'confirmed|min:6',
+                'avatar'    => 'image'
             ];
         } else {
             // Create operation. There is no id yet.
@@ -35,6 +36,7 @@ class UserRequest extends Request
                 'name' => 'required|max:255',
                 'email' => 'required|email|max:255|unique:users,email',
                 'password' => 'required|confirmed|min:6',
+                'avatar'    => 'required|image'
             ];
         }
         return $valid;

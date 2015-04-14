@@ -1,9 +1,14 @@
 <?php namespace App\Components\Memorials\Models;
 
+use App\Components\Memorials\Presenters\PhotoItemPresenter;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 
 class PhotoItem extends Model {
+
+    use PresentableTrait;
+    protected $presenter = PhotoItemPresenter::class;
 
     /**
      * The database table used by the model.
@@ -34,6 +39,11 @@ class PhotoItem extends Model {
     public function photoAlbum()
     {
         return $this->belongsTo(PhotoAlbum::class, 'album_id', 'id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(PhotoComment::class, 'photo_id', 'id');
     }
 
 }

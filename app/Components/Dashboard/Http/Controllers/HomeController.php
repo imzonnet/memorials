@@ -1,5 +1,7 @@
 <?php namespace App\Components\Dashboard\Http\Controllers;
 
+use App\Components\Memorials\Models\Memorial;
+use App\Components\Memorials\Repositories\MemorialRepository;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller {
@@ -8,10 +10,10 @@ class HomeController extends Controller {
     {
         parent::__construct();
     }
-    public function index() {
+    public function index(MemorialRepository $memorialRepository) {
 
-        return view('Dashboard::'.$this->link_type.'.'.$this->current_theme.'.home');
-
+        $memorials = $memorialRepository->all()->take(4);
+        return view('Dashboard::'.$this->link_type.'.'.$this->current_theme.'.home', compact('memorials'));
     }
 
 }

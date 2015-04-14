@@ -99,13 +99,17 @@ class MemorialController extends Controller
     public function update($id, MemorialFormRequest $request, MediaManagerController $media)
     {
         $attr = $request->all();
+        $memorial = $this->memorial->getElementById($id);
         /**
          * Update Avatar
          */
         if( $request->hasFile('avatar') ) {
+            if(file_exists($memorial->avatar)) {
+                unlink($memorial->avatar);
+            }
             $attr['avatar'] = $media->upload($request->file('avatar'));
         }
-        $this->memorial->update($attr);
+        $memorial->update($attr);
         /**
          * Timeline
          */

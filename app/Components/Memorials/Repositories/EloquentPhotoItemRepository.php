@@ -46,7 +46,7 @@ class EloquentPhotoItemRepository extends EloquentBaseRepository implements Phot
         return $this->getElementById($attributes['id'])->update($attributes);
     }
 
-    public function getPhotoWithPaginate(PhotoAlbum $album, $paginate = 20)
+    public function getListWithPaginate(PhotoAlbum $album, $paginate = 20)
     {
         return $album->photoItems()->paginate($paginate);
     }

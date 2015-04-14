@@ -1,6 +1,7 @@
 <?php namespace App\Components\Dashboard\Http\Controllers\Backend;
 
 use App\Components\Dashboard\Http\Requests\UserRequest;
+use App\Components\MediaManager\Http\Controllers\MediaManagerController;
 use App\Http\Controllers\Controller;
 use App\Components\Dashboard\Repositories\User\UserRepository;
 
@@ -45,10 +46,15 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function store(UserRequest $request)
+    public function store(UserRequest $request, MediaManagerController $media)
     {
         $attr = $request->all();
         $attr['password'] = bcrypt($attr['password']);
+        /**
+         * Upload avatar
+         */
+        $attr['avatar'] = $media->upload($request->file('avatar'));
+
         $this->user->create($attr);
         return redirect(route('backend.user.index'))->with('success_message', 'The account has been created');
     }
@@ -71,11 +77,22 @@ class UserController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($id, UserRequest $request)
+    public function update($id, UserRequest $request, MediaManagerController $media)
     {
         $attr = $request->all();
         $attr['password'] = bcrypt($attr['password']);
-        $this->user->getElementById($id)->update($attr);
+        $user = $this->user->getElementById($id);
+        /**
+         * Update Avatar
+         */
+        if( $request->hasFile('avatar') ) {
+            if(file_exists($user->avatar)) {
+                unlink($user->image);
+            }
+            $attr['avatar'] = $media->upload($request->file('avatar'));
+        }
+
+        $user->update($attr);
         return redirect(route('backend.user.index'))->with('success_message', 'The account has been updated');
     }
 

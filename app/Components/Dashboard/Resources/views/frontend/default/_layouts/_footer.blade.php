@@ -21,6 +21,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{asset('public/assets/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('public/assets/jquery.bxslider/jquery.bxslider.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/assets/fancybox/jquery.fancybox.js?v=2.1.5')}}"></script>
     <script src="{{asset('public/templates/default/js/main.js')}}"></script>
     @section('scripts')
 
