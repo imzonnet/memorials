@@ -233,8 +233,8 @@
 @stop
 
 @section('scripts')
-    <script src="{{asset('public/backend/default/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{asset('public/backend/default/bower_components/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
+    <script src="{{asset('templates/backend/default/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('templates/backend/default/bower_components/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
     <script>
         $(function () {
             $('.date-picker').datepicker({})
@@ -351,6 +351,6 @@
     </script>
 @stop
 @section('styles')
-    <link rel="stylesheet" href="{{asset('public/backend/default/bower_components/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css')}}">
-    <link rel="stylesheet" href="{{asset('public/backend/default/bower_components/bootstrap-switch/css/bootstrap-switch.min.css')}}">
+    <link rel="stylesheet" href="{{asset('templates/backend/default/bower_components/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css')}}">
+    <link rel="stylesheet" href="{{asset('templates/backend/default/bower_components/bootstrap-switch/css/bootstrap-switch.min.css')}}">
 @stop

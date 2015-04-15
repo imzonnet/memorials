@@ -83,6 +83,6 @@ if( !function_exists('sate_convert')) {
 if (!function_exists('get_template_directory')) {
     function get_template_directory() {
         list($type, $theme) = current_section();
-        return asset('public/templates/'.$theme);
+        return asset('templates/frontend/'.$theme);
     }
 }

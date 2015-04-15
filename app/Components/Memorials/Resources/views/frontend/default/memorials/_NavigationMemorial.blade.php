@@ -49,3 +49,5 @@
         </div>
     </div>
 </section><!-- /#memorial -->
+
+@include('Dashboard::frontend.default._layouts._message')

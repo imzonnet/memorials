@@ -1,4 +1,4 @@
-@extends('Dashboard::frontend.default.master')
+@extends('Memorials::frontend.default.master')
 
 @section('title')
     Welcome to Memorials
@@ -51,63 +51,13 @@
                     </div>
                     <div class="block-content">
                         <div class="timeline-items">
+                            @foreach($timelines as $timeline)
                             <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">1922</h2>
-                                <h3 class="title">Born in Reykjavík, Iceland</h3>
-                            </div>
-                            <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">1922</h2>
-                                <h3 class="title">Born in Reykjavík, Iceland</h3>
+                                <h2 class="date">{{$timeline->year}}</h2>
+                                <h3 class="title">{{$timeline->title}}</h3>
                                 <a href="#" class="btn btn-dafault">Read More</a>
                             </div>
-                            <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">1922</h2>
-                                <h3 class="title">Born in Reykjavík, Iceland</h3>
-                            </div>
-                            <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">1922</h2>
-                                <h3 class="title">Born in Reykjavík, Iceland</h3>
-                            </div>
-                            <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">1922</h2>
-                                <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                <a href="#" class="btn btn-dafault">Read More</a>
-                            </div>
-                            <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">1922</h2>
-                                <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                <a href="#" class="btn btn-dafault">Read More</a>
-                            </div>
-                            <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">1922</h2>
-                                <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                <a href="#" class="btn btn-dafault">Read More</a>
-                            </div>
-                            <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">1922</h2>
-                                <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                <a href="#" class="btn btn-dafault">Read More</a>
-                            </div>
-                            <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">1922</h2>
-                                <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                <a href="#" class="btn btn-dafault">Read More</a>
-                            </div>
-                            <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">1922</h2>
-                                <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                <a href="#" class="btn btn-dafault">Read More</a>
-                            </div>
-                            <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">1922</h2>
-                                <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                <a href="#" class="btn btn-dafault">Read More</a>
-                            </div>
-                            <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">1922</h2>
-                                <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                <a href="#" class="btn btn-dafault">Read More</a>
-                            </div>
+                            @endforeach
                         </div><!-- /.timeline-items -->
                     </div>
                 </div>

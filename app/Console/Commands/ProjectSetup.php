@@ -1,8 +1,10 @@
 <?php namespace App\Console\Commands;
 
+use App\Components\Dashboard\DashboardServiceProvider;
+use App\Components\Flowers\FlowersServiceProvider;
+use App\Components\Memorials\MemorialsServiceProvider;
+use App\Components\Services\ServiceServiceProvider;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 
 class ProjectSetup extends Command {
 
@@ -40,10 +42,10 @@ class ProjectSetup extends Command {
 		$this->info('Setup Project...');
         $this->info('_________________________');
         $this->info('Publishing Migrate');
-        $this->call('vendor:publish', ['--provider' => 'App\Components\Services\ServiceServiceProvider']);
-        $this->call('vendor:publish', ['--provider' => 'App\Components\Flowers\FlowersServiceProvider']);
-        $this->call('vendor:publish', ['--provider' => 'App\Components\Memorials\MemorialsServiceProvider']);
-        $this->info('Publishing Complete!');
+        $this->call('vendor:publish', ['--provider' => DashboardServiceProvider::class]);
+        $this->call('vendor:publish', ['--provider' => ServiceServiceProvider::class]);
+        $this->call('vendor:publish', ['--provider' => FlowersServiceProvider::class]);
+        $this->call('vendor:publish', ['--provider' => MemorialsServiceProvider::class]);
         $this->info('_________________________');
         $this->info('Migrating database');
         $this->call('migrate');

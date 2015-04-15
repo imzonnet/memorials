@@ -1,4 +1,4 @@
-@extends('Dashboard::frontend.default.master')
+@extends('Memorials::frontend.default.master')
 
 @section('title')
     Welcome to Memorials

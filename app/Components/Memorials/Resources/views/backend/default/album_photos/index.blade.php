@@ -39,8 +39,6 @@
 @stop
 
 @section('scripts')
-    <script src="{{asset('public/assets/dropzone/dropzone.js?v=4')}}"></script>
-    <script type="text/javascript" src="{{asset('public/assets/fancybox/jquery.fancybox.js?v=2.1.5')}}"></script>
     <script>
         Dropzone.options.uploadDropzone = {
             headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
@@ -80,8 +78,4 @@
             }
         });
     </script>
-@stop
-@section('styles')
-    <link rel="stylesheet" href="{{asset('public/assets/dropzone/dropzone.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/fancybox/jquery.fancybox.css?v=2.1.5')}}" media="screen" />
 @stop

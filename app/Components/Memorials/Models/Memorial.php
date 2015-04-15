@@ -46,6 +46,7 @@ class Memorial extends Model {
     {
         return $this->hasMany(Guestbook::class, 'mem_id', 'id');
     }
+
     public function photoAlbums()
     {
         return $this->hasMany(PhotoAlbum::class, 'mem_id', 'id');
@@ -62,6 +63,7 @@ class Memorial extends Model {
     public function getBirthdayAttribute($value){
         return Carbon::parse($value)->format('d. m. Y');
     }
+
     public function getDeathAttribute($value){
         return Carbon::parse($value)->format('d. m. Y');
     }

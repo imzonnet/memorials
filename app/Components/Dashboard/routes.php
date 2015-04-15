@@ -9,11 +9,9 @@ Route::post('/backend/auth/login', ['as' => 'backend.auth.postLogin', 'uses' => 
 Route::get('/backend/auth/logout', ['as' => 'backend.auth.getLogout', 'uses' => 'Backend\AuthController@getLogout']);
 
 Route::group(['prefix' => 'backend', 'middleware' => 'auth.backend'], function() {
-    Route::get('/', function(){ return redirect('/backend/home');});
+    Route::get('/', function(){ return redirect()->route('backend.home');});
     Route::get('/home', ['as' => 'backend.home', 'uses' => 'Backend\HomeController@index']);
     /* User */
     Route::resource('user', 'Backend\UserController');
 });
 
-
-Route::get('/home', ['as' => 'home' ,'uses' => 'HomeController@index']);

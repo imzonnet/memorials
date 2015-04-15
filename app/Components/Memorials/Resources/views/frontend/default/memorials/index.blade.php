@@ -1,4 +1,4 @@
-@extends('Dashboard::frontend.default.master')
+@extends('Memorials::frontend.default.master')
 
 @section('title')
     {{$memorial->name}}
@@ -48,22 +48,26 @@
                     <div class="guestbook-block">
                         <h3 class="block-title">Guestbook <a href="#"><span class="label label-info">Write new message <i class="fa fa-plus"></i></a></span></h3>
                         <div class="content">
-                            @foreach($guestbooks as $guestbook)
-                            <div class="guestbook-teaser">
-                                <div class="header">
-                                    <img src="{{asset($guestbook->user->avatar)}}" alt=""/>
-                                    <div class="title">
-                                        <h3>{{$guestbook->user->name}}</h3>
-                                        <div class="date death"><i class="fa fa-calendar"></i> {{$guestbook->created_at}}</div>
+                            @if(count($guestbooks) > 0)
+                                @foreach($guestbooks as $guestbook)
+                                <div class="guestbook-teaser">
+                                    <div class="header">
+                                        <img src="{{asset($guestbook->user->avatar)}}" alt=""/>
+                                        <div class="title">
+                                            <h3>{{$guestbook->user->name}}</h3>
+                                            <div class="date death"><i class="fa fa-calendar"></i> {{$guestbook->created_at}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="info">
+                                        <h3>{{$guestbook->title}}</h3>
+                                        <p>{{str_limit($guestbook->description)}}</p>
+                                        <a href="#" class="readmore btn btn-info">Read More</a>
                                     </div>
                                 </div>
-                                <div class="info">
-                                    <h3>{{$guestbook->title}}</h3>
-                                    <p>{{str_limit($guestbook->description)}}</p>
-                                    <a href="#" class="readmore btn btn-info">Read More</a>
-                                </div>
-                            </div>
-                            @endforeach
+                                @endforeach
+                            @else
+                                <p>Don't have any guestbook</p>
+                            @endif
                         </div>
                         <a href="{{$memorial->present()->getGuestbookPath}}" class="btn btn-primary btn-lg">Go to guestbook</a>
                     </div>
@@ -82,33 +86,23 @@
                     </div>
                     <div class="block-content">
                         <div class="gallery-list row">
-                            <div class="gallery-items col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                                <div class="item large">
-                                    <img src="{{get_template_directory() . '/images/user.jpg'}}" alt=""/>
-                                    <h3 class="name">Marino him self in 2007</h3>
-                                </div>
-                                <div class="item">
-                                    <img src="{{get_template_directory() . '/images/p1.png'}}" alt=""/>
-                                    <h3 class="name">Marino him self in 2007</h3>
-                                </div>
-                                <div class="item">
-                                    <img src="{{get_template_directory() . '/images/p2.png'}}" alt=""/>
-                                    <h3 class="name">Marino him self in 2007</h3>
-                                </div>
-                            </div>
-                            <div class="gallery-items col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                                <div class="item large">
-                                    <img src="{{get_template_directory() . '/images/user.jpg'}}" alt=""/>
-                                    <h3 class="name">Marino him self in 2007</h3>
-                                </div>
-                                <div class="item">
-                                    <img src="{{get_template_directory() . '/images/p1.png'}}" alt=""/>
-                                    <h3 class="name">Marino him self in 2007</h3>
-                                </div>
-                                <div class="item">
-                                    <img src="{{get_template_directory() . '/images/next-photo.png'}}" alt="View More"/>
-                                </div>
-                            </div>
+                            @foreach($albums as $index => $album)
+                                @if($index == 0 || $index % 3 == 0)
+                                    <div class="gallery-items col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                @endif
+                                        <div class="item {{$index == 0 || $index % 3 == 0 ? "large" : ''}}">
+                                            <img src="{{asset($album->photoItems->first()->image)}}" alt=""/>
+                                            <h3 class="name"><a href="{{$album->present()->getPermalink}}">{{$album->title}}</a></h3>
+                                        </div>
+                                        @if($index == (count($albums) - 1))
+                                            <div class="item">
+                                                <a href="{{$memorial->present()->getPhotoAlbumsPath}}"><img src="{{get_template_directory() . '/images/next-photo.png'}}" alt="View More"/></a>
+                                            </div>
+                                        @endif
+                                @if($index != 0 && $index % 2 == 0)
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -126,48 +120,15 @@
                     </div>
                     <div class="block-content">
                         <ul class="bxslider timeline-list">
+                            @foreach($timelines as $timeline)
                             <li>
                                 <div class="timeline-item">
-                                    <h2 class="date">1922</h2>
-                                    <h3 class="title">Born in Reykjavík, Iceland</h3>
+                                    <h2 class="date">{{$timeline->year}}</h2>
+                                    <h3 class="title">{{$timeline->title}}</h3>
                                     <a href="#" class="btn btn-dafault">Read More</a>
                                 </div>
                             </li>
-                            <li>
-                                <div class="timeline-item">
-                                    <h2 class="date">1922</h2>
-                                    <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                    <a href="#" class="btn btn-dafault">Read More</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="timeline-item">
-                                    <h2 class="date">1922</h2>
-                                    <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                    <a href="#" class="btn btn-dafault">Read More</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="timeline-item">
-                                    <h2 class="date">1922</h2>
-                                    <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                    <a href="#" class="btn btn-dafault">Read More</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="timeline-item">
-                                    <h2 class="date">1922</h2>
-                                    <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                    <a href="#" class="btn btn-dafault">Read More</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="timeline-item">
-                                    <h2 class="date">1922</h2>
-                                    <h3 class="title">Born in Reykjavík, Iceland</h3>
-                                    <a href="#" class="btn btn-dafault">Read More</a>
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

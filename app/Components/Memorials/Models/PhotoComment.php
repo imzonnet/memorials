@@ -1,10 +1,15 @@
 <?php namespace App\Components\Memorials\Models;
 
+use App\Components\Memorials\Presenters\CommentPresenter;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 
 class PhotoComment extends Model {
 
+    use PresentableTrait;
+    protected $presenter = CommentPresenter::class;
     /**
      * The database table used by the model.
      *

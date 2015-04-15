@@ -35,6 +35,10 @@ class DashboardServiceProvider extends ServiceProvider
         parent::boot($router);
         $this->loadViewsFrom(__DIR__ . '/Resources/views', 'Dashboard');
         $this->loadTranslationsFrom(__DIR__ . '/Resources/lang', 'Dashboard');
+
+        $this->publishes([
+            __DIR__ . '/Database/migrations/' => base_path('/database/migrations')
+        ], 'migrations');
     }
 
     /**

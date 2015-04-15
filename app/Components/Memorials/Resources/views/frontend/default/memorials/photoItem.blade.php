@@ -1,4 +1,4 @@
-@extends('Dashboard::frontend.default.master')
+@extends('Memorials::frontend.default.master')
 
 @section('title')
     Welcome to Memorials
@@ -39,11 +39,13 @@
                             <div class="photo-item col-md-6 col-lg-6 col-sm-6 col-xs-12">
                                 <div class="photo-item-inner">
                                     <div class="header">
-                                        <a href="{{$photo->present()->getPermalink}}"><img src="{{asset($photo->image)}}}" alt=""/></a>
-                                        <ul class="info">
-                                            <li class="name"><a href="{{$photo->present()->getPermalink}}">{{$photo->title}}</a></li>
-                                            <li class="comment-count"><a href="{{$photo->present()->getPermalink}}"><i class="fa fa-comment-o"></i> {{$photo->present()->comments_count}}</a></li>
-                                        </ul>
+                                        <a class="btn-photo-view" data-modal="#photo-modal-{{$photo->id}}" href="{{$photo->present()->getPermalink}}" alt="{{$photo->title}}" title="Click to view full image">
+                                            <img src="{{asset($photo->image)}}" alt=""/>
+                                            <ul class="info">
+                                                <li class="name">{{$photo->title}}</li>
+                                                <li class="comment-count"><i class="fa fa-comment-o"></i> {{$photo->present()->comments_count}}</li>
+                                            </ul>
+                                        </a>
                                     </div>
                                     <ul class="author">
                                         <li><i class="fa fa-user"></i> {{$photo->user->name}}</li>
@@ -86,16 +88,31 @@
 @stop
 
 @section('scripts')
-    <script src="{{asset('public/assets/shuffle/modernizr.custom.min.js')}}"></script>
-    <script src="{{asset('public/assets/shuffle/jquery.shuffle.min.js')}}"></script>
+    <script src="{{asset('assets/shuffle/modernizr.custom.min.js')}}"></script>
+    <script src="{{asset('assets/shuffle/jquery.shuffle.min.js')}}"></script>
     <script>
-        $(document).ready(function() {
+        $(window).load(function() {
             var $grid = $('#photo-list'),
                     $sizer = $grid.find('.shuffle__sizer');
 
             $grid.shuffle({
                 itemSelector: '.photo-item',
                 sizer: $sizer
+            });
+        });
+        $(document).ready(function(){
+           $('.btn-photo-view').click(function(e){
+               e.preventDefault();
+               var thisEl = $(this), url = thisEl.attr('href');
+               $('body').append('<div class="loading-animate"></div>');
+               $.get(url, function(data){
+                   $('body').append(data);
+                   $('.loading-animate').fadeOut();
+                   $('#photo-modal').modal();
+               });
+           });
+            $(document).on('hidden.bs.modal', '.photo-modal', function () {
+                $(this).remove();
             });
         });
     </script>

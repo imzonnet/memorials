@@ -1,7 +1,8 @@
 <?php namespace App\Console\Commands;
 
+use App\Components\Dashboard\Database\Seeds\DashboardDatabaseSeeder;
+use App\Components\Memorials\Database\Seeds\MemorialDatabaseSeeder;
 use Illuminate\Console\Command;
-use App\Components\Memorials\Database\Seeds\DatabaseSeeder as MemorialDBSeed;
 
 class ProjectSeed extends Command {
 
@@ -38,8 +39,9 @@ class ProjectSeed extends Command {
 	{
 		$this->info('Importing Sample Data...');
 
-        $this->call('db:seed');
-        $this->call('db:seed', ['--class' => MemorialDBSeed::class]);
+        //$this->call('db:seed');
+        $this->call('db:seed', ['--class' => DashboardDatabaseSeeder::class]);
+        $this->call('db:seed', ['--class' => MemorialDatabaseSeeder::class]);
         $this->info('Import Comlete!');
 
         $this->info('_________________________________________');

@@ -1,16 +1,17 @@
 .btn {
   background-color: transparent;
-  border-color: #FFF;
-  border-width: 2px;
-  color: #FFF;
-  &:hover {
-    color: #FFF;
-    background-color: transparent;
-    border-color: #FFF;
-  }
   &.btn-default {
+    border-color: #FFF;
+    color: #FFF;
     &:hover {
       background-color: #3c3c3c;
+    }
+  }
+  &.btn-black {
+    background-color: #3c3c3c;
+    &:hover {
+      background-color: transparent;
+      color: #3c3c3c;
     }
   }
 }
@@ -21,13 +22,6 @@
   font-weight: bold;
 }
 
-.btn.btn-black {
-  background-color: #3c3c3c;
-  &:hover {
-    background-color: transparent;
-    color: #3c3c3c;
-  }
-}
 .btn.btn-white-black {
   background-color: #FFF;
   border-color: #000;
@@ -36,4 +30,5 @@
 .btn.btn-info {
   border-color: #3dbff3;
   color: #3dbff3;
+  background-color: transparent;
 }

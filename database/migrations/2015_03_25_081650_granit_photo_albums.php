@@ -17,7 +17,7 @@ class GranitPhotoAlbums extends Migration {
             $table->increments('id');
             $table->string('title');
             $table->text('description');
-            $table->integer('state');
+            $table->integer('state')->default(1);
             $table->integer('mem_id')->unsigned();
             $table->foreign('mem_id')->references('id')->on('granit_memorials');
             $table->integer('created_by')->unsigned();

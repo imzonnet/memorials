@@ -1,4 +1,4 @@
-@extends('Dashboard::frontend.default.master')
+@extends('Memorials::frontend.default.master')
 
 @section('title')
     Welcome to Memorials
@@ -35,115 +35,27 @@
                     <h2 class="block-title">Videos</h2>
                     <div class="content">
                         <div id="photo-list" class="photo-list">
+                            @foreach($videos as $video)
                             <div class="photo-item col-md-6 col-lg-6 col-sm-6 col-xs-12">
                                 <div class="photo-item-inner">
                                     <div class="header">
-                                        <a href="#"><img src="{{get_template_directory() . '/images/album.png'}}" alt=""/></a>
+                                        <a href="{{$video->url}}" class="fancybox-media"><img src="{{asset($video->image)}}" alt=""/></a>
                                         <ul class="info">
-                                            <li class="name"><a href="#">Family Photos</a></li>
-                                            <li class="comment-count"><a href="#"><i class="fa fa-video-camera"></i> 0:19:22</a></li>
+                                            <li class="name"><a href="#">{{$video->title}}</a></li>
+                                            <li class="comment-count"><a href="#"><i class="fa fa-video-camera"></i> {{$video->times}}</a></li>
                                         </ul>
                                     </div>
                                     <ul class="author">
-                                        <li><i class="fa fa-user"></i> Marie Herreford Johnson</li>
+                                        <li><i class="fa fa-user"></i> {{$video->user->name}}</li>
                                         <li><i class="fa fa-calendar"></i> 09.02.2015</li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="photo-item col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                                <div class="photo-item-inner">
-                                    <div class="header">
-                                        <a href="#"><img src="{{get_template_directory() . '/images/album2.jpg'}}" alt=""/></a>
-                                        <ul class="info">
-                                            <li class="name"><a href="#">Family Photos</a></li>
-                                            <li class="comment-count"><a href="#"><i class="fa fa-comment-o"></i> 1.540</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="author">
-                                        <li><i class="fa fa-user"></i> Marie Herreford Johnson</li>
-                                        <li><i class="fa fa-calendar"></i> 09.02.2015</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="photo-item col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                                <div class="photo-item-inner">
-                                    <div class="header">
-                                        <a href="#"><img src="{{get_template_directory() . '/images/album.png'}}" alt=""/></a>
-                                        <ul class="info">
-                                            <li class="name"><a href="#">Family Photos</a></li>
-                                            <li class="comment-count"><a href="#"><i class="fa fa-comment-o"></i> 1.540</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="author">
-                                        <li><i class="fa fa-user"></i> Marie Herreford Johnson</li>
-                                        <li><i class="fa fa-calendar"></i> 09.02.2015</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="photo-item col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                                <div class="photo-item-inner">
-                                    <div class="header">
-                                        <a href="#"><img src="{{get_template_directory() . '/images/album2.jpg'}}" alt=""/></a>
-                                        <ul class="info">
-                                            <li class="name"><a href="#">Family Photos</a></li>
-                                            <li class="comment-count"><a href="#"><i class="fa fa-comment-o"></i> 1.540</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="author">
-                                        <li><i class="fa fa-user"></i> Marie Herreford Johnson</li>
-                                        <li><i class="fa fa-calendar"></i> 09.02.2015</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="photo-item col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                                <div class="photo-item-inner">
-                                    <div class="header">
-                                        <a href="#"><img src="{{get_template_directory() . '/images/album.png'}}" alt=""/></a>
-                                        <ul class="info">
-                                            <li class="name"><a href="#">Family Photos</a></li>
-                                            <li class="comment-count"><a href="#"><i class="fa fa-comment-o"></i> 1.540</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="author">
-                                        <li><i class="fa fa-user"></i> Marie Herreford Johnson</li>
-                                        <li><i class="fa fa-calendar"></i> 09.02.2015</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="photo-item col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                                <div class="photo-item-inner">
-                                    <div class="header">
-                                        <a href="#"><img src="{{get_template_directory() . '/images/album2.jpg'}}" alt=""/></a>
-                                        <ul class="info">
-                                            <li class="name"><a href="#">Family Photos</a></li>
-                                            <li class="comment-count"><a href="#"><i class="fa fa-comment-o"></i> 1.540</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="author">
-                                        <li><i class="fa fa-user"></i> Marie Herreford Johnson</li>
-                                        <li><i class="fa fa-calendar"></i> 09.02.2015</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="photo-item col-md-3 col-lg-3 col-sm-3 col-xs-12">
-                                <div class="photo-item-inner">
-                                    <div class="header">
-                                        <a href="#"><img src="{{get_template_directory() . '/images/album2.jpg'}}" alt=""/></a>
-                                        <ul class="info">
-                                            <li class="name"><a href="#">Family Photos</a></li>
-                                            <li class="comment-count"><a href="#"><i class="fa fa-comment-o"></i> 1.540</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="author">
-                                        <li><i class="fa fa-user"></i> Marie Herreford Johnson</li>
-                                        <li><i class="fa fa-calendar"></i> 09.02.2015</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @endforeach
                         </div><!-- /#photo-list -->
                     </div>
                     <div class="footer">
-                        <button class="btn btn-info btn-lg">Load More Images</button>
+                        {!! $videos->render() !!}
                     </div>
                 </div>
             </div>
@@ -171,4 +83,8 @@
         </div>
     </section><!-- /#section-introduction -->
 
+@stop
+
+@section('scripts')
+    <script type="text/javascript" src="{{asset('assets/fancybox/helpers/jquery.fancybox-media.js?v=2.1.5')}}"></script>
 @stop

@@ -12,13 +12,17 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{asset('public/assets/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- MetisMenu CSS -->
-    <link href="{{asset('public/backend/default/bower_components/metisMenu/dist/metisMenu.min.css')}}" rel="stylesheet">
+    <link href="{{asset('templates/backend/default/bower_components/metisMenu/dist/metisMenu.min.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="{{asset('public/backend/default/dist/css/admin.css')}}" rel="stylesheet">
+    <link href="{{asset('templates/backend/default/dist/css/admin.css')}}" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="{{asset('public/assets/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{asset('templates/backend/default/bower_components/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css')}}">
+    <link rel="stylesheet" href="{{asset('templates/backend/default/bower_components/bootstrap-switch/css/bootstrap-switch.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/dropzone/dropzone.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/fancybox/jquery.fancybox.css?v=2.1.5')}}" media="screen" />
     @section('styles')
         {{-- Here goes the page level styles --}}
     @show

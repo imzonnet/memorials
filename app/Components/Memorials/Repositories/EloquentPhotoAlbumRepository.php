@@ -48,8 +48,4 @@ class EloquentPhotoAlbumRepository extends EloquentBaseRepository implements Pho
         return $this->getElementById($attributes['id'])->update($attributes);
     }
 
-    public function getListWithPaginate($paginate = 20)
-    {
-        return $this->model->paginate($paginate);
-    }
 }

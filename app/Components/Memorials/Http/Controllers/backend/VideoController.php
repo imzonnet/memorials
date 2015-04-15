@@ -57,6 +57,7 @@ class VideoController extends Controller
         $attrs = $request->all();
         $this->videoHelper->setUrl($attrs['url']);
         $attrs['image'] = $this->videoHelper->getImage();
+        $attrs['times'] = $this->videoHelper->getTime();
         $video = $this->video->create($attrs);
         return redirect(route('backend.memorial.video.index',$mid))->with('success_message', 'The video has been created.');
     }
@@ -87,6 +88,7 @@ class VideoController extends Controller
 
         $this->videoHelper->setUrl($attrs['url']);
         $attrs['image'] = $this->videoHelper->getImage();
+        $attrs['times'] = $this->videoHelper->getTime();
 
         $video->update($attrs);
 

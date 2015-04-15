@@ -32,7 +32,7 @@ class PhotoItemController extends Controller
     public function index($aid)
     {
         $album = $this->album->getElementById($aid);
-        $photos = $this->photo->getListWithPaginate($album,12);
+        $photos = $album->photoItems()->paginate(12);
         return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.album_photos.index', compact('album', 'photos'));
     }
 

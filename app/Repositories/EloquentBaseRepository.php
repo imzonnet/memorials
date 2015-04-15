@@ -47,4 +47,20 @@ class EloquentBaseRepository implements BaseRepository
         }
         return $element;
     }
+
+    public function find($id, $columns = array('*'))
+    {
+        //$this->model->find($id, $columns);
+        return $this->model->find($id, $columns);
+    }
+
+    public function findBy($attribute, $value, $columns = array('*'), $con = "=")
+    {
+        return $this->model->where($attribute, $con, $value)->first($columns);
+    }
+
+    public function paginate($perPage = 15, $columns = array('*'))
+    {
+        return $this->model->paginate($perPage, $columns);
+    }
 }

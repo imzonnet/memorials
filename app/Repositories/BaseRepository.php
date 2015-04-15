@@ -47,4 +47,30 @@ interface BaseRepository
      * @return $this
      */
     public function with($relations);
+
+    /**
+     * Find a element
+     * @param $id
+     * @param array $columns
+     * @return mixed
+     */
+    public function find($id, $columns = array('*'));
+
+    /**
+     * Find By Condition
+     * @param $attribute
+     * @param $value
+     * @param array $columns
+     * @param string $condition
+     * @return mixed
+     */
+    public function findBy($attribute, $value, $columns = array('*'), $condition = "=");
+
+    /**
+     * Get paginate
+     * @param int $perPage
+     * @param array $columns
+     * @return mixed
+     */
+    public function paginate($perPage = 15, $columns = array('*'));
 }

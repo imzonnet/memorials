@@ -18,6 +18,7 @@ class GranitVideos extends Migration {
             $table->string('title');
             $table->string('url');
             $table->string('image');
+            $table->string('times')->default('00:00:00');
             $table->integer('mem_id')->unsigned();
             $table->foreign('mem_id')->references('id')->on('granit_memorials');
             $table->integer('created_by')->unsigned();

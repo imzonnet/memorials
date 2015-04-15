@@ -1,10 +1,14 @@
 <?php namespace App\Components\Memorials\Models;
 
+use App\Components\Memorials\Presenters\VideoPresenter;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 
 class Video extends Model {
 
+    use PresentableTrait;
+    protected $presenter = VideoPresenter::class;
     /**
      * The database table used by the model.
      *
@@ -17,7 +21,7 @@ class Video extends Model {
      *
      * @var array
      */
-    protected $fillable = ['mem_id', 'title', 'url', 'image','created_by'];
+    protected $fillable = ['mem_id', 'title', 'url', 'image', 'times', 'created_by'];
 
 
     /**

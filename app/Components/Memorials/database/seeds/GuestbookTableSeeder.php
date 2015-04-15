@@ -12,17 +12,20 @@ class GuestbookTableSeeder extends Seeder {
         $faker = Faker::create();
 
         DB::table('granit_guestbooks')->delete();
-        $user = User::first();
         $memorials = array();
         foreach(Memorial::all() as $memorial) {
             $memorials[] = $memorial->id;
         }
-        foreach(range(1,20) as $index) {
+        $users = array();
+        foreach(User::all() as $u) {
+            $users[] = $u->id;
+        }
+        foreach(range(1,30) as $index) {
             DB::table('granit_guestbooks')->insert([
                 'title' => $faker->name,
                 'description' => $faker->paragraph(),
                 'mem_id' => $memorials[array_rand($memorials)],
-                'created_by' => $user->id,
+                'created_by' => $users[array_rand($users)],
                 'created_at' => $faker->dateTime('now'),
                 'updated_at' => $faker->dateTime('now'),
             ]);

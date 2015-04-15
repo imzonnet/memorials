@@ -4,6 +4,7 @@ use App\Components\Memorials\Repositories\MemorialRepository;
 use App\Components\Memorials\Repositories\PhotoAlbumRepository;
 use App\Components\Memorials\Repositories\PhotoItemRepository;
 use App\Http\Controllers\Controller;
+use League\Flysystem\Exception;
 
 class MemorialController extends Controller
 {
@@ -25,35 +26,23 @@ class MemorialController extends Controller
         $this->memorial = $memorial;
     }
 
-    public function index()
-    {
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.index');
-    }
-    public function biography()
-    {
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.biography');
-    }
-    public function photoAlbum()
-    {
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.photoAlbum');
-    }
-    public function album()
-    {
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.album');
-    }
-    public function video()
-    {
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.video');
+    public function index() {
+        $memorials = $this->memorial->all()->take(4);
+        return view('Dashboard::'.$this->link_type.'.'.$this->current_theme.'.home', compact('memorials'));
     }
 
     /**
-     *
+     * Show the profile of a Memorial
+     * @param $slug
+     * @param $id
+     * @return \Illuminate\View\View
      */
     public function show($slug, $id){
         $memorial = $this->memorial->getElementById($id);
         $guestbooks = $memorial->guestbooks->take(2);
-
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.index', compact('memorial', 'guestbooks'));
+        $albums = $memorial->photoAlbums->take(5);
+        $timelines = $memorial->timelines->take(6);
+        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.index', compact('memorial', 'guestbooks', 'albums', 'timelines'));
     }
 
     /**
@@ -64,7 +53,8 @@ class MemorialController extends Controller
      */
     public function showBiography($slug, $id){
         $memorial = $this->memorial->getElementById($id);
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.biography', compact('memorial'));
+        $timelines = $memorial->timelines()->orderBy('year')->get();
+        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.biography', compact('memorial', 'timelines'));
     }
 
     /**
@@ -79,27 +69,29 @@ class MemorialController extends Controller
         return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.photoAlbum', compact('memorial', 'albums'));
     }
 
-    /**
-     * Show list photo of a album
-     * @param $slug
-     * @param $id
-     * @param $pid
-     * @param PhotoAlbumRepository $photoAlbumRepository
-     * @return \Illuminate\View\View
-     */
-    public function showAlbum($slug, $id, $pid, PhotoAlbumRepository $photoAlbumRepository){
+    public function showPhotoItems($slug, $id, $aid, PhotoAlbumRepository $photoAlbumRepository){
         $memorial = $this->memorial->getElementById($id);
-        $album = $photoAlbumRepository->getElementById($pid);
+        $album = $memorial->photoAlbums()->find($aid);
+        if(is_null($album)) {
+            return redirect()->back()->withErrors('The Album not found!');
+        }
         $photos = $album->photoItems()->paginate(10);
+
         return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.photoItem', compact('memorial', 'album', 'photos'));
     }
 
-    public function showPhotoItems($slug, $id, $pid, PhotoAlbumRepository $photoAlbumRepository){
-        $memorial = $this->memorial->getElementById($id);
-        $album = $photoAlbumRepository->getElementById($pid);
-        $photos = $album->photoItems()->paginate(10);
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.photoItem', compact('memorial', 'album', 'photos'));
+    public function showPhoto($slug, $id, $pid, PhotoItemRepository $photoItemRepository){
+        $photo = $photoItemRepository->getElementById($pid);
+        if(\Request::ajax()) {
+            if(!is_null($photo)) {
+                return (String)view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.photo', compact('photo'));
+            } else {
+                return \Response::json('error', 400);
+            }
+        }
+        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.memorials.photo', compact('photo'));
     }
+
 
     public function showVideos($slug, $id){
         $memorial = $this->memorial->getElementById($id);

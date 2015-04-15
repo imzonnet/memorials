@@ -2,6 +2,7 @@
 
 use App\Components\Memorials\Presenters\PhotoItemPresenter;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
@@ -44,6 +45,10 @@ class PhotoItem extends Model {
     public function comments()
     {
         return $this->hasMany(PhotoComment::class, 'photo_id', 'id');
+    }
+
+    public function getCreatedAtAttribute($value){
+        return Carbon::parse($value)->format('d. m. Y');
     }
 
 }

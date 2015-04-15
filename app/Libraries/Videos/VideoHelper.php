@@ -9,6 +9,7 @@ class VideoHelper
     public $image;
     public $vid;
     public $host;
+    public $time;
 
     /**
      * Video Helper Class
@@ -83,6 +84,7 @@ class VideoHelper
         $this->url = $url;
         $this->setVid();
         $this->setImage();
+        $this->setTime();
     }
 
     public function setVid() {
@@ -100,5 +102,62 @@ class VideoHelper
         return $this->vid;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTime($f = ":")
+    {
+        return $this->format_time($this->time, $f);
+    }
+
+    /**
+     * @param mixed $time
+     */
+    public function setTime()
+    {
+        if ($this->isYoutube($this->url)) {
+            // set video data feed URL
+            $feedURL = 'http://gdata.youtube.com/feeds/api/videos/' . $this->vid;
+            // read feed into SimpleXML object
+            $entry = simplexml_load_file($feedURL);
+            // parse video entry
+            $video = $this->parseVideoEntry($entry);
+            $this->time = $video->length;
+        } elseif ($this->isVimeo($this->url)) {
+            try {
+                $file = @file_get_contents("http://vimeo.com/api/v2/video/$this->vid.php");
+                $hash = unserialize($file);
+                $this->time =  $hash[0]['duration'];
+            } catch(Exception $e) {
+                $this->time = "00:00:00";
+            }
+        }
+    }
+
+    // function to parse a video <entry>
+    public function parseVideoEntry($entry) {
+        $obj= new \stdClass;
+
+        // get nodes in media: namespace for media information
+        $media = $entry->children('http://search.yahoo.com/mrss/');
+        $obj->title = $media->group->title;
+        $obj->description = $media->group->description;
+
+
+
+        // get <yt:duration> node for video length
+        $yt = $media->children('http://gdata.youtube.com/schemas/2007');
+        $attrs = $yt->duration->attributes();
+        $obj->length = $attrs['seconds'];
+
+
+        // return object to caller
+        return $obj;
+    }
+
+    public function format_time($t,$f=':') // t = seconds, f = separator
+    {
+        return sprintf("%02d%s%02d%s%02d", floor($t/3600), $f, ($t/60)%60, $f, $t%60);
+    }
 
 }
