@@ -9,9 +9,9 @@
                     <div class="info col-md-6 col-lg-6 col-sm-12 col-xs-12">
                         <h2 class="name">{{$memorial->name}}</h2>
                         <ul class="memorial-date date-group list-unstyled list-inline">
-                            <li class="birthday">{{$memorial->birthday}}</li>
+                            <li class="birthday">{{$memorial->present()->getBirthday}}</li>
 
-                            <li class="death">{{$memorial->death}}</li>
+                            <li class="death">{{$memorial->present()->getDeath}}</li>
                         </ul>
                         <div class="maried">Maried to <a href="#">Marie  Johnson</a></div>
                         <div class="buried-address">Buried in {{$memorial->buried}}</div>
@@ -41,7 +41,7 @@
                         {!! HTML::nav_link($memorial->present()->getBiographyPath, '<i class="fa fa-file"></i><span>Biography</span>') !!}
                         {!! HTML::nav_link($memorial->present()->getPhotoAlbumsPath, '<i class="fa fa-camera"></i><span>Photos</span>') !!}
                         {!! HTML::nav_link($memorial->present()->getVideosPath, '<i class="fa fa-video-camera"></i><span>Videos</span>') !!}
-                        {!! HTML::nav_link($memorial->present()->getGuestbookPath, '<i class="fa fa-book"></i><span>Guestbook</span>') !!}
+                        {!! HTML::nav_link($memorial->present()->getGuestbooksPath, '<i class="fa fa-book"></i><span>Guestbook</span>') !!}
                         {!! HTML::nav_link($memorial->present()->getFamilyPath, '<i class="fa fa-group"></i><span>Family</span>') !!}
                     </ul>
                 </div>

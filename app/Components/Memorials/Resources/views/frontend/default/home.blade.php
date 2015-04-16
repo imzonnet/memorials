@@ -1,4 +1,4 @@
-@extends('Dashboard::frontend.default.master')
+@extends('Memorials::frontend.default.master')
 
 @section('title')
 Welcome to Memorials
@@ -50,8 +50,8 @@ Welcome to Memorials
                                     <h3 class="title">{{$memorial->name}}</h3>
                                     <a href="{{$memorial->present()->getProfilePath}}" class="btn btn-default">View Profile</a>
                                     <ul class="memorial-date date-group list-unstyled list-inline">
-                                        <li class="birthday">{{$memorial->birthday}}</li>
-                                        <li class="death">{{$memorial->death}}</li>
+                                        <li class="birthday">{{$memorial->present()->getBirthday}}</li>
+                                        <li class="death">{{$memorial->present()->getDeath}}</li>
                                     </ul>
                                 </div>
                             </div>

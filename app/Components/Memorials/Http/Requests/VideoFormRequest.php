@@ -25,7 +25,7 @@ class VideoFormRequest extends Request
 
         $rules = [
             'title'     =>  'required',
-            'url'       =>  'required|checkUrl'
+            'url'       =>  'required|video'
         ];
 
         return $rules;

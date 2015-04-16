@@ -123,10 +123,13 @@ class MemorialController extends Controller
                     'year' => $attr['timeline_year'][$i],
                     'description' => $attr['timeline_desc'][$i],
                 ];
-                $file = $attr['timeline_image'][$i];
-                if(is_object($file)) {
-                    $timeline['image'] = $media->upload($file, 'timeline');
+                if($request->hasFile($attr['timeline_image'][$i])) {
+                    $file = $attr['timeline_image'][$i];
+                    if(is_object($file)) {
+                        $timeline['image'] = $media->upload($file, 'timeline');
+                    }
                 }
+
                 if($attr['timeline_id'][$i] > 0) {
                     $rs = $this->timeline->getElementById($attr['timeline_id'][$i]);
                     $rs->update($timeline);

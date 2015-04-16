@@ -22,7 +22,7 @@ class PhotoComment extends Model {
      *
      * @var array
      */
-    protected $fillable = ['photo_id', 'user_id', 'text', 'like', 'parent_id'];
+    protected $fillable = ['photo_id', 'user_id', 'text', 'likes', 'parent_id'];
 
 
     /**
@@ -41,4 +41,7 @@ class PhotoComment extends Model {
         return $this->belongsTo(PhotoItem::class, 'photo_id', 'id');
     }
 
+    public function commentsChild(){
+        return $this->where('parent_id', '=', $this->id)->count();
+    }
 }

@@ -86,23 +86,43 @@
                     </div>
                     <div class="block-content">
                         <div class="gallery-list row">
-                            @foreach($albums as $index => $album)
-                                @if($index == 0 || $index % 3 == 0)
-                                    <div class="gallery-items col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                                @endif
+                            @if( count($albums) > 3 )
+                                @foreach($albums as $index => $album)
+                                    @if($index == 0 || $index % 3 == 0)
+                                        <div class="gallery-items col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                    @endif
+                                            <div class="item {{$index == 0 || $index % 3 == 0 ? "large" : ''}}">
+                                                <img src="{{asset($album->photoItems->first()->image)}}" alt=""/>
+                                                <h3 class="name"><a href="{{$album->present()->getPermalink}}">{{$album->title}}</a></h3>
+                                            </div>
+                                            @if($index == (count($albums) - 1))
+                                                <div class="item">
+                                                    <a href="{{$memorial->present()->getPhotoAlbumsPath}}"><img src="{{get_template_directory() . '/images/next-photo.png'}}" alt="View More"/></a>
+                                                </div>
+                                            @endif
+                                    @if($index != 0 && $index % 2 == 0)
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @else
+                                @foreach($albums as $index => $album)
+                                    @if($index == 0)
+                                        <div class="gallery-items col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                    @endif
                                         <div class="item {{$index == 0 || $index % 3 == 0 ? "large" : ''}}">
                                             <img src="{{asset($album->photoItems->first()->image)}}" alt=""/>
                                             <h3 class="name"><a href="{{$album->present()->getPermalink}}">{{$album->title}}</a></h3>
                                         </div>
-                                        @if($index == (count($albums) - 1))
-                                            <div class="item">
-                                                <a href="{{$memorial->present()->getPhotoAlbumsPath}}"><img src="{{get_template_directory() . '/images/next-photo.png'}}" alt="View More"/></a>
-                                            </div>
-                                        @endif
-                                @if($index != 0 && $index % 2 == 0)
+                                    @if($index != 0 && $index % 2 == 0)
+                                        </div>
+                                    @endif
+                                @endforeach
+                                <div class="gallery-items col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                    <div class="item">
+                                        <a href="{{$memorial->present()->getPhotoAlbumsPath}}"><img src="{{get_template_directory() . '/images/next-photo.png'}}" alt="View More"/></a>
                                     </div>
-                                @endif
-                            @endforeach
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -17,7 +17,7 @@ class VideoComment extends Model {
      *
      * @var array
      */
-    protected $fillable = ['video_id', 'user_id', 'text', 'like', 'parent_id'];
+    protected $fillable = ['video_id', 'user_id', 'text', 'likes', 'parent_id'];
 
 
     /**
@@ -36,4 +36,7 @@ class VideoComment extends Model {
         return $this->belongsTo(PhotoItem::class, 'photo_id', 'id');
     }
 
+    public function commentsChild(){
+        return $this->where('parent_id', '=', $this->id)->count();
+    }
 }

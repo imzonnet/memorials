@@ -5,7 +5,7 @@ use Illuminate\Validation\Validator as IlluminateValidator;
 class ValidatorExtended extends IlluminateValidator {
 
     private $_custom_messages = array(
-        "checkURL" => "The :attribute must be video from Youtube, Video host",
+        "video" => "The :attribute must be video from Youtube, Video host",
     );
 
     public function __construct( $translator, $data, $rules, $messages = array(), $customAttributes = array() ) {
@@ -29,7 +29,7 @@ class ValidatorExtended extends IlluminateValidator {
      * @param $value
      * @return bool
      */
-    protected function validateCheckUrl( $attribute, $value ) {
+    protected function validateVideo( $attribute, $value ) {
         return (bool) preg_match( '/(http:|https:|)\/\/(player.|www.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/', $value );
     }
 

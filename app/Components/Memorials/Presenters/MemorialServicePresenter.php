@@ -1,5 +1,6 @@
 <?php namespace App\Components\Memorials\Presenters;
 
+use Carbon\Carbon;
 use Laracasts\Presenter\Presenter;
 
 class MemorialServicePresenter extends Presenter
@@ -32,5 +33,16 @@ class MemorialServicePresenter extends Presenter
     public function getFamilyPath()
     {
         return route('memorial.family', [str_slug($this->name), $this->id]);
+    }
+
+    public function getCreatedAt(){
+        return Carbon::parse($this->created_at)->format('d. m. Y');
+    }
+
+    public function getBirthday(){
+        return Carbon::parse($this->birthday)->format('d. m. Y');
+    }
+    public function getDeath(){
+        return Carbon::parse($this->death)->format('d. m. Y');
     }
 }

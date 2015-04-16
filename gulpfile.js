@@ -12,5 +12,5 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.less('default/style.less', 'public/templates/default/css');
+    mix.less('default/style.less', 'public/templates/frontend/default/css');
 });

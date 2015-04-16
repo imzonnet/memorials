@@ -46,9 +46,4 @@ class EloquentPhotoItemRepository extends EloquentBaseRepository implements Phot
         return $this->getElementById($attributes['id'])->update($attributes);
     }
 
-
-    public function delete() {
-
-        return 1;
-    }
 }

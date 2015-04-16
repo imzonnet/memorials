@@ -1,7 +1,7 @@
 @extends('Memorials::frontend.default.master')
 
 @section('title')
-    Welcome to Memorials
+   Video | Memorials
 @stop
 
 @section('content')
@@ -34,7 +34,7 @@
                 <div class="block photo-albums">
                     <h2 class="block-title">Videos</h2>
                     <div class="content">
-                        <div id="photo-list" class="photo-list">
+                        <div id="videos-list" class="photo-list">
                             @foreach($videos as $video)
                             <div class="photo-item col-md-6 col-lg-6 col-sm-6 col-xs-12">
                                 <div class="photo-item-inner">
@@ -55,7 +55,7 @@
                         </div><!-- /#photo-list -->
                     </div>
                     <div class="footer">
-                        {!! $videos->render() !!}
+                        {!! str_replace('/?', '?', $videos->render()); !!}
                     </div>
                 </div>
             </div>

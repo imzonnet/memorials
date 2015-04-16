@@ -60,11 +60,4 @@ class Memorial extends Model {
         return $this->hasMany(MemorialService::class, 'mem_id', 'id');
     }
 
-    public function getBirthdayAttribute($value){
-        return Carbon::parse($value)->format('d. m. Y');
-    }
-
-    public function getDeathAttribute($value){
-        return Carbon::parse($value)->format('d. m. Y');
-    }
 }

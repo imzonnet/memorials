@@ -12,4 +12,6 @@ class CommentPresenter extends Presenter
     public function getTimeAgo() {
         return $this->created_at->diffForHumans();
     }
+
+
 }
