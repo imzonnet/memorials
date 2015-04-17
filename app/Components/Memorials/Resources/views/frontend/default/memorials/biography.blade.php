@@ -34,7 +34,7 @@
                 <div class="biography-teaser">
                     <h2 class="block-title">Biografi</h2>
                     <div class="content">
-                        {{$memorial->biography}}
+                        {!! $memorial->biography !!}
                     </div>
                 </div>
             </div>

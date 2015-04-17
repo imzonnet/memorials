@@ -7053,6 +7053,9 @@ a {
   padding: 10px;
   text-transform: uppercase;
 }
+.guestbooks-list .guestbook-teaser-wrap:nth-child(2n+1) {
+  clear: left;
+}
 .guestbooks-list .guestbook-teaser {
   padding: 20px;
 }
@@ -7379,6 +7382,12 @@ a {
 * Photo modal
 *
 */
+.photo-modal {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.photo-modal .modal-backdrop {
+  background-color: transparent;
+}
 .photo-modal .modal-dialog {
   margin-top: 50px;
 }

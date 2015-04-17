@@ -1,7 +1,4 @@
 <?php namespace App\Components\Services\Database\Seeds;
-use App\Components\Memorials\Models\Memorial;
-use App\Components\Memorials\Models\Video;
-use App\Libraries\Videos\VideoHelper;
 use App\User;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
@@ -14,53 +11,27 @@ class ServicesTableSeeder extends Seeder {
     {
         $faker = Faker::create();
 
-        DB::table('granit_videos')->delete();
-        $user = User::first();
-        $memorials = array();
-        $users = array();
-        foreach(Memorial::all() as $memorial) {
-            $memorials[] = $memorial->id;
-        }
+        DB::table('granit_services')->delete();
 
-        foreach(User::all() as $u) {
-            $users[] = $u->id;
-        }
-        $videos = [
-            'https://www.youtube.com/watch?v=JNXP-gkdU04',
-            'https://www.youtube.com/watch?v=smyCFdFGfKk',
-            'https://www.youtube.com/watch?v=VSYNOS3TPD8',
-            'https://www.youtube.com/watch?v=lvCQuc98Dlc',
-            'https://www.youtube.com/watch?v=OpQFFLBMEPI',
-            'https://www.youtube.com/watch?v=yTCDVfMz15M',
-            'https://www.youtube.com/watch?v=FJfFZqTlWrQ',
-            'https://www.youtube.com/watch?v=XjVNlG5cZyQ'
+        $services = [
+            ['Re-Paint', 'templates/frontend/default/images/services/1.png'],
+            ['Add Name', 'templates/frontend/default/images/services/1.png'],
+            ['Design Gravestone', 'templates/frontend/default/images/services/2.png'],
+            ['Straighten Gravestone', 'templates/frontend/default/images/services/3.png'],
+            ['Trim Grave', 'templates/frontend/default/images/services/4.png'],
+            ['Order Flowers', 'templates/frontend/default/images/services/2.png']
         ];
-        $videoHelper = new VideoHelper();
         foreach(range(1,20) as $index) {
-            $url = $videos[array_rand($videos)];
-            $videoHelper->setUrl($url);
 
-            $video = Video::create([
-                'title' => $faker->name,
-                'url' => $url,
-                'image' => $videoHelper->getImage(),
-                'times' => $videoHelper->getTime(),
-                'mem_id' => $memorials[array_rand($memorials)],
-                'created_by' => $user->id,
-                'created_at' => $faker->dateTime('now'),
-                'updated_at' => $faker->dateTime('now'),
+            DB::table('granit_services')->create([
+                'title' => $services[$index][0],
+                'description' => $faker->paragraph(5),
+                'image' => $services[$index][1],
+                'state' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]);
-            foreach(range(1,5) as $index) {
-                DB::table('granit_video_comments')->insert([
-                    'video_id'  => $video->id,
-                    'user_id'   => $users[array_rand($users)],
-                    'text'  =>  $faker->paragraph(),
-                    'parent_id' => 0,
-                    'likes' =>  rand(0, 50),
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ]);
-            }
+
         }
 
     }

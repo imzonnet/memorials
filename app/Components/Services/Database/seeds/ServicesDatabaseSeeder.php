@@ -13,7 +13,7 @@ class ServicesDatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-
+        $this->call(ServicesTableSeeder::class);
 	}
 
 }

@@ -39,7 +39,7 @@
                             <li class="marie"><i class="fa fa-user"></i> Marie Herreford Johnson</li>
                         </ul>
                         <div class="content">
-                            {{$memorial->biography}}
+                            {!! str_limit($memorial->biography, 1500) !!}
                             <p><a href="{{$memorial->present()->getBiographyPath}}" class="readmore btn btn-white-black">Read More</a></p>
                         </div>
                     </div>
@@ -60,8 +60,8 @@
                                     </div>
                                     <div class="info">
                                         <h3>{{$guestbook->title}}</h3>
-                                        <p>{{str_limit($guestbook->description)}}</p>
-                                        <a href="#" class="readmore btn btn-info">Read More</a>
+                                        {!! str_limit($guestbook->description) !!}
+                                        <p><a href="#" class="readmore btn btn-info">Read More</a></p>
                                     </div>
                                 </div>
                                 @endforeach

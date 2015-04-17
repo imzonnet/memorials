@@ -546,6 +546,11 @@ a {
     padding: 10px;
     text-transform: uppercase;
   }
+  .guestbook-teaser-wrap {
+    &:nth-child(2n+1) {
+      clear: left;
+    }
+  }
   .guestbook-teaser {
     padding: 20px;
   }
@@ -877,6 +882,10 @@ a {
 *
 */
 .photo-modal {
+  background-color: rgba(0, 0, 0, 0.3);
+  .modal-backdrop {
+    background-color: transparent;
+  }
   .modal-dialog {
     margin-top: 50px;
   }

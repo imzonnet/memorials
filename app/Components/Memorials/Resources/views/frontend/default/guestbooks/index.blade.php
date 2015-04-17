@@ -38,19 +38,20 @@
                     <div class="content">
                         <div id="guestbooks-list">
                             @foreach($guestbooks as $guestbook)
-                            <div class="photo-item col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                            <div class="guestbook-teaser-wrap col-md-6 col-lg-6 col-sm-6 col-xs-12">
                                 <div class="guestbook-teaser">
                                     <div class="header">
-                                        <img alt="" src="http://lorempixel.com/299/235/people/?10021">
+                                        <img alt="" src="{{$guestbook->user->avatar}}">
                                         <div class="title">
-                                            <h3>Lambert Block IV</h3>
-                                            <div class="date death"><i class="fa fa-calendar"></i> 16. 08. 1971</div>
+                                            <h3>{{$guestbook->user->name}}</h3>
+                                            <div class="date death"><i class="fa fa-calendar"></i> {{$guestbook->created_at}}</div>
                                         </div>
                                     </div>
                                     <div class="info">
-                                        <h3>Dr. Alysa Considine</h3>
-                                        <p>Saepe quo rem cumque quod. Est similique aliquam et nulla. Temporibus eum qui dolores adipisci offic...</p>
-                                        <a class="readmore btn btn-info" href="#">Read More</a>
+                                        <h3>{{$guestbook->title}}</h3>
+                                        <div class="readmore">
+                                            {!! $guestbook->description !!}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -86,5 +87,14 @@
 @stop
 
 @section('scripts')
-    <script type="text/javascript" src="{{asset('assets/fancybox/helpers/jquery.fancybox-media.js?v=2.1.5')}}"></script>
+    <script>
+        $(function(){
+            $('div.readmore').readmore({
+                collapsedHeight: 60,
+                moreLink: '<p><a href="#" class="btn btn-info">Read more</a></p>',
+                lessLink: '<p><a href="#" class="btn btn-info">Close</a></p>'
+            });
+        });
+    </script>
+
 @stop

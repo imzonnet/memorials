@@ -17,14 +17,15 @@
     </footer><!-- /#footer -->
 
     <!-- jQuery -->
-    <script src="{{asset('assets/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/jquery/dist/jquery.min.js?v=2.13')}}"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="{{asset('assets/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('assets/jquery.bxslider/jquery.bxslider.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/fancybox/jquery.fancybox.js?v=2.1.5')}}"></script>
+    <script src="{{asset('assets/bootstrap/dist/js/bootstrap.min.js?v=3.0')}}"></script>
+    <script src="{{asset('assets/jquery.bxslider/jquery.bxslider.min.js?v=4.1.2')}}"></script>
+    <script src="{{asset('assets/fancybox/jquery.fancybox.js?v=2.1.5')}}"></script>
+    <script src="{{asset('assets/readmore.min.js?v=2.1.5')}}"></script>
     @section('scripts')
 
     @show
-    <script src="{{asset('templates/frontend/default/js/main.js')}}"></script>
+    <script src="{{asset('templates/frontend/default/js/main.js?v=1.0')}}"></script>
 </body>
 </html>
