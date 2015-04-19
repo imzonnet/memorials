@@ -8,9 +8,9 @@ class EloquentBaseRepository implements BaseRepository
      */
     protected $model;
 
-    public function all()
+    public function all($columns = array('*'))
     {
-        return $this->model->all();
+        return $this->model->all($columns);
     }
 
     public function create(array $attributes = array())
@@ -20,7 +20,7 @@ class EloquentBaseRepository implements BaseRepository
 
     public function update(array $attributes = array())
     {
-        return $this->model->update($attributes);
+        return $this->getElementById($attributes['id'])->update($attributes);
     }
 
     public function delete(){

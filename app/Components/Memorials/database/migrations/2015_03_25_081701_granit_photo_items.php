@@ -18,9 +18,9 @@ class GranitPhotoItems extends Migration {
             $table->string('title');
             $table->string('image');
             $table->integer('album_id')->unsigned();
-            $table->foreign('album_id')->references('id')->on('granit_photo_albums');
-            $table->integer('created_by')->unsigned();
-            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('album_id')->references('id')->on('granit_photo_albums')->onDelete('CASCADE');
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('SET NULL');
             $table->timestamps();
         });
 	}

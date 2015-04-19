@@ -32,7 +32,9 @@
         <div class="container">
             <div class="row">
                 <div class="biography-teaser">
-                    <h2 class="block-title">Biografi</h2>
+                    <div class="block-header">
+                        <h2 class="block-title">Biografi</h2>
+                    </div>
                     <div class="content">
                         {!! $memorial->biography !!}
                     </div>

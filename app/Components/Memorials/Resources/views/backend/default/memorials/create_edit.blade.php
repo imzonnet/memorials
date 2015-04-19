@@ -174,8 +174,7 @@
                                 </div>
                             @endfor
                         @else
-                            <?php $count = !empty(old('timeline_form_count')) ? old('timeline_form_count') : 1;
-                            ?>
+                            <?php $count = !empty(old('timeline_form_count')) ? old('timeline_form_count') : 1; ?>
                             {!! Form::hidden('timeline_form_count', $count) !!}
                             @for($i = 0; $i < $count ; $i++)
                                 <div id="timeline-form-{{$i}}" class="timeline-form form-group clearfix">
@@ -333,7 +332,7 @@
             form_string += '<textarea cols="50" name="timeline_desc['+id+']" rows="3" placeholder="" class="form-control"></textarea>';
             form_string += '</div><div class="col-md-3 col-lg-3 image"><p><strong>Write text or Upload a picture</strong></p>';
             form_string += '<img id="preview_'+id+'" class="pull-left" width="100" height="100" src="" title="Image" alt="Image">';
-            form_string += '<input type="file" name="avatar" onchange="$(\'#preview_'+id+'\')[0].src = window.URL.createObjectURL(this.files[0]); console.log($(this));">';
+            form_string += '<input type="file" name="timeline_image['+id+']" onchange="$(\'#preview_'+id+'\')[0].src = window.URL.createObjectURL(this.files[0]); console.log($(this));">';
             form_string += '</div></div>';
             return form_string;
         }

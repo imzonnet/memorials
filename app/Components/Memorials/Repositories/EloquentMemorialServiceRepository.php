@@ -31,8 +31,9 @@ class EloquentMemorialServiceRepository extends EloquentBaseRepository implement
      */
     public function create(array $attributes = array())
     {
-        $attributes['created_by'] = $this->user->user()->id;
-
+        if($this->user->check()) {
+            $attributes['created_by'] = $this->user->user()->id;
+        }
         return $this->model->create($attributes);
     }
 

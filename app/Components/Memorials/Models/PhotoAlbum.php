@@ -47,4 +47,8 @@ class PhotoAlbum extends Model {
         return $this->hasMany(PhotoItem::class, 'album_id', 'id');
     }
 
+    public function getCreatedAtAttribute($value){
+        return Carbon::parse($value)->format('d. m. Y');
+    }
+
 }

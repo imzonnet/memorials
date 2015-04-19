@@ -363,18 +363,18 @@ table.dataTable thead .sorting:after {
 /**
 * Memorial Timeline
 */
-#timeline-group-body .timeline-form {
+.timeline-group-body .form-group {
     padding: 10px;
     position: relative;
 }
 
-#timeline-group-body .timeline-form:hover{
+.timeline-group-body .form-group:hover{
     background: rgba(0,0,0,0.1);
 }
-#timeline-group-body .timeline-form .task .btn-group {
+.timeline-group-body .form-group .task .btn-group {
     margin-top: 25px;
 }
-#timeline-group-body .timeline-form .info {
+.timeline-group-body .form-group .info {
     margin-top: 15px;
 }
 .loading-animate{

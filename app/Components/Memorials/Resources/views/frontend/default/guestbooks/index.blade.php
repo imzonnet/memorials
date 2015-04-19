@@ -32,9 +32,11 @@
         <div class="container">
             <div class="row">
                 <div class="block guestbooks-list">
-                    <h2 class="block-title">Guestbook
-                        <a href="#"><span class="label label-info ">Write new message <i class="fa fa-plus"></i></span></a>
-                    </h2>
+                    <div class="block-header">
+                        <h2 class="block-title">Guestbook
+                            <a href="#"><span class="label label-info ">Write new message <i class="fa fa-plus"></i></span></a>
+                        </h2>
+                    </div>
                     <div class="content">
                         <div id="guestbooks-list">
                             @foreach($guestbooks as $guestbook)

@@ -29,7 +29,7 @@
                             <tr class="odd gradeX">
                                 <td>{{$flower->id}}</td>
                                 <td>{{$flower->title}}</td>
-                                <td>{{str_limit($flower->description)}}</td>
+                                <td>{!! str_limit($flower->description) !!}</td>
                                 <td>{{sate_convert($flower->state)}}</td>
 
                                 <td class="center" style="min-width: 100px;">

@@ -20,9 +20,9 @@ class GranitVideos extends Migration {
             $table->string('image');
             $table->string('times')->default('00:00:00');
             $table->integer('mem_id')->unsigned();
-            $table->foreign('mem_id')->references('id')->on('granit_memorials');
-            $table->integer('created_by')->unsigned();
-            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('mem_id')->references('id')->on('granit_memorials')->onDelete('CASCADE');
+            $table->integer('created_by')->unsigned()->nullable();;
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('SET NULL');
             $table->timestamps();
         });
 	}

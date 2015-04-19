@@ -61,7 +61,7 @@
                                     <div class="info">
                                         <h3>{{$guestbook->title}}</h3>
                                         {!! str_limit($guestbook->description) !!}
-                                        <p><a href="#" class="readmore btn btn-info">Read More</a></p>
+                                        <p><a href="{{$memorial->present()->getGuestbooksPath}}" class="readmore btn btn-info">Read More</a></p>
                                     </div>
                                 </div>
                                 @endforeach
@@ -69,7 +69,7 @@
                                 <p>Don't have any guestbook</p>
                             @endif
                         </div>
-                        <a href="{{$memorial->present()->getGuestbookPath}}" class="btn btn-primary btn-lg">Go to guestbook</a>
+                        <a href="{{$memorial->present()->getGuestbooksPath}}" class="btn btn-primary btn-lg">Go to guestbook</a>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                                         <div class="gallery-items col-md-6 col-lg-6 col-sm-6 col-xs-12">
                                     @endif
                                             <div class="item {{$index == 0 || $index % 3 == 0 ? "large" : ''}}">
-                                                <img src="{{asset($album->photoItems->first()->image)}}" alt=""/>
+                                                <a href="{{$album->present()->getPermalink}}"><img src="{{asset($album->photoItems->first()->image)}}" alt=""/></a>
                                                 <h3 class="name"><a href="{{$album->present()->getPermalink}}">{{$album->title}}</a></h3>
                                             </div>
                                             @if($index == (count($albums) - 1))
@@ -105,22 +105,16 @@
                                     @endif
                                 @endforeach
                             @else
-                                @foreach($albums as $index => $album)
-                                    @if($index == 0)
-                                        <div class="gallery-items col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                                    @endif
+                                <div class="gallery-items col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                    @foreach($albums as $index => $album)
                                         <div class="item {{$index == 0 || $index % 3 == 0 ? "large" : ''}}">
-                                            <img src="{{asset($album->photoItems->first()->image)}}" alt=""/>
+                                            <a href="{{$album->present()->getPermalink}}"><img src="{{asset($album->photoItems->first()->image)}}" alt=""/></a>
                                             <h3 class="name"><a href="{{$album->present()->getPermalink}}">{{$album->title}}</a></h3>
                                         </div>
-                                    @if($index != 0 && $index % 2 == 0)
+                                    @endforeach
+                                        <div class="item">
+                                            <a href="{{$memorial->present()->getPhotoAlbumsPath}}"><img src="{{get_template_directory() . '/images/next-photo.png'}}" alt="View More"/></a>
                                         </div>
-                                    @endif
-                                @endforeach
-                                <div class="gallery-items col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                                    <div class="item">
-                                        <a href="{{$memorial->present()->getPhotoAlbumsPath}}"><img src="{{get_template_directory() . '/images/next-photo.png'}}" alt="View More"/></a>
-                                    </div>
                                 </div>
                             @endif
                         </div>

@@ -23,7 +23,7 @@
             $('.form-delete').submit(function(){
                 return confirm("Are you sure you want to delete the selected record ?");
             });
-            $( 'textarea.editor-ckeditor' ).ckeditor();
+            $( 'textarea' ).ckeditor();
             $('.dataTables').DataTable({
                 responsive: true
             });

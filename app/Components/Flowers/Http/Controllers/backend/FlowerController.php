@@ -1,5 +1,6 @@
 <?php namespace App\Components\Flowers\Http\Controllers\Backend;
 
+use App\Components\Flowers\Repositories\FlowerItemRepository;
 use App\Components\Flowers\Repositories\FlowerRepository;
 use App\Components\MediaManager\Http\Controllers\MediaManagerController;
 use App\Components\Flowers\Http\Requests\FlowerFormRequest;
@@ -13,6 +14,7 @@ class FlowerController extends Controller
      * @var flowerRepository
      */
     protected $flower;
+    protected $item;
 
     /**
      * Display a listing of the resource.
@@ -20,10 +22,11 @@ class FlowerController extends Controller
      * @param FlowerRepository $flowerRepository
      * @internal param FlowerRepository $flower
      */
-    public function __construct(FlowerRepository $flowerRepository)
+    public function __construct(FlowerRepository $flowerRepository, FlowerItemRepository $flowerItemRepository)
     {
         parent::__construct();
         $this->flower = $flowerRepository;
+        $this->item = $flowerItemRepository;
     }
 
     public function index()
@@ -50,8 +53,21 @@ class FlowerController extends Controller
     public function store(FlowerFormRequest $request, MediaManagerController $media)
     {
         $attr = $request->all();
-        $attr['image'] = $media->upload($attr['image'], 'flowers');
-        $this->flower->create($attr);
+        $flower = $this->flower->create($attr);
+
+        for($i=0; $i < $attr['flower_form_count']; $i++) {
+            $flowerItems = [
+                'flower_id' => $flower->id,
+                'title' => $attr['flower_title'][$i],
+            ];
+            if( !empty($attr['flower_image'][$i])) {
+                $file = $attr['flower_image'][$i];
+                if(is_object($file)) {
+                    $flowerItems['image'] = $media->upload($file, 'flowers');
+                }
+            }
+            $this->item->create($flowerItems);
+        }
 
         return redirect(route('backend.flower.index'))->with('success_message', 'The flower has been created');
     }
@@ -77,12 +93,26 @@ class FlowerController extends Controller
     public function update($id, FlowerFormRequest $request, MediaManagerController $media)
     {
         $attr = $request->all();
-        $flower = $this->flower->getElementById($id);
-        if($request->hasFile('image')) {
-            if(file_exists($flower->image)) { unlink($flower->image);}
-            $attr['image'] = $media->upload($attr['image'], 'flowers');
-        }
         $this->flower->update($attr);
+
+        for($i=0; $i < $attr['flower_form_count']; $i++) {
+            $flowerItems = [
+                'flower_id' => $id,
+                'title' => $attr['flower_title'][$i],
+            ];
+            if( !empty($attr['flower_image'][$i])) {
+                $file = $attr['flower_image'][$i];
+                if(is_object($file)) {
+                    $flowerItems['image'] = $media->upload($file, 'flowers');
+                }
+            }
+            if($attr['flower_id'][$i] > 0) {
+                $rs = $this->item->getElementById($attr['flower_id'][$i]);
+                $rs->update($flowerItems);
+            } else {
+                $this->item->create($flowerItems);
+            }
+        }
 
         return redirect(route('backend.flower.index'))->with('success_message', 'The flower has been updated');
     }

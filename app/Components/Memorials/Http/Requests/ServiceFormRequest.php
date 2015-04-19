@@ -24,8 +24,9 @@ class ServiceFormRequest extends Request
     {
 
         $rules = [
-            'title'     =>  'required',
-            'url'       =>  'required|checkUrl'
+            'contact_name'     =>  'required',
+            'contact_email'     =>  'required|email',
+            'contact_phone'     =>  'required|numeric',
         ];
 
         return $rules;

@@ -3,7 +3,7 @@
 use Carbon\Carbon;
 use Laracasts\Presenter\Presenter;
 
-class MemorialServicePresenter extends Presenter
+class MemorialPresenter extends Presenter
 {
     public function getProfilePath()
     {

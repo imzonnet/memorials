@@ -1,16 +1,11 @@
 <?php namespace App\Components\Memorials\Models;
 
-use App\Components\Memorials\Presenter\MemorialServicePresenter;
 use App\Components\Services\Models\Service;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Laracasts\Presenter\PresentableTrait;
 
 class MemorialService extends Model {
 
-    use PresentableTrait;
-
-    protected $presenter = MemorialServicePresenter::class;
     /**
      * The database table used by the model.
      *
@@ -23,7 +18,7 @@ class MemorialService extends Model {
      *
      * @var array
      */
-    protected $fillable = ['mem_id', 'title', 'url', 'image','created_by'];
+    protected $fillable = ['service_id', 'created_by', 'mem_id', 'contact_name', 'contact_email', 'contact_phone', 'message'];
 
 
     /**

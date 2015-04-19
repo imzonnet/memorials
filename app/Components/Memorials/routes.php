@@ -35,6 +35,15 @@ Route::get('/memorial/{slug}/{id}/videos',['as' => 'memorial.videos', 'uses' => 
 Route::get('/memorial/{slug}/{id}/guestbooks',['as' => 'memorial.guestbooks', 'uses' => 'GuestbookController@index'])->where('id', '[0-9]+');
 Route::get('/memorial/{slug}/{id}/family',['as' => 'memorial.family', 'uses' => 'MemorialController@showFamily'])->where('id', '[0-9]+');
 
+//Services
+Route::get('/memorial/{slug}/{id}/services',['as' => 'memorial.services', 'uses' => 'ServiceController@index'])->where('id', '[0-9]+');
+Route::get('/memorial/{slug}/{id}/services/{sid}/bid',['as' => 'memorial.services.bid', 'uses' => 'ServiceController@create'])->where(['id' => '[0-9]+','sid' => '[0-9]+']);
+Route::post('/memorial/{slug}/{id}/services/{sid}/bid',['as' => 'memorial.services.bid', 'uses' => 'ServiceController@store'])->where(['id' => '[0-9]+','sid' => '[0-9]+']);
+//Flower
+Route::get('/memorial/{slug}/{id}/flowers',['as' => 'memorial.flowers', 'uses' => 'FlowerController@index'])->where('id', '[0-9]+');
+Route::get('/memorial/{slug}/{id}/flower/{sid}/bid',['as' => 'memorial.flower.bid', 'uses' => 'FlowerController@create'])->where(['id' => '[0-9]+','sid' => '[0-9]+']);
+Route::post('/memorial/{slug}/{id}/flower/{sid}/bid',['as' => 'memorial.flower.bid', 'uses' => 'FlowerController@store'])->where(['id' => '[0-9]+','sid' => '[0-9]+']);
+
 /**
  * Comment
  */

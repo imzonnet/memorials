@@ -47,4 +47,7 @@ class PhotoItem extends Model {
         return $this->hasMany(PhotoComment::class, 'photo_id', 'id');
     }
 
+    public function getCreatedAtAttribute($value){
+        return Carbon::parse($value)->format('d. m. Y');
+    }
 }

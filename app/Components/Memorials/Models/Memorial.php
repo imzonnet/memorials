@@ -1,6 +1,6 @@
 <?php namespace App\Components\Memorials\Models;
 
-use App\Components\Memorials\Presenters\MemorialServicePresenter;
+use App\Components\Memorials\Presenters\MemorialPresenter;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +9,7 @@ use Laracasts\Presenter\PresentableTrait;
 class Memorial extends Model {
 
     use PresentableTrait;
-    protected $presenter = MemorialServicePresenter::class;
+    protected $presenter = MemorialPresenter::class;
     /**
      * The database table used by the model.
      *

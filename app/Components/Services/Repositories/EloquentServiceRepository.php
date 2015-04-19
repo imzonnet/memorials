@@ -48,4 +48,12 @@ class EloquentServiceRepository extends EloquentBaseRepository implements Servic
         return $this->getElementById($attributes['id'])->update($attributes);
     }
 
+    public function all_services()
+    {
+        $services = [];
+        foreach($this->model->all(['id', 'title']) as $service) {
+            $services[$service->id] = $service->title;
+        }
+        return $services;
+    }
 }

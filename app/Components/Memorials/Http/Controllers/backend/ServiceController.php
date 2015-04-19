@@ -1,7 +1,6 @@
 <?php namespace App\Components\Memorials\Http\Controllers\Backend;
 
 use App\Components\Memorials\Http\Requests\ServiceFormRequest;
-use App\Components\Memorials\Models\Memorial;
 use App\Components\Memorials\Repositories\MemorialRepository;
 use App\Components\Memorials\Repositories\MemorialServiceRepository;
 use App\Components\Services\Repositories\ServiceRepository;
@@ -13,32 +12,28 @@ class ServiceController extends Controller
      * The service memorial
      * @var memorialRepository
      */
-    protected $memorialService;
-    protected $service;
     protected $memorial;
+    protected $service;
+    protected $memorial_service;
 
     /**
      * Display a listing of the resource.
      *
      * @param serviceRepository $service
      */
-    public function __construct(MemorialRepository $memorialRepository, MemorialServiceRepository $memorialService, ServiceRepository $serviceRepository)
+    public function __construct(MemorialRepository $memorial, MemorialServiceRepository $serviceRepository, ServiceRepository $service)
     {
         parent::__construct();
-        $this->memorial = $memorialRepository;
-        $this->service = $serviceRepository;
-        $this->memorialService = $memorialService;
+        $this->memorial = $memorial;
+        $this->memorial_service = $serviceRepository;
+        $this->service = $service;
     }
 
     public function index($mid)
     {
-        $memorial = Memorial::find($mid);
-        //$memorial = $this->memorial->getElementById($mid);
-        dd($memorial->present()->hello);
-        $s = $memorial->services->first();
-        dd($s->present()->hello());
-        $services = $memorial->services->all();
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.services.index', compact('services', 'memorial'));
+        $memorial = $this->memorial->getElementById($mid);
+        $memorial_services = $memorial->services->all();
+        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.services.index', compact('memorial_services', 'memorial'));
     }
 
     /**
@@ -49,7 +44,8 @@ class ServiceController extends Controller
     public function create($mid)
     {
         $memorial = $this->memorial->getElementById($mid);
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.services.create_edit', compact('memorial'));
+        $services = $this->service->all_services();
+        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.services.create_edit', compact('memorial', 'services'));
     }
 
     /**
@@ -57,12 +53,10 @@ class ServiceController extends Controller
      *
      * @return Response
      */
-    public function store($mid, serviceFormRequest $request)
+    public function store($mid, ServiceFormRequest $request)
     {
         $attrs = $request->all();
-        $this->serviceHelper->setUrl($attrs['url']);
-        $attrs['image'] = $this->serviceHelper->getImage();
-        $service = $this->service->create($attrs);
+        $this->memorial_service->create($attrs);
         return redirect(route('backend.memorial.service.index',$mid))->with('success_message', 'The service has been created.');
     }
 
@@ -75,8 +69,9 @@ class ServiceController extends Controller
     public function edit($mem_id, $id)
     {
         $memorial = $this->memorial->getElementById($mem_id);
-        $service = $memorial->services->find($id);
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.services.create_edit', compact('service', 'memorial'));
+        $services = $this->service->all_services();
+        $memorial_service = $memorial->services->find($id);
+        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.services.create_edit', compact('memorial_service', 'memorial', 'services'));
     }
 
     /**
@@ -85,15 +80,9 @@ class ServiceController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($mid, $id, serviceFormRequest $request)
+    public function update($mid, $id, ServiceFormRequest $request)
     {
-        $attrs = $request->all();
-        $service = $this->service->getElementById($id);
-
-        $this->serviceHelper->setUrl($attrs['url']);
-        $attrs['image'] = $this->serviceHelper->getImage();
-
-        $service->update($attrs);
+        $this->memorial_service->update($request->all());
 
         return redirect(route('backend.memorial.service.index',$mid))->with('success_message', 'The service has been updated');
     }
@@ -106,7 +95,7 @@ class ServiceController extends Controller
      */
     public function destroy($mid, $id)
     {
-        $this->service->getElementById($id)->delete();
+        $this->memorial_service->getElementById($id)->delete();
         return redirect()->back()->with('success_message', 'The service has been deleted');
     }
 

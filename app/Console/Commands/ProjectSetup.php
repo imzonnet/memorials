@@ -42,7 +42,6 @@ class ProjectSetup extends Command {
 		$this->info('Setup Project...');
         $this->info('_________________________');
         $this->info('Publishing Migrate');
-        \File::cleanDirectory('\database\migrations');
         $this->call('vendor:publish', ['--provider' => DashboardServiceProvider::class]);
         $this->call('vendor:publish', ['--provider' => ServiceServiceProvider::class]);
         $this->call('vendor:publish', ['--provider' => FlowersServiceProvider::class]);

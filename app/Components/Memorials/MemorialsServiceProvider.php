@@ -1,10 +1,12 @@
 <?php namespace App\Components\Memorials;
 
+use App\Components\Memorials\Repositories\EloquentMemorialFlowerRepository;
 use App\Components\Memorials\Repositories\EloquentMemorialServiceRepository;
 use App\Components\Memorials\Repositories\EloquentPhotoCommentRepository;
 use App\Components\Memorials\Repositories\EloquentPhotoItemRepository;
 use App\Components\Memorials\Repositories\EloquentVIdeoCommentRepository;
 use App\Components\Memorials\Repositories\EloquentVideoRepository;
+use App\Components\Memorials\Repositories\MemorialFlowerRepository;
 use App\Components\Memorials\Repositories\MemorialServiceRepository;
 use App\Components\Memorials\Repositories\PhotoAlbumRepository;
 use App\Components\Memorials\Repositories\EloquentPhotoAlbumRepository;
@@ -77,9 +79,10 @@ class MemorialsServiceProvider extends ServiceProvider
         $this->app->bind(PhotoAlbumRepository::class, EloquentPhotoAlbumRepository::class);
         $this->app->bind(PhotoItemRepository::class, EloquentPhotoItemRepository::class);
         $this->app->bind(VideoRepository::class, EloquentVideoRepository::class);
-        $this->app->bind(MemorialServiceRepository::class, EloquentMemorialServiceRepository::class);
         $this->app->bind(PhotoCommentRepository::class, EloquentPhotoCommentRepository::class);
         $this->app->bind(VideoCommentRepository::class, EloquentVideoCommentRepository::class);
+        $this->app->bind(MemorialServiceRepository::class, EloquentMemorialServiceRepository::class);
+        $this->app->bind(MemorialFlowerRepository::class, EloquentMemorialFlowerRepository::class);
 
     }
 }

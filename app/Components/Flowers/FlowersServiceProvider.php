@@ -1,6 +1,8 @@
 <?php namespace App\Components\Flowers;
 
+use App\Components\Flowers\Repositories\EloquentFlowerItemRepository;
 use App\Components\Flowers\Repositories\EloquentFlowerRepository;
+use App\Components\Flowers\Repositories\FlowerItemRepository;
 use App\Components\Flowers\Repositories\FlowerRepository;
 use App\Components\Services\Repositories\EloquentServiceRepository;
 use App\Components\Services\Repositories\ServiceRepository;
@@ -58,6 +60,7 @@ class FlowersServiceProvider extends ServiceProvider
          * Repositories
          */
         $this->app->bind(FlowerRepository::class, EloquentFlowerRepository::class);
+        $this->app->bind(FlowerItemRepository::class, EloquentFlowerItemRepository::class);
 
     }
 }

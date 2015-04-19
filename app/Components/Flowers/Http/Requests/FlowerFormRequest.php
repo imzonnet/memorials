@@ -28,12 +28,33 @@ class FlowerFormRequest extends Request
             $image = 'required|image';
         }
 
-        return [
+        $rules = [
             'title'     =>  'required',
-            'image'     =>  $image,
             'price'     =>  'required|numeric',
             'stock'     =>  'numeric'
         ];
+        $flowers = $this->get('flower_title');
+        $flower_ids = $this->get('flower_id');
+        foreach($flowers as $i => $flower) {
+            if($flower_ids[$i] == 0) $image = 'required|image';
+            $rules['flower_title.' . $i] = 'required';
+            $rules['flower_image.' . $i] = $image;
+        }
+
+
+        return $rules;
     }
 
+    public function messages()
+    {
+        $messages = [];
+        $flowers = $this->get('flower_title');
+        $i = 1;
+        foreach($flowers as $index => $flower) {
+            $messages['flower_image.' . $index . '.required'] = 'The flower image field is required at flower group ' . $i;
+            $messages['flower_title.' . $index . '.required'] = 'The flower title field is required at flower group ' . $i;
+            $i++;
+        }
+        return $messages;
+    }
 }

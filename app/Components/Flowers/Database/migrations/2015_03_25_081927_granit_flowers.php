@@ -19,7 +19,6 @@ class GranitFlowers extends Migration {
             $table->text('description');
             $table->decimal('price', 10, 2);
             $table->integer('stock')->default(0);
-            $table->string('image');
             $table->tinyInteger('state')->default(1);
             $table->timestamps();
         });

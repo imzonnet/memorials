@@ -2,11 +2,19 @@
 * Block style
 */
 .block {
+  &.block-2 {
+    .block-header {
+      .block-title {
+        margin-bottom: 10px;
+      }
+    }
+  }
   .block-header {
     margin-bottom: 60px;
     &.title-center {
       .block-title,
-      .block-icon {
+      .block-icon,
+      .block-sub-title{
         text-align: center;
       }
     }
@@ -14,6 +22,9 @@
       margin: 0; padding: 0;
       margin-bottom: 40px;
       font-size: 54px;
+    }
+    .block-sub-title {
+
     }
     .block-icon {
       position: relative;

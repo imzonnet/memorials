@@ -16,9 +16,9 @@ class GranitPhotoComments extends Migration {
         Schema::create('granit_photo_comments', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('photo_id')->unsigned();
-            $table->foreign('photo_id')->references('id')->on('granit_photo_items');
+            $table->foreign('photo_id')->references('id')->on('granit_photo_items')->onDelete('CASCADE');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->string('text');
             $table->integer('likes')->default(0);
             $table->integer('parent_id')->default(0);

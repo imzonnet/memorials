@@ -15,18 +15,17 @@ class ServicesTableSeeder extends Seeder {
 
         $services = [
             ['Re-Paint', 'templates/frontend/default/images/services/1.png'],
-            ['Add Name', 'templates/frontend/default/images/services/1.png'],
+            ['Add Name', 'templates/frontend/default/images/services/5.png'],
             ['Design Gravestone', 'templates/frontend/default/images/services/2.png'],
             ['Straighten Gravestone', 'templates/frontend/default/images/services/3.png'],
-            ['Trim Grave', 'templates/frontend/default/images/services/4.png'],
-            ['Order Flowers', 'templates/frontend/default/images/services/2.png']
+            ['Trim Grave', 'templates/frontend/default/images/services/4.png']
         ];
-        foreach(range(1,20) as $index) {
+        foreach($services as $index) {
 
-            DB::table('granit_services')->create([
-                'title' => $services[$index][0],
+            DB::table('granit_services')->insert([
+                'title' => $index[0],
                 'description' => $faker->paragraph(5),
-                'image' => $services[$index][1],
+                'image' => $index[1],
                 'state' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

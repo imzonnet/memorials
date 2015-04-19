@@ -8,7 +8,7 @@ interface BaseRepository
      *
      * @return Response
      */
-    public function all();
+    public function all($columns = array('*'));
 
     /**
      * Get Element By ID

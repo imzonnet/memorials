@@ -16,7 +16,12 @@ class Flower extends Model {
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'image', 'state', 'price', 'stock'];
+    protected $fillable = ['title', 'description', 'state', 'price', 'stock'];
+
+    public function items()
+    {
+        return $this->hasMany(FlowerItem::class, 'flower_id', 'id');
+    }
 
 
 }

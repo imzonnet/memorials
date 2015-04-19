@@ -16,9 +16,9 @@ class GranitVideoComments extends Migration {
         Schema::create('granit_video_comments', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('video_id')->unsigned();
-            $table->foreign('video_id')->references('id')->on('granit_videos');
+            $table->foreign('video_id')->references('id')->on('granit_videos')->onDelete('CASCADE');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->string('text');
             $table->integer('likes')->default(0);
             $table->integer('parent_id')->default(0);

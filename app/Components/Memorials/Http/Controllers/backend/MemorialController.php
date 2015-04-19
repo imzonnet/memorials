@@ -68,8 +68,11 @@ class MemorialController extends Controller
                     'year' => $attr['timeline_year'][$i],
                     'description' => $attr['timeline_desc'][$i],
                 ];
-                if($request->hasFile($attr['timeline_image'][$i])) {
-                    $timeline['image'] = $media->upload($attr['timeline_image'][$i], 'timeline');
+                if( !empty($attr['timeline_image'][$i])) {
+                    $file = $attr['timeline_image'][$i];
+                    if(is_object($file)) {
+                        $timeline['image'] = $media->upload($file, 'timeline');
+                    }
                 }
                 $this->timeline->create($timeline);
             }
@@ -123,7 +126,7 @@ class MemorialController extends Controller
                     'year' => $attr['timeline_year'][$i],
                     'description' => $attr['timeline_desc'][$i],
                 ];
-                if($request->hasFile($attr['timeline_image'][$i])) {
+                if( !empty($attr['timeline_image'][$i])) {
                     $file = $attr['timeline_image'][$i];
                     if(is_object($file)) {
                         $timeline['image'] = $media->upload($file, 'timeline');
@@ -150,7 +153,7 @@ class MemorialController extends Controller
     public function destroy($id)
     {
         $memorial = $this->memorial->getElementById($id);
-        $memorial->timelines()->delete();
+        //$memorial->timelines()->delete();
         $memorial->delete();
         return redirect()->back()->with('success_message', 'The memorial has been deleted');
     }

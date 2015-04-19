@@ -6369,11 +6369,15 @@ button.close {
 /**
 * Block style
 */
+.block.block-2 .block-header .block-title {
+  margin-bottom: 10px;
+}
 .block .block-header {
   margin-bottom: 60px;
 }
 .block .block-header.title-center .block-title,
-.block .block-header.title-center .block-icon {
+.block .block-header.title-center .block-icon,
+.block .block-header.title-center .block-sub-title {
   text-align: center;
 }
 .block .block-header .block-title {
@@ -6551,6 +6555,9 @@ h6,
 a {
   color: #3dbff3;
   font-weight: normal;
+}
+.help-block.error {
+  color: #a94442;
 }
 .section,
 .block {
@@ -6794,6 +6801,7 @@ a {
   background: none no-repeat scroll center top / cover transparent;
   position: relative;
   height: 330px;
+  margin-bottom: 100px;
 }
 .memorial-wrap:before {
   background: rgba(0, 0, 0, 0.3);
@@ -6963,7 +6971,7 @@ a {
 */
 #section-main-content {
   clear: both;
-  padding: 100px 0 120px;
+  padding: 0 0 120px;
 }
 .biography-teaser h2 {
   margin: 0 0 15px;
@@ -7058,6 +7066,7 @@ a {
 }
 .guestbooks-list .guestbook-teaser {
   padding: 20px;
+  min-height: 240px;
 }
 .guestbook-teaser {
   margin-bottom: 30px;
@@ -7101,6 +7110,9 @@ a {
 }
 .guestbook-teaser .info p {
   font-weight: normal;
+}
+.guestbook-teaser .info .btn {
+  margin-top: 15px;
 }
 /**
 * Gallery Section
@@ -7605,6 +7617,88 @@ a {
   background-color: #e44848;
   text-transform: uppercase;
   font-weight: bold;
+}
+/**
+*============================
+* Services
+*============================
+*/
+.services-list .service-teaser {
+  margin-bottom: 100px;
+}
+.services-list .service-teaser:nth-child(3n+1) {
+  clear: left;
+}
+.services-list .service-teaser .service-inner {
+  min-height: 610px;
+  background-color: #e5f6fc;
+  padding: 35px 0;
+  text-align: center;
+}
+.services-list .service-teaser .service-inner img {
+  width: 237px;
+  height: 232px;
+}
+.services-list .service-teaser .service-inner .title {
+  font-size: 42px;
+  color: #3dbff3;
+  font-weight: bold;
+  padding: 25px 0;
+  margin: 0;
+}
+.services-list .service-teaser .service-inner .text {
+  text-align: justify;
+  font-size: 14px;
+  padding: 0 25px;
+  min-height: 115px;
+}
+.services-list .service-teaser .service-inner .text p {
+  font-weight: normal;
+}
+.services-list .service-teaser .service-inner .btn-bid {
+  margin-top: 15px;
+  padding: 8px 30px;
+  font-size: 25px;
+  text-transform: uppercase;
+}
+.service-bid-wrap .header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.service-bid-wrap .header .title {
+  font-size: 42px;
+  font-weight: bold;
+  color: #3dbff3;
+}
+.form-custom .input-group {
+  border-radius: 5px;
+  box-shadow: 3px 3px 0 #d9d9d9;
+  background-color: #d9d9d9;
+}
+.form-custom .input-group .input-group-addon {
+  min-width: 55px;
+}
+.form-custom .input-group .form-control {
+  height: 45px;
+}
+.form-custom .btn-action {
+  margin-top: 50px;
+  text-align: right;
+}
+.form-custom .btn-action .btn {
+  box-shadow: 0px 3px 0 #0b1519;
+  border-radius: 5px;
+  font-size: 30px;
+}
+.form-custom .btn-action .btn.btn-cancel {
+  background-color: #d9d9d9;
+  border-color: #d9d9d9;
+  color: #5a5252;
+}
+.form-custom .btn-action .btn.btn-info {
+  background-color: #3dbff3;
+  border-color: #3dbff3;
+  color: #FFF;
 }
 
 /*# sourceMappingURL=style.css.map */

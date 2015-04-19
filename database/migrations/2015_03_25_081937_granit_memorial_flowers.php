@@ -20,7 +20,7 @@ class GranitMemorialFlowers extends Migration {
             $table->integer('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('users');
             $table->integer('mem_id')->unsigned();
-            $table->foreign('mem_id')->references('id')->on('granit_memorials');
+            $table->foreign('mem_id')->references('id')->on('granit_memorials')->onDelete('CASCADE');
             $table->string('contact_name');
             $table->string('contact_email');
             $table->string('contact_phone');

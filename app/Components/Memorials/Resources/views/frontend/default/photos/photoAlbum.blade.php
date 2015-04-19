@@ -32,7 +32,9 @@
         <div class="container">
             <div class="row">
                 <div class="photo-albums">
-                    <h2 class="block-title">Photo Albums</h2>
+                    <div class="block-header">
+                        <h2 class="block-title">Photo Albums</h2>
+                    </div>
                     <div class="content">
                         <div class="album-list row">
                             @foreach($albums as $album)

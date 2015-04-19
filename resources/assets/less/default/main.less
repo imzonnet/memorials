@@ -13,6 +13,11 @@ a {
   color: @main_color;
   font-weight: normal;
 }
+
+.help-block.error {
+  color: #a94442;
+}
+
 .section, .block{
   position: relative;
 }
@@ -282,6 +287,7 @@ a {
   background: none no-repeat scroll center top / cover  transparent;
   position: relative;
   height: 330px;
+  margin-bottom: 100px;
   &:before {
     background: rgba(0,0,0,0.3);
     content: "";
@@ -453,7 +459,7 @@ a {
 */
 #section-main-content {
   clear: both;
-  padding: 100px 0 120px;
+  padding: 0 0 120px;
 }
 .biography-teaser {
   h2 {
@@ -553,6 +559,7 @@ a {
   }
   .guestbook-teaser {
     padding: 20px;
+    min-height: 240px;
   }
 }
 .guestbook-teaser {
@@ -593,6 +600,9 @@ a {
     }
     p {
       font-weight: normal;
+    }
+    .btn {
+      margin-top: 15px;
     }
   }
 }
@@ -1107,5 +1117,94 @@ a {
       text-transform: uppercase;
       font-weight: bold;
     }
+  }
+}
+
+/**
+*============================
+* Services
+*============================
+*/
+.services-list {
+  .service-teaser {
+    &:nth-child(3n+1) { clear: left;}
+    margin-bottom: 100px;
+    .service-inner {
+      min-height: 610px;
+      background-color: #e5f6fc;
+      padding: 35px 0;
+      text-align: center;
+      img {
+        width: 237px;
+        height: 232px;
+      }
+      .title {
+        font-size: 42px;
+        color: @main_color;
+        font-weight: bold;
+        padding: 25px 0;
+        margin: 0;
+      }
+      .text {
+        text-align: justify;
+        font-size: 14px;
+        padding: 0 25px;
+        min-height: 115px;
+        p {
+          font-weight: normal;
+        }
+      }
+      .btn-bid {
+        margin-top: 15px;
+        padding: 8px 30px;
+        font-size: 25px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.service-bid-wrap {
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+    .title {
+      font-size: 42px;
+      font-weight: bold;
+      color: @main_color;
+    }
+  }
+}
+.form-custom {
+  .input-group {
+    border-radius: 5px;
+    box-shadow: 3px 3px 0 #d9d9d9;
+    background-color: #d9d9d9;
+    .input-group-addon {
+      min-width: 55px;
+    }
+    .form-control {
+      height: 45px;
+    }
+  }
+  .btn-action {
+    margin-top: 50px;
+    text-align: right;
+    .btn {
+      box-shadow: 0px 3px 0 #0b1519;
+      border-radius: 5px;
+      font-size: 30px;
+      &.btn-cancel {
+        background-color: #d9d9d9;
+        border-color: #d9d9d9;
+        color: #5a5252;
+      }
+      &.btn-info {
+        background-color: #3dbff3;
+        border-color: #3dbff3;
+        color: #FFF;
+      }
+    }
+
   }
 }
