@@ -14,7 +14,6 @@ class VideoTableSeeder extends Seeder {
     {
         $faker = Faker::create();
 
-        DB::table('granit_videos')->delete();
         $user = User::first();
         $memorials = array();
         $users = array();

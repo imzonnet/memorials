@@ -11,7 +11,6 @@ class MemorialTableSeeder extends Seeder {
     {
         $faker = Faker::create();
 
-        DB::table('granit_memorials')->delete();
         $user = User::first();
 
         foreach(range(1,10) as $index) {

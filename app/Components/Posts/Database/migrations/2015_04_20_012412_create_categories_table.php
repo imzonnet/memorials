@@ -12,7 +12,12 @@ class CreateCategoriesTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+        Schema::create('exp_categories', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->text('description');
+            $table->integer('parent_id');
+        });
 	}
 
 	/**
@@ -22,7 +27,7 @@ class CreateCategoriesTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('exp_categories');
 	}
 
 }

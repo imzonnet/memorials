@@ -12,7 +12,6 @@ class TimelineTableSeeder extends Seeder {
     {
         $faker = Faker::create();
 
-        DB::table('granit_timelines')->delete();
         $user = User::first();
         $memorials = array();
         foreach(Memorial::all() as $memorial) {

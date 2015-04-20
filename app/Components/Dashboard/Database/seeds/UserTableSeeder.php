@@ -7,9 +7,6 @@ class UserTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('users')->delete();
-        DB::table('password_resets')->delete();
-
         $faker = Faker::create();
 
         DB::table('users')->insert(

@@ -1,15 +1,17 @@
-<?php namespace App\Components\Services\Database\Seeds;
+<?php namespace App\Components\Posts\Database\Seeds;
 use App\User;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ServicesTableSeeder extends Seeder {
+class CategoriesTableSeeder extends Seeder {
 
     public function run()
     {
         $faker = Faker::create();
+
+        DB::table('exp_categories')->delete();
 
         $services = [
             ['Re-Paint', 'templates/frontend/default/images/services/1.png'],

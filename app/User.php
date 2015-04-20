@@ -1,5 +1,7 @@
 <?php namespace App;
 
+use App\Components\Posts\Models\Category;
+use App\Components\Posts\Models\Post;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -39,5 +41,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function memorial()
     {
         return $this->hasMany(Memorial::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function categories(){
+        return $this->hasMany(Category::class);
     }
 }

@@ -12,7 +12,13 @@ class CreatePostCategoryTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+        Schema::create('exp_post_category', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('post_id')->unsigned();
+            $table->foreign('post_id')->references('id')->on('exp_posts')->onDelete('CASCADE');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('exp_categories')->onDelete('CASCADE');
+        });
 	}
 
 	/**
@@ -22,7 +28,7 @@ class CreatePostCategoryTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('exp_post_category');
 	}
 
 }

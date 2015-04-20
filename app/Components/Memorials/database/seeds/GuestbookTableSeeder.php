@@ -12,7 +12,6 @@ class GuestbookTableSeeder extends Seeder {
     {
         $faker = Faker::create();
 
-        DB::table('granit_guestbooks')->delete();
         $memorials = array();
         foreach(Memorial::all() as $memorial) {
             $memorials[] = $memorial->id;

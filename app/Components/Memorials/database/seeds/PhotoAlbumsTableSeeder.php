@@ -14,7 +14,6 @@ class PhotoAlbumsTableSeeder extends Seeder {
     {
         $faker = Faker::create();
 
-        DB::table('granit_photo_albums')->delete();
         $user = User::first();
         $memorials = array();
         foreach(Memorial::all() as $memorial) {

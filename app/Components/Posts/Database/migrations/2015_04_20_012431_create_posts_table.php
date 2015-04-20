@@ -12,7 +12,14 @@ class CreatePostsTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+        Schema::create('exp_posts', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->text('description');
+            $table->enum('type', ['post', 'page'])->default('post');
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('SET NULL');
+        });
 	}
 
 	/**
@@ -22,7 +29,7 @@ class CreatePostsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('exp_posts');
 	}
 
 }
