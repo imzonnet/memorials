@@ -28,8 +28,6 @@
     <!-- Memorial Navigation -->
     @include('Memorials::frontend.default.memorials._NavigationMemorial')
 
-    @include('Dashboard::frontend.default._layouts._message')
-
     <section id="section-main-content" class="section clearfix">
         <div class="container">
             <div class="row">

@@ -33,6 +33,8 @@ Welcome to Memorials
         </div>
     </section><!-- /#section-search -->
 
+    @include('Dashboard::frontend.default._layouts._message')
+
     <section id="section-memorials" class="section">
         <div class="container">
             <div class="row">
