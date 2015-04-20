@@ -1,39 +1,35 @@
 <?php namespace App\Components\Memorials\Http\Controllers\Backend;
 
+use App\Components\MediaManager\Http\Controllers\MediaManagerController;
 use App\Components\Memorials\Http\Requests\ServiceFormRequest;
-use App\Components\Memorials\Repositories\MemorialRepository;
-use App\Components\Memorials\Repositories\MemorialServiceRepository;
-use App\Components\Services\Repositories\ServiceRepository;
+use App\Components\Memorials\Repositories\ServiceRepository;
 use App\Http\Controllers\Controller;
 
 class ServiceController extends Controller
 {
+
     /**
-     * The service memorial
-     * @var memorialRepository
+     * The service service
+     * @var serviceRepository
      */
-    protected $memorial;
     protected $service;
-    protected $memorial_service;
 
     /**
      * Display a listing of the resource.
      *
      * @param serviceRepository $service
+     * @param TimeLineRepository $timeline
      */
-    public function __construct(MemorialRepository $memorial, MemorialServiceRepository $serviceRepository, ServiceRepository $service)
+    public function __construct(ServiceRepository $serviceRepository)
     {
         parent::__construct();
-        $this->memorial = $memorial;
-        $this->memorial_service = $serviceRepository;
-        $this->service = $service;
+        $this->service = $serviceRepository;
     }
 
-    public function index($mid)
+    public function index()
     {
-        $memorial = $this->memorial->getElementById($mid);
-        $memorial_services = $memorial->services->all();
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.services.index', compact('memorial_services', 'memorial'));
+        $services = $this->service->all();
+        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.services.index', compact('services'));
     }
 
     /**
@@ -41,11 +37,9 @@ class ServiceController extends Controller
      *
      * @return Response
      */
-    public function create($mid)
+    public function create()
     {
-        $memorial = $this->memorial->getElementById($mid);
-        $services = $this->service->all_services();
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.services.create_edit', compact('memorial', 'services'));
+        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.services.create_edit');
     }
 
     /**
@@ -53,11 +47,13 @@ class ServiceController extends Controller
      *
      * @return Response
      */
-    public function store($mid, ServiceFormRequest $request)
+    public function store(ServiceFormRequest $request, MediaManagerController $media)
     {
-        $attrs = $request->all();
-        $this->memorial_service->create($attrs);
-        return redirect(route('backend.memorial.service.index',$mid))->with('success_message', 'The service has been created.');
+        $attr = $request->all();
+        $attr['image'] = $media->upload($attr['image'], 'services');
+        $this->service->create($attr);
+
+        return redirect(route('backend.service.index'))->with('success_message', 'The service has been created');
     }
 
     /**
@@ -66,12 +62,10 @@ class ServiceController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function edit($mem_id, $id)
+    public function edit($id)
     {
-        $memorial = $this->memorial->getElementById($mem_id);
-        $services = $this->service->all_services();
-        $memorial_service = $memorial->services->find($id);
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.services.create_edit', compact('memorial_service', 'memorial', 'services'));
+        $service = $this->service->getElementById($id);
+        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.services.create_edit', compact('service'));
     }
 
     /**
@@ -80,11 +74,17 @@ class ServiceController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($mid, $id, ServiceFormRequest $request)
+    public function update($id, ServiceFormRequest $request, MediaManagerController $media)
     {
-        $this->memorial_service->update($request->all());
+        $attr = $request->all();
+        $service = $this->service->getElementById($id);
+        if($request->hasFile('image')) {
+            if(file_exists($service->image)) { unlink($service->image);}
+            $attr['image'] = $media->upload($attr['image'], 'services');
+        }
+        $this->service->update($attr);
 
-        return redirect(route('backend.memorial.service.index',$mid))->with('success_message', 'The service has been updated');
+        return redirect(route('backend.service.index'))->with('success_message', 'The service has been updated');
     }
 
     /**
@@ -93,10 +93,10 @@ class ServiceController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function destroy($mid, $id)
+    public function destroy($id)
     {
-        $this->memorial_service->getElementById($id)->delete();
+        $service = $this->service->getElementById($id);
+        $service->delete();
         return redirect()->back()->with('success_message', 'The service has been deleted');
     }
-
 }

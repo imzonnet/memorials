@@ -50,6 +50,7 @@
                                                 <li><a href="{{route('backend.memorial.album.index', [$memorial->id])}}">Photo Albums</a></li>
                                                 <li><a href="{{route('backend.memorial.video.index', [$memorial->id])}}">Videos</a></li>
                                                 <li><a href="{{route('backend.memorial.service.index', [$memorial->id])}}">Services</a></li>
+                                                <li><a href="{{route('backend.memorial.flower.index', [$memorial->id])}}">Flowers</a></li>
                                             </ul>
                                     </div>
                                         {!! Form::close() !!}

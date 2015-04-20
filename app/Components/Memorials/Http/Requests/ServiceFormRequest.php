@@ -22,14 +22,16 @@ class ServiceFormRequest extends Request
      */
     public function rules()
     {
+        if ($this->method() == 'PUT') {
+            $image = 'image';
+        } else {
+            $image = 'required|image';
+        }
 
-        $rules = [
-            'contact_name'     =>  'required',
-            'contact_email'     =>  'required|email',
-            'contact_phone'     =>  'required|numeric',
+        return [
+            'title'     =>  'required',
+            'image'     =>  $image
         ];
-
-        return $rules;
     }
 
 }

@@ -2,6 +2,7 @@
 
 use App\Components\Dashboard\Database\Seeds\DashboardDatabaseSeeder;
 use App\Components\Memorials\Database\Seeds\MemorialDatabaseSeeder;
+use App\Components\Posts\Database\Seeds\PostsDatabaseSeeder;
 use App\Components\Services\Database\Seeds\ServicesDatabaseSeeder;
 use Illuminate\Console\Command;
 
@@ -43,8 +44,8 @@ class ProjectSeed extends Command {
         //$this->call('db:seed');
         $this->call('db:seed', ['--class' => DashboardDatabaseSeeder::class]);
         $this->call('db:seed', ['--class' => MemorialDatabaseSeeder::class]);
-        $this->call('db:seed', ['--class' => ServicesDatabaseSeeder::class]);
-        $this->info('Import Comlete!');
+        $this->call('db:seed', ['--class' => PostsDatabaseSeeder::class]);
+        $this->info('Import Completed!');
 
         $this->info('_________________________________________');
         $this->info(' Admin Account: admin@admin.com | 123456 ');

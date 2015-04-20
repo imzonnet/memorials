@@ -31,7 +31,7 @@
                                 <tr class="odd gradeX">
                                     <td>{{$guestbook['id']}}</td>
                                     <td>{{$guestbook['title']}}</td>
-                                    <td>{{str_limit($guestbook['description'], 100, '...')}}</td>
+                                    <td>{!! str_limit($guestbook['description'], 100, '...') !!}</td>
                                     <td>{{$guestbook['created_at']}}</td>
 
                                     <td class="center" style="min-width: 100px;">

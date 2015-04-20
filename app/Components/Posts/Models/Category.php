@@ -1,5 +1,6 @@
 <?php namespace App\Components\Posts\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model {
@@ -16,16 +17,16 @@ class Category extends Model {
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'parent_id', 'created_by'];
+    protected $fillable = ['title', 'description', 'created_by', 'type'];
 
     public function user() {
-        return $this->hasMany(User::class, 'created_by', 'id');
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function posts(){
-        return $this->belongsToMany(Post::class, 'exp_post_category', 'post_id', 'id');
+        return $this->belongsToMany(Post::class, 'exp_post_category', 'category_id', 'post_id');
     }
 }

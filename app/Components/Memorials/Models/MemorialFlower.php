@@ -1,6 +1,5 @@
 <?php namespace App\Components\Memorials\Models;
 
-use App\Components\Flowers\Models\Flower;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 

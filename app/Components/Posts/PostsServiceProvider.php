@@ -1,7 +1,9 @@
 <?php namespace App\Components\Posts;
 
-use App\Components\Services\Repositories\EloquentServiceRepository;
-use App\Components\Services\Repositories\ServiceRepository;
+use App\Components\Posts\Repositories\CategoryRepository;
+use App\Components\Posts\Repositories\EloquentCategoryRepository;
+use App\Components\Posts\Repositories\EloquentPostRepository;
+use App\Components\Posts\Repositories\PostRepository;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 
@@ -56,6 +58,7 @@ class PostsServiceProvider extends ServiceProvider
          * Repositories
          */
         $this->app->bind(PostRepository::class, EloquentPostRepository::class);
+        $this->app->bind(CategoryRepository::class, EloquentCategoryRepository::class);
 
     }
 }

@@ -1,35 +1,45 @@
 <?php namespace App\Components\Posts\Http\Controllers\Backend;
 
 use App\Components\MediaManager\Http\Controllers\MediaManagerController;
-use App\Components\Services\Http\Requests\ServiceFormRequest;
-use App\Components\Services\Repositories\ServiceRepository;
+use App\Components\Posts\Http\Requests\PostFormRequest;
+use App\Components\Posts\Repositories\CategoryRepository;
+use App\Components\Posts\Repositories\PostRepository;
 use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
 
     /**
-     * The service service
-     * @var serviceRepository
+     * The post post
+     * @var postRepository
      */
     protected $post;
+    protected $post_type;
+    protected $category;
 
     /**
      * Display a listing of the resource.
      *
-     * @param serviceRepository $service
+     * @param postRepository $post
      * @param TimeLineRepository $timeline
      */
-    public function __construct(ServiceRepository $serviceRepository)
+    public function __construct(PostRepository $postRepository, CategoryRepository $categoryRepository)
     {
         parent::__construct();
-        $this->service = $serviceRepository;
+        $this->post = $postRepository;
+        $this->category = $categoryRepository;
+        if (\Request::is('backend/post*')) {
+            $this->post_type = 'post';
+        } else {
+            $this->post_type = 'page';
+        }
+        view()->share('post_type', $this->post_type);
     }
 
     public function index()
     {
-        $services = $this->service->all();
-        return view('Services::' . $this->link_type . '.' . $this->current_theme . '.services.index', compact('services'));
+        $posts = $this->post->all_post($this->post_type);
+        return view('Posts::' . $this->link_type . '.' . $this->current_theme . '.posts.index', compact('posts'));
     }
 
     /**
@@ -39,7 +49,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('Services::' . $this->link_type . '.' . $this->current_theme . '.services.create_edit');
+        $categories = $this->category->all_categories($this->post_type);
+        return view('Posts::' . $this->link_type . '.' . $this->current_theme . '.posts.create_edit', compact('categories'));
     }
 
     /**
@@ -47,13 +58,13 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function store(ServiceFormRequest $request, MediaManagerController $media)
+    public function store(PostFormRequest $request, MediaManagerController $media)
     {
         $attr = $request->all();
-        $attr['image'] = $media->upload($attr['image'], 'services');
-        $this->service->create($attr);
+        $post = $this->post->create($attr);
+        $post->categories()->sync($request->get('category_id', []));
 
-        return redirect(route('backend.service.index'))->with('success_message', 'The service has been created');
+        return redirect(route('backend.'.$this->post_type.'s.index'))->with('success_message', 'The post has been created');
     }
 
     /**
@@ -64,8 +75,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $service = $this->service->getElementById($id);
-        return view('Services::' . $this->link_type . '.' . $this->current_theme . '.services.create_edit', compact('service'));
+        $post = $this->post->getElementById($id);
+        $categories = $this->category->all_categories($this->post_type);
+        return view('Posts::' . $this->link_type . '.' . $this->current_theme . '.posts.create_edit', compact('post', 'categories'));
     }
 
     /**
@@ -74,17 +86,17 @@ class PostController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($id, ServiceFormRequest $request, MediaManagerController $media)
+    public function update($id, PostFormRequest $request, MediaManagerController $media)
     {
         $attr = $request->all();
-        $service = $this->service->getElementById($id);
+        $post = $this->post->getElementById($id);
         if($request->hasFile('image')) {
-            if(file_exists($service->image)) { unlink($service->image);}
-            $attr['image'] = $media->upload($attr['image'], 'services');
+            if(file_exists($post->image)) { unlink($post->image);}
+            $attr['image'] = $media->upload($attr['image'], 'posts');
         }
-        $this->service->update($attr);
+        $this->post->update($attr);
 
-        return redirect(route('backend.service.index'))->with('success_message', 'The service has been updated');
+        return redirect(route('backend.'.$this->post_type.'s.index'))->with('success_message', 'The post has been updated');
     }
 
     /**
@@ -95,8 +107,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $service = $this->service->getElementById($id);
-        $service->delete();
-        return redirect()->back()->with('success_message', 'The service has been deleted');
+        $post = $this->post->getElementById($id);
+        $post->delete();
+        return redirect()->back()->with('success_message', 'The post has been deleted');
     }
 }

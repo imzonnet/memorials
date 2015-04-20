@@ -31,7 +31,7 @@
                                 <tr class="odd gradeX">
                                     <td>{{$album['id']}}</td>
                                     <td>{{$album['title']}}</td>
-                                    <td>{{str_limit($album['description'], 100, '...')}}</td>
+                                    <td>{!! str_limit($album['description'], 100, '...') !!}</td>
                                     <td>{{$album['created_at']}}</td>
 
                                     <td class="center" style="min-width: 100px;">

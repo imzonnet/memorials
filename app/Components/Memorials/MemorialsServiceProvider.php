@@ -1,11 +1,16 @@
 <?php namespace App\Components\Memorials;
 
+use App\Components\Memorials\Repositories\EloquentFlowerItemRepository;
+use App\Components\Memorials\Repositories\EloquentFlowerRepository;
 use App\Components\Memorials\Repositories\EloquentMemorialFlowerRepository;
 use App\Components\Memorials\Repositories\EloquentMemorialServiceRepository;
 use App\Components\Memorials\Repositories\EloquentPhotoCommentRepository;
 use App\Components\Memorials\Repositories\EloquentPhotoItemRepository;
+use App\Components\Memorials\Repositories\EloquentServiceRepository;
 use App\Components\Memorials\Repositories\EloquentVIdeoCommentRepository;
 use App\Components\Memorials\Repositories\EloquentVideoRepository;
+use App\Components\Memorials\Repositories\FlowerItemRepository;
+use App\Components\Memorials\Repositories\FlowerRepository;
 use App\Components\Memorials\Repositories\MemorialFlowerRepository;
 use App\Components\Memorials\Repositories\MemorialServiceRepository;
 use App\Components\Memorials\Repositories\PhotoAlbumRepository;
@@ -17,6 +22,7 @@ use App\Components\Memorials\Repositories\GuestbookRepository;
 use App\Components\Memorials\Repositories\MemorialRepository;
 use App\Components\Memorials\Repositories\PhotoCommentRepository;
 use App\Components\Memorials\Repositories\PhotoItemRepository;
+use App\Components\Memorials\Repositories\ServiceRepository;
 use App\Components\Memorials\Repositories\TimeLineRepository;
 use App\Components\Memorials\Repositories\VideoCommentRepository;
 use App\Components\Memorials\Repositories\VideoRepository;
@@ -83,6 +89,11 @@ class MemorialsServiceProvider extends ServiceProvider
         $this->app->bind(VideoCommentRepository::class, EloquentVideoCommentRepository::class);
         $this->app->bind(MemorialServiceRepository::class, EloquentMemorialServiceRepository::class);
         $this->app->bind(MemorialFlowerRepository::class, EloquentMemorialFlowerRepository::class);
+        //flowers
+        $this->app->bind(FlowerRepository::class, EloquentFlowerRepository::class);
+        $this->app->bind(FlowerItemRepository::class, EloquentFlowerItemRepository::class);
+        //Services
+        $this->app->bind(ServiceRepository::class, EloquentServiceRepository::class);
 
     }
 }

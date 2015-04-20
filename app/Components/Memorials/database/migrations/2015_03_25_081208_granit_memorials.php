@@ -24,7 +24,7 @@ class GranitMemorials extends Migration {
             $table->string('buried');
             $table->string('lat');
             $table->string('lng');
-            $table->tinyInteger('timeline')->default(0);
+            $table->tinyInteger('timeline')->default(1);
             $table->integer('created_by')->unsigned()->nullable();;
             $table->foreign('created_by')->references('id')->on('users')->onDelete('SET NULL');
             $table->timestamps();

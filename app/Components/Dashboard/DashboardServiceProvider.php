@@ -67,8 +67,6 @@ class DashboardServiceProvider extends ServiceProvider
          */
         $this->app->register(PostsServiceProvider::class);
         $this->app->register(MemorialsServiceProvider::class);
-        $this->app->register(ServiceServiceProvider::class);
-        $this->app->register(FlowersServiceProvider::class);
     }
 
 }

@@ -17,17 +17,17 @@ class Post extends Model {
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'type', 'created_by'];
+    protected $fillable = ['title', 'image', 'description', 'type', 'created_by'];
 
     public function user() {
-        return $this->hasMany(User::class, 'created_by', 'id');
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function categories(){
-        return $this->belongsToMany(Category::class, 'exp_post_category', 'category_id', 'id');
+        return $this->belongsToMany(Category::class, 'exp_post_category', 'post_id', 'category_id');
     }
 
 }

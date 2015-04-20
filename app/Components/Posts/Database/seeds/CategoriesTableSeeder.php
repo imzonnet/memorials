@@ -10,23 +10,15 @@ class CategoriesTableSeeder extends Seeder {
     public function run()
     {
         $faker = Faker::create();
+        $types = ['post', 'page', 'post'];
+        $user = User::first();
+        foreach(range(1,10) as $index) {
 
-        DB::table('exp_categories')->delete();
-
-        $services = [
-            ['Re-Paint', 'templates/frontend/default/images/services/1.png'],
-            ['Add Name', 'templates/frontend/default/images/services/5.png'],
-            ['Design Gravestone', 'templates/frontend/default/images/services/2.png'],
-            ['Straighten Gravestone', 'templates/frontend/default/images/services/3.png'],
-            ['Trim Grave', 'templates/frontend/default/images/services/4.png']
-        ];
-        foreach($services as $index) {
-
-            DB::table('granit_services')->insert([
-                'title' => $index[0],
+            DB::table('exp_categories')->insert([
+                'title' => $faker->name,
                 'description' => $faker->paragraph(5),
-                'image' => $index[1],
-                'state' => 1,
+                'created_by' => $user->id,
+                'type' => $types[array_rand($types)],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);

@@ -23,9 +23,11 @@ class MemorialDatabaseSeeder extends Seeder {
         DB::statement('TRUNCATE TABLE granit_photo_comments');
         DB::statement('TRUNCATE TABLE granit_videos');
         DB::statement('TRUNCATE TABLE granit_video_comments');
+        DB::statement('TRUNCATE TABLE granit_services');
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
+        $this->call(ServicesTableSeeder::class);
 		$this->call(MemorialTableSeeder::class);
 		$this->call(GuestbookTableSeeder::class);
 		$this->call(TimelineTableSeeder::class);

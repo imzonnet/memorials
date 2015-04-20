@@ -60,4 +60,8 @@ class Memorial extends Model {
         return $this->hasMany(MemorialService::class, 'mem_id', 'id');
     }
 
+    public function flowers() {
+        return $this->hasMany(MemorialFlower::class, 'mem_id', 'id');
+    }
+
 }

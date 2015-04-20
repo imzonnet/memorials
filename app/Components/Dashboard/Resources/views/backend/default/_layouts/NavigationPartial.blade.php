@@ -49,6 +49,39 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <!-- End User -->
+
+                <!-- Posts Component -->
+                <li>
+                    <a href="{{route('backend.posts.index')}}"><i class="fa fa-user fa-fw"></i> Posts<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{route('backend.posts.index')}}">List Posts</a>
+                        </li>
+                        <li>
+                            <a href="{{route('backend.posts.create')}}">Add New</a>
+                        </li>
+                        <li>
+                            <a href="{{route('backend.post-categories.index')}}">Categories</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <!-- End Posts -->
+                <!-- Posts Component -->
+                <li>
+                    <a href="{{route('backend.pages.index')}}"><i class="fa fa-user fa-fw"></i> Pages<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{route('backend.pages.index')}}">List Pages</a>
+                        </li>
+                        <li>
+                            <a href="{{route('backend.pages.create')}}">Add New</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <!-- End Posts -->
+
                 <!-- Memorials -->
                 <li>
                     <a href="{{route('backend.memorial.index')}}"><i class="fa fa-book fa-fw"></i> Memorials<span class="fa arrow"></span></a>
