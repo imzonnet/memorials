@@ -16,7 +16,7 @@
     <!-- Custom CSS -->
     <link href="{{asset('templates/frontend/default/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('assets/jquery.bxslider/jquery.bxslider.css')}}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/fancybox/jquery.fancybox.css?v=2.1.5')}}" media="screen" />
+    <link href="{{asset('assets/fancybox/jquery.fancybox.css?v=2.1.5')}}" rel="stylesheet">
     @section('styles')
         {{-- Here goes the page level styles --}}
     @show

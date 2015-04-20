@@ -1176,6 +1176,45 @@ a {
   }
 }
 .form-custom {
+  &.form-blue {
+    .input-group {
+      box-shadow: none;
+      border-color: #3dbff3;
+      .input-group-addon {
+        background: #FFF;
+        border-color: #3dbff3;
+        color: #3dbff3;
+      }
+    }
+    .form-group {
+      .form-control {
+        background: #FFF;
+        border-color: #3dbff3;
+        color: #3dbff3;
+        box-shadow: none;
+      }
+    }
+    .btn-action {
+      text-align: center;
+      .btn {
+        box-shadow: none;
+        &.btn-info {
+          background-color: #FFF;
+          border-color: #3dbff3;
+          color: #3dbff3;
+          padding: 5px 100px;
+          text-transform: uppercase;
+        }
+      }
+    }
+    .textarea-group {
+      position: relative;
+      .textarea-icon {
+        color: @main_color;
+        border-right: 1px solid @main_color;
+      }
+    }
+  }
   .input-group {
     border-radius: 5px;
     box-shadow: 3px 3px 0 #d9d9d9;
@@ -1185,6 +1224,24 @@ a {
     }
     .form-control {
       height: 45px;
+    }
+  }
+  .textarea-group {
+    position: relative;
+    .textarea-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 14px;
+      text-align: center;
+      width: 55px;
+      height: 40px;
+      line-height: 40px;
+      border-right: 1px solid #EEE;
+      margin-top: 1px;
+    }
+    textarea {
+      padding-left: 67px;
     }
   }
   .btn-action {
@@ -1206,5 +1263,77 @@ a {
       }
     }
 
+  }
+}
+
+.flowers-list {
+  .service-teaser {
+    margin-bottom: 20px!important;
+    .service-inner {
+      .title {
+        margin: 0 0 15px;
+        padding: 0;
+      }
+    }
+  }
+  .item-box {
+    h3 {
+      color: #7f8c91;
+      font-size: 18px;
+    }
+  }
+  .price {
+    font-size: 42px;
+    color: #3c3c3c;
+    font-weight: bold;
+  }
+}
+.flower-order {
+  .service-inner {
+    padding: 15px!important;
+    .header {
+      text-align: left;
+      .title {
+        padding: 0; margin: 0;
+        font-size: 40px;
+      }
+      .stock {
+        font-size: 18px;
+        color: @main_color;
+      }
+      .price {
+        font-size: 30px;
+        font-weight: normal;
+      }
+    }
+  }
+}
+.flower-contact-form  {
+  background-color: #e5f6fc;
+  label {
+    font-weight: lighter;
+    text-indent: 100px;
+  }
+  .memorial-info {
+    list-style: none;
+    background-color: #3dbff3;
+    padding: 20px;
+    margin: 20px 0 0;
+    width: 100%;
+    border-radius: 5px;
+    li {
+      display: inline-block;
+      font-size: 25px;
+      padding-right: 40px;
+      .title {
+        color: #FFF;
+        font-weight: lighter;
+        margin: 0;padding: 0 0 10px;
+      }
+      .text {
+        color: #FFF;
+        font-weight: normal;
+      }
+    }
   }
 }

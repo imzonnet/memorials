@@ -47,8 +47,8 @@ class VideoTableSeeder extends Seeder {
                 'times' => $videoHelper->getTime(),
                 'mem_id' => $memorials[array_rand($memorials)],
                 'created_by' => $user->id,
-                'created_at' => $faker->dateTime('now'),
-                'updated_at' => $faker->dateTime('now'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]);
             foreach(range(1,5) as $index) {
                 DB::table('granit_video_comments')->insert([

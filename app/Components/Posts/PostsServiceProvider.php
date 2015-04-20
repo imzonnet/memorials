@@ -15,7 +15,7 @@ class PostsServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'App\Components\Services\Http\Controllers';
+    protected $namespace = 'App\Components\Posts\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -55,7 +55,7 @@ class PostsServiceProvider extends ServiceProvider
         /**
          * Repositories
          */
-        //$this->app->bind(ServiceRepository::class, EloquentServiceRepository::class);
+        $this->app->bind(PostRepository::class, EloquentPostRepository::class);
 
     }
 }

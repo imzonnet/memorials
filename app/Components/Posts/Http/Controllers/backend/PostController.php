@@ -5,14 +5,14 @@ use App\Components\Services\Http\Requests\ServiceFormRequest;
 use App\Components\Services\Repositories\ServiceRepository;
 use App\Http\Controllers\Controller;
 
-class ServiceController extends Controller
+class PostController extends Controller
 {
 
     /**
      * The service service
      * @var serviceRepository
      */
-    protected $service;
+    protected $post;
 
     /**
      * Display a listing of the resource.

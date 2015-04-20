@@ -1,4 +1,4 @@
-@extends('Memorials::frontend.default.master')
+@extends('Dashboard::frontend.default.master')
 
 @section('title')
     Service Order Page | Memorials
@@ -40,7 +40,8 @@
                                 {!!Form::text('contact_phone', old('contact_phone'), ['class' => 'form-control','placeholder' => 'Phone'] ) !!}
                             </div>
                             {!! $errors->first('contact_phone', '<p class="help-block error">:message</p>') !!}
-                            <div class="form-group">
+                            <div class="form-group textarea-group">
+                                <span class="textarea-icon"><i class="fa fa-file-text"></i></span>
                                 {!!Form::textarea('message', old('message'), ['class' => 'form-control', 'placeholder' => 'Write Message'] ) !!}
                             </div>
                             {!! $errors->first('message', '<p class="help-block error">:message</p>') !!}

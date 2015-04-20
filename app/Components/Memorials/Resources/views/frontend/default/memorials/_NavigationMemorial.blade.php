@@ -15,7 +15,7 @@
                         </ul>
                         <div class="maried">Maried to <a href="#">Marie  Johnson</a></div>
                         <div class="buried-address">Buried in {{$memorial->buried}}</div>
-                        <button class="btn btn-default btn-view-map" data-lat="{{$memorial->lat}}" data-lng="{{$memorial->lng}}">Find on map <i class="fa fa-map-marker"></i></button>
+                        <button data-toggle="modal" data-target="#memorial-map-modal" class="btn btn-default btn-view-map" data-lat="{{$memorial->lat}}" data-lng="{{$memorial->lng}}">Find on map <i class="fa fa-map-marker"></i></button>
                     </div>
                     <div class="relationship col-md-3 col-lg-3 col-sm-12 col-xs-12">
                         <div class="relationship-list">
@@ -49,5 +49,14 @@
         </div>
     </div>
 </section><!-- /#memorial -->
-
+<!-- Modal -->
+<div class="modal fade" id="memorial-map-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="memorial-map" style="height:500px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
 @include('Dashboard::frontend.default._layouts._message')

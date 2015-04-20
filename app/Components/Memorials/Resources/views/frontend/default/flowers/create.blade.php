@@ -1,4 +1,4 @@
-@extends('Memorials::frontend.default.master')
+@extends('Dashboard::frontend.default.master')
 
 @section('title')
     Flower Order Page | Memorials
@@ -22,10 +22,10 @@
                             <div class="flower-order services-list">
                                 <div class="service-teaser">
                                     <div class="service-inner">
-                                        <div class="row">
+                                        <div class="row header">
                                             <div class="col-md-6">
                                                 <h2 class="title">{{$flower->title}}</h2>
-                                                <span>{{$flower->stock}} stk Available</span>
+                                                <span class="stock">{{$flower->stock}} stk Available</span>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="price">Price {!! $flower->price !!}</div>
@@ -45,7 +45,30 @@
                             </div>
                         </div>
                         <div class="flower-contact-form col-md-8 col-lg-8 col-sm-12 col-xs-12">
-                            {!! Form::open(['route' => ['memorial.flower.bid', str_slug($memorial->name), $memorial->id, $flower->id], 'method'=>'post', 'class' => 'form-custom']) !!}
+                            <ul class="memorial-info table">
+                                <li>
+                                    <h3 class="title">Grave Nr</h3>
+                                    <div class="text">{{$memorial->id}}</div>
+                                </li>
+                                <li>
+                                    <h3 class="title">Name</h3>
+                                    <div class="text">{{$memorial->name}}</div>
+                                </li>
+                                <li>
+                                    <h3 class="title">Born Date</h3>
+                                    <div class="text">{{$memorial->present()->getBirthday}}</div>
+                                </li>
+                                <li>
+                                    <h3 class="title">Death Date</h3>
+                                    <div class="text">{{$memorial->present()->getDeath}}</div>
+                                </li>
+
+                            </ul>
+                            <h2 class="blue">Contact Information</h2>
+                            @if(current_user())
+                                <label class="blue">Get information From My Profile <input type="checkbox" value="1" name="get-info"/></label>
+                            @endif
+                            {!! Form::open(['route' => ['memorial.flower.bid', str_slug($memorial->name), $memorial->id, $flower->id], 'method'=>'post', 'class' => 'form-custom form-blue', 'id' => 'flower-order-form']) !!}
                             {!! Form::hidden('mem_id', $memorial->id) !!}
                             {!! Form::hidden('flower_id', $flower->id) !!}
                             <div class="form-group input-group">
@@ -63,13 +86,13 @@
                                 {!!Form::text('contact_phone', old('contact_phone'), ['class' => 'form-control','placeholder' => 'Phone'] ) !!}
                             </div>
                             {!! $errors->first('contact_phone', '<p class="help-block error">:message</p>') !!}
-                            <div class="form-group">
+                            <div class="form-group textarea-group">
+                                <span class="textarea-icon"><i class="fa fa-file-text"></i></span>
                                 {!!Form::textarea('message', old('message'), ['class' => 'form-control', 'placeholder' => 'Write Message'] ) !!}
                             </div>
                             {!! $errors->first('message', '<p class="help-block error">:message</p>') !!}
                             <div class="form-group btn-action">
-                                {!! Form::button('Cancel', ['class' => 'btn btn-cancel', 'onclick' => 'window.history.back()']) !!}
-                                {!! Form::submit('Send', ['class' => 'btn btn-info', 'name' => 'create']) !!}
+                                {!! Form::submit('Confirm Order', ['class' => 'btn btn-info', 'name' => 'create']) !!}
                             </div>
                             {!! Form::close() !!}
                         </div>
@@ -100,4 +123,23 @@
         </div>
     </section><!-- /#section-introduction -->
 
+@stop
+
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            var form = $('#flower-order-form');
+            $('input[name="get-info"]').change(function(){
+               if($(this).is(':checked')) {
+                    $('input[name="contact_name"]', form).val('{{current_user()->name}}');
+                    $('input[name="contact_email"]', form).val('{{current_user()->email}}');
+                    $('input[name="contact_phone"]', form).val('{{current_user()->phone}}');
+               } else {
+                   $('input[name="contact_name"]', form).val('');
+                   $('input[name="contact_email"]', form).val('');
+                   $('input[name="contact_phone"]', form).val('');
+               }
+            });
+        });
+    </script>
 @stop

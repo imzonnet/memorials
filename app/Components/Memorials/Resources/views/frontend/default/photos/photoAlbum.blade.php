@@ -1,4 +1,4 @@
-@extends('Memorials::frontend.default.master')
+@extends('Dashboard::frontend.default.master')
 
 @section('title')
     Photo Album | Memorials

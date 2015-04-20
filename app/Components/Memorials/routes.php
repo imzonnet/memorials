@@ -32,7 +32,11 @@ Route::get('/memorial/{slug}/{id}/album/{aid}',['as' => 'memorial.photoAlbums.it
 Route::get('/memorial/{slug}/{id}/photo/{pid}',['as' => 'memorial.photoAlbums.photo', 'uses' => 'PhotoController@show'])->where(['id' => '[0-9]+', 'pid' => '[0-9]+']);
 
 Route::get('/memorial/{slug}/{id}/videos',['as' => 'memorial.videos', 'uses' => 'MemorialController@showVideos'])->where('id', '[0-9]+');
+
 Route::get('/memorial/{slug}/{id}/guestbooks',['as' => 'memorial.guestbooks', 'uses' => 'GuestbookController@index'])->where('id', '[0-9]+');
+Route::get('/memorial/{slug}/{id}/guestbook/create',['as' => 'memorial.guestbooks.create', 'uses' => 'GuestbookController@create'])->where('id', '[0-9]+');
+Route::post('/memorial/{slug}/{id}/guestbook/store',['as' => 'memorial.guestbooks.store', 'uses' => 'GuestbookController@store'])->where('id', '[0-9]+');
+
 Route::get('/memorial/{slug}/{id}/family',['as' => 'memorial.family', 'uses' => 'MemorialController@showFamily'])->where('id', '[0-9]+');
 
 //Services

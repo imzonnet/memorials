@@ -1,7 +1,7 @@
 @extends('Dashboard::frontend.default.master')
 
 @section('title')
-    Welcome to Memorials
+    Guestooks | Memorials
 @stop
 
 @section('content')
@@ -31,42 +31,37 @@
     <section id="section-main-content" class="section clearfix">
         <div class="container">
             <div class="row">
-                <div class="biography-teaser">
+                <div class="block guestbooks-list">
                     <div class="block-header">
-                        <h2 class="block-title">Biografi</h2>
+                        <h2 class="block-title">Write new message</h2>
                     </div>
                     <div class="content">
-                        {!! $memorial->biography !!}
+                        <div id="guestbooks-list">
+                            {!! Form::open(['route' => ['memorial.guestbooks.store', str_slug($memorial->name),$memorial->id], 'method' => 'POST']) !!}
+                            {!! Form::hidden('mem_id', $memorial->id) !!}
+                            <div class="form-group">
+                                <label>Title</label>
+                                {!!Form::text('title', old('title'), ['class' => 'form-control','placeholder' => 'The title...'] ) !!}
+                                {!! $errors->first('title', '<span class="help-block error">:message</span>') !!}
+                            </div>
+
+                            <div class="form-group">
+                                <label>Description</label>
+                                {!!Form::textarea('description', old('description'), ['class' => 'form-control', 'placeholder' => 'The content'] ) !!}
+                                {!! $errors->first('description', '<span class="help-block error">:message</span>') !!}
+                            </div>
+
+                            <div class="form-group">
+                                {!! Form::button('Cancel', ['class' => 'btn btn-warning', 'onclick' => 'window.history.back()']) !!}
+                                {!! Form::submit('Create', ['class' => 'btn btn-success', 'name' => 'create']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div><!-- /#photo-list -->
                     </div>
                 </div>
             </div>
         </div>
     </section><!-- /#section-main-content-->
-
-    <section id="section-timeline" class="section bg-dark">
-        <div class="container">
-            <div class="row">
-                <div class="block block-life-timeline">
-                    <div class="block-header title-center">
-                        <h3 class="block-title white">Life Timeline</h3>
-                        <div class="block-icon white-dark"><span><i class="fa fa-clock-o"></i></span></div>
-                    </div>
-                    <div class="block-content">
-                        <div class="timeline-items">
-                            @foreach($timelines as $timeline)
-                            <div class="timeline-item col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <h2 class="date">{{$timeline->year}}</h2>
-                                <h3 class="title">{{$timeline->title}}</h3>
-                                <a href="#" class="btn btn-dafault">Read More</a>
-                            </div>
-                            @endforeach
-                        </div><!-- /.timeline-items -->
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-    </section><!-- /#section-timeline -->
 
     <section id="section-introduction" class="section bg-blue">
         <div class="container">
@@ -88,5 +83,18 @@
             </div>
         </div>
     </section><!-- /#section-introduction -->
+
+@stop
+
+@section('scripts')
+    <script>
+        $(function(){
+            $('div.readmore').readmore({
+                collapsedHeight: 60,
+                moreLink: '<p><a href="#" class="btn btn-info">Read more</a></p>',
+                lessLink: '<p><a href="#" class="btn btn-info">Close</a></p>'
+            });
+        });
+    </script>
 
 @stop

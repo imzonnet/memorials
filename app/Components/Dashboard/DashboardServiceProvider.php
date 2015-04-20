@@ -3,6 +3,7 @@
 use App\Components\Dashboard\Repositories\User\EloquentUserRepository;
 use App\Components\Dashboard\Repositories\User\UserRepository;
 use App\Components\Flowers\FlowersServiceProvider;
+use App\Components\Posts\PostsServiceProvider;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 /**
@@ -64,6 +65,7 @@ class DashboardServiceProvider extends ServiceProvider
         /**
          * Register Child Component
          */
+        $this->app->register(PostsServiceProvider::class);
         $this->app->register(MemorialsServiceProvider::class);
         $this->app->register(ServiceServiceProvider::class);
         $this->app->register(FlowersServiceProvider::class);

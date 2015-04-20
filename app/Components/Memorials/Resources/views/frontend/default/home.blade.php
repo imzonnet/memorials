@@ -1,4 +1,4 @@
-@extends('Memorials::frontend.default.master')
+@extends('Dashboard::frontend.default.master')
 
 @section('title')
 Welcome to Memorials
@@ -77,33 +77,43 @@ Welcome to Memorials
                        </div>
                         <p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor.</p>
                         <div class="sign-up-form">
-                            <form action="#">
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            {!! Form::open(['url' => 'auth/register', 'method' => 'post']) !!}
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                                    {!! Form::text('name', old('name'), ['placeholder'=>"Enter Name Here", 'class'=>"form-control"]) !!}
                                 </div>
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                    <input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
+                                    {!! Form::text('email', old('email'), ['placeholder'=>"Enter email address", 'class'=>"form-control"]) !!}
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
                                         <div class="input-group input-group-lg">
                                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                                            {!! Form::password('password', ['placeholder'=>"Choose Password", 'class'=>"form-control"]) !!}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
                                         <div class="input-group input-group-lg">
                                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                                            {!! Form::password('password_confirmation', ['placeholder'=>"Re-Type Password", 'class'=>"form-control"]) !!}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="input-group-lg">
                                     <input type="submit" class="btn-submit form-control" value="SIGNUP NOW">
                                 </div>
-                            </form>
+                            {!! Form::close() !!}
                         </div>
                     </div>
                 </div>

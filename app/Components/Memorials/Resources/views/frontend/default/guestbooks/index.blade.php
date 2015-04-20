@@ -1,4 +1,4 @@
-@extends('Memorials::frontend.default.master')
+@extends('Dashboard::frontend.default.master')
 
 @section('title')
     Guestooks | Memorials
@@ -28,13 +28,15 @@
     <!-- Memorial Navigation -->
     @include('Memorials::frontend.default.memorials._NavigationMemorial')
 
+    @include('Dashboard::frontend.default._layouts._message')
+
     <section id="section-main-content" class="section clearfix">
         <div class="container">
             <div class="row">
                 <div class="block guestbooks-list">
                     <div class="block-header">
                         <h2 class="block-title">Guestbook
-                            <a href="#"><span class="label label-info ">Write new message <i class="fa fa-plus"></i></span></a>
+                            <a href="{{route('memorial.guestbooks.create', [str_slug($memorial->name), $memorial->id])}}"><span class="label label-info ">Write new message <i class="fa fa-plus"></i></span></a>
                         </h2>
                     </div>
                     <div class="content">

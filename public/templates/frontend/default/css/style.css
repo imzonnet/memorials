@@ -6510,6 +6510,12 @@ button.close {
   background-color: transparent;
   color: #3c3c3c;
 }
+.btn.btn-warning {
+  color: #eea236;
+}
+.btn.btn-success {
+  color: #4cae4c;
+}
 .btn-slg {
   font-size: 36px;
   padding: 15px 65px;
@@ -7670,6 +7676,41 @@ a {
   font-weight: bold;
   color: #3dbff3;
 }
+.form-custom.form-blue .input-group {
+  box-shadow: none;
+  border-color: #3dbff3;
+}
+.form-custom.form-blue .input-group .input-group-addon {
+  background: #FFF;
+  border-color: #3dbff3;
+  color: #3dbff3;
+}
+.form-custom.form-blue .form-group .form-control {
+  background: #FFF;
+  border-color: #3dbff3;
+  color: #3dbff3;
+  box-shadow: none;
+}
+.form-custom.form-blue .btn-action {
+  text-align: center;
+}
+.form-custom.form-blue .btn-action .btn {
+  box-shadow: none;
+}
+.form-custom.form-blue .btn-action .btn.btn-info {
+  background-color: #FFF;
+  border-color: #3dbff3;
+  color: #3dbff3;
+  padding: 5px 100px;
+  text-transform: uppercase;
+}
+.form-custom.form-blue .textarea-group {
+  position: relative;
+}
+.form-custom.form-blue .textarea-group .textarea-icon {
+  color: #3dbff3;
+  border-right: 1px solid #3dbff3;
+}
 .form-custom .input-group {
   border-radius: 5px;
   box-shadow: 3px 3px 0 #d9d9d9;
@@ -7680,6 +7721,24 @@ a {
 }
 .form-custom .input-group .form-control {
   height: 45px;
+}
+.form-custom .textarea-group {
+  position: relative;
+}
+.form-custom .textarea-group .textarea-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 14px;
+  text-align: center;
+  width: 55px;
+  height: 40px;
+  line-height: 40px;
+  border-right: 1px solid #EEE;
+  margin-top: 1px;
+}
+.form-custom .textarea-group textarea {
+  padding-left: 67px;
 }
 .form-custom .btn-action {
   margin-top: 50px;
@@ -7699,6 +7758,71 @@ a {
   background-color: #3dbff3;
   border-color: #3dbff3;
   color: #FFF;
+}
+.flowers-list .service-teaser {
+  margin-bottom: 20px!important;
+}
+.flowers-list .service-teaser .service-inner .title {
+  margin: 0 0 15px;
+  padding: 0;
+}
+.flowers-list .item-box h3 {
+  color: #7f8c91;
+  font-size: 18px;
+}
+.flowers-list .price {
+  font-size: 42px;
+  color: #3c3c3c;
+  font-weight: bold;
+}
+.flower-order .service-inner {
+  padding: 15px!important;
+}
+.flower-order .service-inner .header {
+  text-align: left;
+}
+.flower-order .service-inner .header .title {
+  padding: 0;
+  margin: 0;
+  font-size: 40px;
+}
+.flower-order .service-inner .header .stock {
+  font-size: 18px;
+  color: #3dbff3;
+}
+.flower-order .service-inner .header .price {
+  font-size: 30px;
+  font-weight: normal;
+}
+.flower-contact-form {
+  background-color: #e5f6fc;
+}
+.flower-contact-form label {
+  font-weight: lighter;
+  text-indent: 100px;
+}
+.flower-contact-form .memorial-info {
+  list-style: none;
+  background-color: #3dbff3;
+  padding: 20px;
+  margin: 20px 0 0;
+  width: 100%;
+  border-radius: 5px;
+}
+.flower-contact-form .memorial-info li {
+  display: inline-block;
+  font-size: 25px;
+  padding-right: 40px;
+}
+.flower-contact-form .memorial-info li .title {
+  color: #FFF;
+  font-weight: lighter;
+  margin: 0;
+  padding: 0 0 10px;
+}
+.flower-contact-form .memorial-info li .text {
+  color: #FFF;
+  font-weight: normal;
 }
 
 /*# sourceMappingURL=style.css.map */

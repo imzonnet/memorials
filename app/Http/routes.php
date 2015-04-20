@@ -14,9 +14,3 @@
 Route::get('/', function() {
     return redirect()->route('home');
 });
-
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);

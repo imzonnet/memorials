@@ -25,6 +25,7 @@ class GuestbookController extends Controller
         parent::__construct();
         $this->memorial = $memorial;
         $this->guestbook = $guestbook;
+        $this->middleware('auth', ['except' => 'index']);
     }
 
     public function index($slug, $id)
@@ -39,10 +40,10 @@ class GuestbookController extends Controller
      *
      * @return Response
      */
-    public function create($mid)
+    public function create($slug, $mid)
     {
         $memorial = $this->memorial->getElementById($mid);
-        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.guestbooks.create_edit', compact('memorial'));
+        return view('Memorials::' . $this->link_type . '.' . $this->current_theme . '.guestbooks.create', compact('memorial'));
     }
 
     /**
@@ -50,10 +51,10 @@ class GuestbookController extends Controller
      *
      * @return Response
      */
-    public function store($mid, GuestbookFormRequest $request, MediaManagerController $media)
+    public function store($slug, $mid, GuestbookFormRequest $request, MediaManagerController $media)
     {
         $this->guestbook->create($request->all());
-        return redirect(route('backend.memorial.guestbook.index',$mid))->with('success_message', 'The guestbook has been created');
+        return redirect(route('memorial.guestbooks',[$slug, $mid]))->with('success_message', 'The guestbook has been created');
     }
 
     /**

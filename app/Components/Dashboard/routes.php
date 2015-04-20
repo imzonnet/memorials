@@ -15,3 +15,7 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth.backend'], function()
     Route::resource('user', 'Backend\UserController');
 });
 
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);

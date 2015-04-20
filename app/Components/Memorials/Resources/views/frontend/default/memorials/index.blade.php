@@ -1,4 +1,4 @@
-@extends('Memorials::frontend.default.master')
+@extends('Dashboard::frontend.default.master')
 
 @section('title')
     {{$memorial->name}}
@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
                     <div class="guestbook-block">
-                        <h3 class="block-title">Guestbook <a href="#"><span class="label label-info">Write new message <i class="fa fa-plus"></i></a></span></h3>
+                        <h3 class="block-title">Guestbook <a href="{{route('memorial.guestbooks.create', [str_slug($memorial->name), $memorial->id])}}"><span class="label label-info">Write new message <i class="fa fa-plus"></i></a></span></h3>
                         <div class="content">
                             @if(count($guestbooks) > 0)
                                 @foreach($guestbooks as $guestbook)

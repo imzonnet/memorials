@@ -10,7 +10,7 @@ class MediaManagerController extends Controller
 
     public function __construct() {
         parent::__construct();
-        $this->path = 'public/uploads/';
+        $this->path = 'uploads/';
     }
 
     public function upload($file, $upload_path = '/') {

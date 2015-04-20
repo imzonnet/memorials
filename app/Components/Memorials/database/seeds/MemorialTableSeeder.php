@@ -1,5 +1,6 @@
 <?php namespace App\Components\Memorials\Database\Seeds;
 use App\User;
+use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -22,11 +23,11 @@ class MemorialTableSeeder extends Seeder {
                 'biography' => $faker->paragraph(10),
                 'obituary' => $faker->paragraph(10),
                 'buried'    => $faker->address,
-                'lat'   => $faker->latitude,
-                'lng'   => $faker->longitude,
+                'lat'   => '16.050825',
+                'lng'   => '108.215067',
                 'created_by' => $user->id,
-                'created_at' => $faker->dateTime('now'),
-                'updated_at' => $faker->dateTime('now'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]);
         }
 

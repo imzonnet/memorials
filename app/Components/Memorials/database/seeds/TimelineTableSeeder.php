@@ -1,6 +1,7 @@
 <?php namespace App\Components\Memorials\Database\Seeds;
 use App\Components\Memorials\Models\Memorial;
 use App\User;
+use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -25,8 +26,8 @@ class TimelineTableSeeder extends Seeder {
                 'image' => $faker->imageUrl(rand(295, 300), 235, 'people'),
                 'mem_id' => $memorials[array_rand($memorials)],
                 'created_by' => $user->id,
-                'created_at' => $faker->dateTime('now'),
-                'updated_at' => $faker->dateTime('now'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]);
         }
 
