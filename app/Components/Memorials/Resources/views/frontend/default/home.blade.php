@@ -79,42 +79,37 @@ Welcome to Memorials
                        </div>
                         <p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor.</p>
                         <div class="sign-up-form">
-                            @if (count($errors) > 0)
-                                <div class="alert alert-danger">
-                                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
                             {!! Form::open(['url' => 'auth/register', 'method' => 'post']) !!}
-                                <div class="input-group input-group-lg">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    {!! Form::text('name', old('name'), ['placeholder'=>"Enter Name Here", 'class'=>"form-control"]) !!}
-                                </div>
-                                <div class="input-group input-group-lg">
-                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                    {!! Form::text('email', old('email'), ['placeholder'=>"Enter email address", 'class'=>"form-control"]) !!}
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
-                                        <div class="input-group input-group-lg">
-                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                            {!! Form::password('password', ['placeholder'=>"Choose Password", 'class'=>"form-control"]) !!}
-                                        </div>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                {!! Form::text('name', old('name'), ['placeholder'=>"Enter Name Here", 'class'=>"form-control"]) !!}
+                            </div>
+                            {!! $errors->first('name', '<p class="help-block error">:message</p>') !!}
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                {!! Form::text('email', old('email'), ['placeholder'=>"Enter email address", 'class'=>"form-control"]) !!}
+                            </div>
+                            {!! $errors->first('email', '<p class="help-block error">:message</p>') !!}
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                        {!! Form::password('password', ['placeholder'=>"Choose Password", 'class'=>"form-control"]) !!}
                                     </div>
-                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
-                                        <div class="input-group input-group-lg">
-                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                            {!! Form::password('password_confirmation', ['placeholder'=>"Re-Type Password", 'class'=>"form-control"]) !!}
-                                        </div>
+                                    {!! $errors->first('password', '<p class="help-block error">:message</p>') !!}
+                                </div>
+
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                        {!! Form::password('password_confirmation', ['placeholder'=>"Re-Type Password", 'class'=>"form-control"]) !!}
                                     </div>
+                                    {!! $errors->first('password_confirmation', '<p class="help-block error">:message</p>') !!}
                                 </div>
-                                <div class="input-group-lg">
-                                    <input type="submit" class="btn-submit form-control" value="SIGNUP NOW">
-                                </div>
+                            </div>
+                            <div class="input-group-lg">
+                                <input type="submit" class="btn-submit form-control" value="SIGNUP NOW">
+                            </div>
                             {!! Form::close() !!}
                         </div>
                     </div>
