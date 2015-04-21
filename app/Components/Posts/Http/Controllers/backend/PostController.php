@@ -10,7 +10,7 @@ class PostController extends Controller
 {
 
     /**
-     * The post post
+     * The '. $this->post_type .' post
      * @var postRepository
      */
     protected $post;
@@ -64,7 +64,7 @@ class PostController extends Controller
         $post = $this->post->create($attr);
         $post->categories()->sync($request->get('category_id', []));
 
-        return redirect(route('backend.'.$this->post_type.'s.index'))->with('success_message', 'The post has been created');
+        return redirect(route('backend.'.$this->post_type.'s.index'))->with('success_message', 'The '. $this->post_type .' has been created');
     }
 
     /**
@@ -89,14 +89,9 @@ class PostController extends Controller
     public function update($id, PostFormRequest $request, MediaManagerController $media)
     {
         $attr = $request->all();
-        $post = $this->post->getElementById($id);
-        if($request->hasFile('image')) {
-            if(file_exists($post->image)) { unlink($post->image);}
-            $attr['image'] = $media->upload($attr['image'], 'posts');
-        }
-        $this->post->update($attr);
-
-        return redirect(route('backend.'.$this->post_type.'s.index'))->with('success_message', 'The post has been updated');
+        $post = $this->post->update($attr);
+        $post->categories()->sync($request->get('category_id', []));
+        return redirect(route('backend.'.$this->post_type.'s.index'))->with('success_message', 'The '. $this->post_type .' has been updated');
     }
 
     /**
@@ -109,6 +104,6 @@ class PostController extends Controller
     {
         $post = $this->post->getElementById($id);
         $post->delete();
-        return redirect()->back()->with('success_message', 'The post has been deleted');
+        return redirect()->back()->with('success_message', 'The '. $this->post_type .' has been deleted');
     }
 }

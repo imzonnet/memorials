@@ -48,7 +48,9 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
         if( !isset($attributes['state']) || empty($attributes['state'])) {
             $attributes['state'] = 0;
         }
-        return $this->getElementById($attributes['id'])->update($attributes);
+        $post = $this->getElementById($attributes['id']);
+        $post->update($attributes);
+        return $post;
     }
 
     public function all_post($type = 'post')

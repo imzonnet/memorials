@@ -34,7 +34,7 @@
             @if($post_type === 'post')
             <div class="form-group">
                 <label>Category</label>
-                {!!Form::select('category_id[]', $categories, isset($post) ? '' : old('category_id'), ['class' => 'form-control chosen-select', 'placeholder' => '', 'multiple' => 'multiple'] ) !!}
+                {!!Form::select('category_id[]', $categories, isset($post) ? $post->present()->selected_categories : old('category_id'), ['class' => 'form-control chosen-select', 'placeholder' => '', 'multiple' => 'multiple'] ) !!}
                 {!! $errors->first('category_id', '<span class="help-block error">:message</span>') !!}
             </div>
             @endif

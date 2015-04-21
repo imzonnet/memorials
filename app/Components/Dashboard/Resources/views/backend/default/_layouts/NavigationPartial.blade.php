@@ -52,7 +52,7 @@
 
                 <!-- Posts Component -->
                 <li>
-                    <a href="{{route('backend.posts.index')}}"><i class="fa fa-user fa-fw"></i> Posts<span class="fa arrow"></span></a>
+                    <a href="{{route('backend.posts.index')}}"><i class="fa fa-file-text fa-fw"></i> Posts<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{route('backend.posts.index')}}">List Posts</a>
@@ -69,7 +69,7 @@
                 <!-- End Posts -->
                 <!-- Posts Component -->
                 <li>
-                    <a href="{{route('backend.pages.index')}}"><i class="fa fa-user fa-fw"></i> Pages<span class="fa arrow"></span></a>
+                    <a href="{{route('backend.pages.index')}}"><i class="fa fa-file-text fa-fw"></i> Pages<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{route('backend.pages.index')}}">List Pages</a>

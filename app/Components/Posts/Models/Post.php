@@ -1,9 +1,14 @@
 <?php namespace App\Components\Posts\Models;
 
+use App\Components\Posts\Presenters\PostPresenter;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 
 class Post extends Model {
+
+    use PresentableTrait;
+    protected $presenter = PostPresenter::class;
 
     /**
      * The database table used by the model.
@@ -17,7 +22,7 @@ class Post extends Model {
      *
      * @var array
      */
-    protected $fillable = ['title', 'image', 'description', 'type', 'created_by'];
+    protected $fillable = ['title', 'image', 'description', 'type', 'created_by', 'state'];
 
     public function user() {
         return $this->belongsTo(User::class, 'created_by', 'id');
