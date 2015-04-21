@@ -11,7 +11,7 @@
     <script src="{{asset('templates/backend/default/dist/js/admin.js')}}"></script>
     <script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('assets/ckeditor/adapters/jquery.js')}}"></script>
-    <script src="{{asset('templates/backend/default/bower_components/DataTables/media/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('templates/backend/default/bower_components/datatables/media/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('templates/backend/default/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js')}}"></script>
     <script src="{{asset('templates/backend/default/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script src="{{asset('templates/backend/default/bower_components/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
