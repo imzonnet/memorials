@@ -38,7 +38,7 @@ class DashboardServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/Resources/lang', 'Dashboard');
 
         $this->publishes([
-            __DIR__ . '/Database/migrations/' => base_path('/database/migrations')
+            __DIR__ . '/Database/Migrations/' => base_path('/database/migrations')
         ], 'migrations');
     }
 

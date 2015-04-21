@@ -54,7 +54,7 @@ class MemorialsServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/Resources/lang', 'Memorials');
 
         $this->publishes([
-            __DIR__ . '/Database/migrations/' => base_path('/database/migrations')
+            __DIR__ . '/Database/Migrations/' => base_path('/database/migrations')
         ], 'migrations');
 
 
