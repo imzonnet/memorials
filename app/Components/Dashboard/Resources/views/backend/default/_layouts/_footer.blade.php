@@ -16,6 +16,7 @@
     <script src="{{asset('templates/backend/default/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script src="{{asset('templates/backend/default/bower_components/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
     <script src="{{asset('assets/dropzone/dropzone.js')}}"></script>
+
     <script src="{{asset('assets/fancybox/jquery.fancybox.js?v=2.1.5')}}"></script>
 
     <script type="text/javascript">
